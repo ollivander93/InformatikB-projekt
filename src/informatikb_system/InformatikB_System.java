@@ -15,7 +15,10 @@ public class InformatikB_System {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Inloggningsruta ruta = new Inloggningsruta();
+        ruta.setVisible(true);
+        Anvandarhantering hanterare = new Anvandarhantering();
+        hanterare.setVisible(true);
     }
     
 }
