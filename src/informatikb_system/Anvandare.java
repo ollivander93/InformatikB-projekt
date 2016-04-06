@@ -50,5 +50,23 @@ public class Anvandare {
         return false;
     }
     
+    public void laggTillNyAnvandare(String firstname, String lastname, String losenord, String telefon, String admin, String anvandarnamn)
+    {
+    
+        try
+        {
+                String sqlFraga = "INSERT INTO ANSTALLD "
+                + "VALUES(" + idb.getAutoIncrement("ANSTALLD", "AID") + ",'" + firstname + "', '" + lastname + "', '" + losenord + "', " + telefon + ", '" + admin + "', '" + anvandarnamn + "');";
+            idb.insert(sqlFraga);
+            System.out.println("Det funkade!");
+
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+       
+    
+    }
     
 }
