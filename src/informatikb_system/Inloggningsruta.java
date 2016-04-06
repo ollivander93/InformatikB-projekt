@@ -45,9 +45,9 @@ public class Inloggningsruta extends javax.swing.JFrame {
         lblInloggning.setText("Inloggning");
 
         pfPassword.setText("jPasswordField1");
-        pfPassword.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pfPasswordMouseClicked(evt);
+        pfPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pfPasswordFocusGained(evt);
             }
         });
 
@@ -114,10 +114,6 @@ public class Inloggningsruta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void pfPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pfPasswordMouseClicked
-        pfPassword.setText("");
-    }//GEN-LAST:event_pfPasswordMouseClicked
-
     private void btnLogInMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogInMouseClicked
         String losenord = pfPassword.getText();
         String username = tfUsername.getText();
@@ -134,6 +130,10 @@ public class Inloggningsruta extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnLogInMouseClicked
+
+    private void pfPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfPasswordFocusGained
+        pfPassword.setText("");
+    }//GEN-LAST:event_pfPasswordFocusGained
 
     /**
      * @param args the command line arguments
