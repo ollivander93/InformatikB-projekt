@@ -17,8 +17,10 @@ public class Inlagg extends javax.swing.JFrame {
     /**
      * Creates new form Inlagg
      */
-    public Inlagg() {
+    private static String aid;
+    public Inlagg(String aid) {
         initComponents();
+        this.aid = aid;
     }
 
     /**
@@ -36,7 +38,8 @@ public class Inlagg extends javax.swing.JFrame {
         btnUtbildning = new javax.swing.JButton();
         btnForskning = new javax.swing.JButton();
         btnAll = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnSkrivInlagg = new javax.swing.JButton();
+        btnTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -68,10 +71,17 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Skriv inlägg");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSkrivInlagg.setText("Skriv inlägg");
+        btnSkrivInlagg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnSkrivInlaggMouseClicked(evt);
+            }
+        });
+
+        btnTest.setText("testAID");
+        btnTest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTestMouseClicked(evt);
             }
         });
 
@@ -81,23 +91,29 @@ public class Inlagg extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUtbildning, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                    .addComponent(btnForskning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSocial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnUtbildning, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                            .addComponent(btnForskning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSocial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(btnTest)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(297, 297, 297))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -107,7 +123,9 @@ public class Inlagg extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnForskning)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAll))
+                        .addComponent(btnAll)
+                        .addGap(93, 93, 93)
+                        .addComponent(btnTest))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 34, Short.MAX_VALUE))
         );
@@ -157,9 +175,15 @@ public class Inlagg extends javax.swing.JFrame {
   
     }//GEN-LAST:event_btnAllMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void btnSkrivInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkrivInlaggMouseClicked
+        SkrivaInlagg skriva = new SkrivaInlagg();
+        skriva.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnSkrivInlaggMouseClicked
+
+    private void btnTestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTestMouseClicked
+        System.out.println(aid);
+    }//GEN-LAST:event_btnTestMouseClicked
 
     /**
      * @param args the command line arguments
@@ -191,7 +215,7 @@ public class Inlagg extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inlagg().setVisible(true);
+                new Inlagg(aid).setVisible(true);
             }
         });
     }
@@ -199,9 +223,10 @@ public class Inlagg extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAll;
     private javax.swing.JButton btnForskning;
+    private javax.swing.JButton btnSkrivInlagg;
     private javax.swing.JButton btnSocial;
+    private javax.swing.JButton btnTest;
     private javax.swing.JButton btnUtbildning;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtInlagg;
     // End of variables declaration//GEN-END:variables
