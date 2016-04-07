@@ -39,10 +39,10 @@ public class InlaggMgt {
     {
         ArrayList inlagg = new ArrayList<HashMap<String, String>>();
         String sqlFraga = "select ANSTALLD.FIRST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT " +
-"FROM ANSTALLD " +
-"JOIN INLAGG " +
-"ON ANSTALLD.AID = INLAGG.AID " +
-"WHERE ANSTALLD.FIRST_NAME = 'Karl';";
+        "FROM ANSTALLD " +
+        "JOIN INLAGG " +
+        "ON ANSTALLD.AID = INLAGG.AID " +
+        "WHERE ANSTALLD.FIRST_NAME = 'Karl';";
         try
         {
            inlagg = idb.fetchRows(sqlFraga);
