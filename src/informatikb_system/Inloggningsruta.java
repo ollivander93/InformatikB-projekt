@@ -120,7 +120,9 @@ public class Inloggningsruta extends javax.swing.JFrame {
         boolean valid = user.valideraInloggning(username, losenord);
         if(valid)
         {
-            JOptionPane.showMessageDialog(this, "Grattis!");
+            Inlagg inlaggruta = new Inlagg();
+            inlaggruta.setVisible(true);
+            dispose();
         }
         else
         {
