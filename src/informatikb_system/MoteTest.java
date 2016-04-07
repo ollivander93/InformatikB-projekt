@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package informatikb_system;
+import java.util.*;
+import java.text.*;
 
 /**
  *
@@ -12,6 +14,7 @@ package informatikb_system;
 public class MoteTest extends javax.swing.JFrame {
     
     private final Mote mote;
+    private final Date datum;
 
     /**
      * Creates new form MoteTest
@@ -19,6 +22,7 @@ public class MoteTest extends javax.swing.JFrame {
     public MoteTest() {
         initComponents();
         mote = new Mote();
+        datum = new Date();
     }
 
     /**
@@ -31,17 +35,15 @@ public class MoteTest extends javax.swing.JFrame {
     private void initComponents() {
 
         tfMID = new javax.swing.JTextField();
-        tfDatum = new javax.swing.JTextField();
         tfTid = new javax.swing.JTextField();
         tfSal = new javax.swing.JTextField();
         btnSkapaMote = new javax.swing.JButton();
         lblStatus = new javax.swing.JLabel();
+        dpDatum = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tfMID.setText("MID");
-
-        tfDatum.setText("Datum");
 
         tfTid.setText("Tid");
 
@@ -63,15 +65,15 @@ public class MoteTest extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(btnSkapaMote))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(125, 125, 125)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfMID)
-                            .addComponent(tfDatum, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                            .addComponent(tfMID, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                             .addComponent(tfTid)
-                            .addComponent(tfSal)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(btnSkapaMote)))
+                            .addComponent(tfSal)
+                            .addComponent(dpDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addContainerGap(117, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -83,9 +85,9 @@ public class MoteTest extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addComponent(tfMID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(tfDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dpDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addComponent(tfTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tfSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,11 +103,12 @@ public class MoteTest extends javax.swing.JFrame {
 
     private void btnSkapaMoteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkapaMoteMouseClicked
         // TODO add your handling code here:
-        String datum = tfDatum.getText();
+        Date datum = dpDatum.getDate();
+        String finalDatum = new SimpleDateFormat("yyyy-MM-dd").format(datum);
         String id = tfMID.getText();
         String tid = tfTid.getText();
         String plats = tfSal.getText();
-        mote.skapaMote(id, datum, tid, plats);
+        mote.skapaMote(id, finalDatum, tid, plats);
     }//GEN-LAST:event_btnSkapaMoteMouseClicked
 
     /**
@@ -145,8 +148,8 @@ public class MoteTest extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSkapaMote;
+    private org.jdesktop.swingx.JXDatePicker dpDatum;
     private javax.swing.JLabel lblStatus;
-    private javax.swing.JTextField tfDatum;
     private javax.swing.JTextField tfMID;
     private javax.swing.JTextField tfSal;
     private javax.swing.JTextField tfTid;

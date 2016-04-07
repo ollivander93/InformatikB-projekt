@@ -26,17 +26,17 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="tfMID" max="32767" attributes="0"/>
-                          <Component id="tfDatum" pref="158" max="32767" attributes="0"/>
-                          <Component id="tfTid" max="32767" attributes="0"/>
-                          <Component id="tfSal" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
                       <Component id="btnSkapaMote" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tfMID" pref="158" max="32767" attributes="0"/>
+                          <Component id="tfTid" max="32767" attributes="0"/>
+                          <Component id="tfSal" max="32767" attributes="0"/>
+                          <Component id="dpDatum" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace pref="117" max="32767" attributes="0"/>
@@ -53,9 +53,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Component id="tfMID" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="tfDatum" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="dpDatum" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Component id="tfTid" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="tfSal" min="-2" max="-2" attributes="0"/>
@@ -72,11 +72,6 @@
     <Component class="javax.swing.JTextField" name="tfMID">
       <Properties>
         <Property name="text" type="java.lang.String" value="MID"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="tfDatum">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Datum"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfTid">
@@ -101,6 +96,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
+    </Component>
+    <Component class="org.jdesktop.swingx.JXDatePicker" name="dpDatum">
     </Component>
   </SubComponents>
 </Form>
