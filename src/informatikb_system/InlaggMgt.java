@@ -5,6 +5,7 @@
  */
 package informatikb_system;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import oru.inf.InfDB;
@@ -16,13 +17,14 @@ import oru.inf.InfException;
  */
 public class InlaggMgt {
     private InfDB idb; 
+ 
     
    public InlaggMgt()
     {
         anslutDatabas();
     }
     
-     public void anslutDatabas()
+     private void anslutDatabas()
     {
                 try
         {
@@ -54,5 +56,28 @@ public class InlaggMgt {
         System.out.print(sqlFraga);
         return inlagg;
     }
+      
+      public void laggTillBloggInlagg(String titel, String text, String aid)
+      {
+        String date = LocalDateTime.now().toString();
+        String date2 = date.substring(0,10);
+        String time = date.substring(11, 19);
+        System.out.println(date2 + " Tid: " + time);
+        String visible = "true";
+          try
+          {
+    
+          String sqlFraga = "INSERT INTO INLAGG "
+                + "VALUES(" + idb.getAutoIncrement("INLAGG", "iid") + ",'" + titel + "', '" + date2 + "', '" + time + "', '" + visible + "', " + aid + ", '" + text + "');";
+          System.out.println(sqlFraga);    
+          idb.insert(sqlFraga);
+                
+          }
+          catch(InfException e)
+          {
+              System.out.println(e.getMessage());
+          }
+                  
+      }
      
 }

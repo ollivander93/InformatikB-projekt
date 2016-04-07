@@ -17,8 +17,8 @@ public class InformatikB_System {
     public static void main(String[] args) {
         Inloggningsruta ruta = new Inloggningsruta();
         ruta.setVisible(true);
-        Anvandarhantering hanterare = new Anvandarhantering();
-        hanterare.setVisible(true);
+        Anvandarhantering anv = new Anvandarhantering();
+        anv.setVisible(true);
     }
     
 }

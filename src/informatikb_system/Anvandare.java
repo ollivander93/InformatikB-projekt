@@ -15,7 +15,7 @@ import oru.inf.InfDB;
  */
 public class Anvandare {
     private InfDB idb;
-    
+    private String aID;
     public Anvandare()
     {
         try
@@ -40,6 +40,7 @@ public class Anvandare {
             valideraLosenord = idb.fetchSingle(sqlFraga);
             if(valideraLosenord.equals(losenord))
             {
+                setAID(anvandarnamn);
                 return true;
             }
         }
@@ -67,6 +68,27 @@ public class Anvandare {
         }
        
     
+    }
+    
+    private void setAID(String anvandarnamn)
+    {
+        String sqlFraga = "select anstalld.aid from anstalld where anstalld.anvandarnamn = '" + anvandarnamn + "';";
+        String anstalldID = "";
+        try
+        {
+            anstalldID = idb.fetchSingle(sqlFraga);
+            aID = anstalldID;
+        }
+        
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public String getAID()
+    {
+        return aID;
     }
     
 }

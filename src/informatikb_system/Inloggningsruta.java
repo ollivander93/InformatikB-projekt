@@ -120,7 +120,8 @@ public class Inloggningsruta extends javax.swing.JFrame {
         boolean valid = user.valideraInloggning(username, losenord);
         if(valid)
         {
-            Inlagg inlaggruta = new Inlagg();
+            String aID = user.getAID();
+            Inlagg inlaggruta = new Inlagg(aID);
             inlaggruta.setVisible(true);
             dispose();
         }

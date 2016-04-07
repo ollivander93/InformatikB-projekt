@@ -176,7 +176,7 @@ public class Inlagg extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAllMouseClicked
 
     private void btnSkrivInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkrivInlaggMouseClicked
-        SkrivaInlagg skriva = new SkrivaInlagg();
+        SkrivaInlagg skriva = new SkrivaInlagg(aid);
         skriva.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSkrivInlaggMouseClicked
