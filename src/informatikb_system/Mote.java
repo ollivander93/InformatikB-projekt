@@ -38,6 +38,7 @@ private InfDB idb;
         {
             String sqlFraga = "insert into MOTE values (" + id + ", '" + datum +
                     "', '" + tid + "', '" + plats + "');";
+            System.out.println(sqlFraga);
             idb.insert(sqlFraga);
             System.out.println("Success");
         }
