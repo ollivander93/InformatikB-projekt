@@ -23,7 +23,7 @@ private InfDB idb;
         anslutDatabas();
     }
     
-    private void anslutDatabas()
+    public void anslutDatabas()
     {
                 try
         {
@@ -35,22 +35,5 @@ private InfDB idb;
         {
             System.out.println(e.getMessage());
         }
-    }
-    
-    public ArrayList<String> hamtaAnvandarnamn()
-    {
-        ArrayList anstallda = new ArrayList<String>();
-        String sqlFraga = "select anstalld.anvandarnamn from anstalld;";
-        try
-        {
-           anstallda = idb.fetchColumn(sqlFraga);
-        }
-        catch(InfException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        return anstallda;
-    }
-        
-    
+    }  
 }
