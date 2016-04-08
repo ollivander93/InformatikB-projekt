@@ -86,7 +86,7 @@ public class MonthPanel extends JPanel {
         Calendar iterator = (Calendar) calendar.clone();
         iterator.add(Calendar.DAY_OF_MONTH,
                 -(iterator.get(Calendar.DAY_OF_WEEK) - 1));
-        //
+        //Kalenderobjekt maximum = denna månad +1
         Calendar maximum = (Calendar) calendar.clone();
         maximum.add(Calendar.MONTH, +1);
 
