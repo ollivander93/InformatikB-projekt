@@ -17,9 +17,15 @@ public class Inlagg extends javax.swing.JFrame {
     /**
      * Creates new form Inlagg
      */
+    private InlaggMgt inlagg;
+
     private static String aid;
+
     public Inlagg(String aid) {
         initComponents();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        inlagg = new InlaggMgt();
         this.aid = aid;
     }
 
@@ -138,47 +144,39 @@ public class Inlagg extends javax.swing.JFrame {
     }//GEN-LAST:event_btnForskningActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       ArrayList<HashMap<String, String>> inlaggLista = new ArrayList<HashMap<String, String>>();
-       
-        InlaggMgt inlagg = new InlaggMgt();
-        ArrayList<HashMap<String, String>>  txtArea = inlagg.hamtaInlagg();
-        
-        for(int i = 0; i< inlaggLista.size(); i++){
-            String bloggIn = inlaggLista.get(i).get("TEXT");
-            txtInlagg.add(bloggIn, this);
-            System.out.println(bloggIn);
-        }
-  
-        
-        
-        
-    }//GEN-LAST:event_formWindowOpened
 
-    private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
-       
-       
-        InlaggMgt inlagg = new InlaggMgt();
-        ArrayList<HashMap<String, String>>  txtArea = inlagg.hamtaInlagg();
-        
-        if(txtArea != null)
-                {
-        for(int i = 0; i< txtArea.size(); i++){
+        ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
+
+        for (int i = txtArea.size() - 1; i >= 0; i--) {
             String firstName = txtArea.get(i).get("FIRST_NAME");
             String datum = txtArea.get(i).get("DATUM");
             String tid = txtArea.get(i).get("TID");
             String bloggIn = txtArea.get(i).get("TEXT");
             txtInlagg.append(firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n");
-            
-            System.out.println(bloggIn);
         }
+    }
+
+    public void refreshList() {
+        ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
+
+        if (txtArea != null) {
+            for (int i = txtArea.size() - 1; i >= 0; i--) {
+                String firstName = txtArea.get(i).get("FIRST_NAME");
+                String datum = txtArea.get(i).get("DATUM");
+                String tid = txtArea.get(i).get("TID");
+                String bloggIn = txtArea.get(i).get("TEXT");
+                txtInlagg.append(firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n");
+            }
         }
-  
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
+        refreshList();
     }//GEN-LAST:event_btnAllMouseClicked
 
     private void btnSkrivInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkrivInlaggMouseClicked
-        SkrivaInlagg skriva = new SkrivaInlagg(aid);
+        SkrivaInlagg skriva = new SkrivaInlagg(aid, this);
         skriva.setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnSkrivInlaggMouseClicked
 
     private void btnTestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTestMouseClicked

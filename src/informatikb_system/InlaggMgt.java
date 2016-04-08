@@ -43,8 +43,7 @@ public class InlaggMgt {
         String sqlFraga = "select ANSTALLD.FIRST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT " +
         "FROM ANSTALLD " +
         "JOIN INLAGG " +
-        "ON ANSTALLD.AID = INLAGG.AID " +
-        "WHERE ANSTALLD.FIRST_NAME = 'Karl';";
+        "ON ANSTALLD.AID = INLAGG.AID;";
         try
         {
            inlagg = idb.fetchRows(sqlFraga);
@@ -53,7 +52,6 @@ public class InlaggMgt {
         {
             System.out.println(e.getMessage());
         }
-        System.out.print(sqlFraga);
         return inlagg;
     }
       
@@ -68,8 +66,7 @@ public class InlaggMgt {
           {
     
           String sqlFraga = "INSERT INTO INLAGG "
-                + "VALUES(" + idb.getAutoIncrement("INLAGG", "iid") + ",'" + titel + "', '" + date2 + "', '" + time + "', '" + visible + "', " + aid + ", '" + text + "');";
-          System.out.println(sqlFraga);    
+                + "VALUES(" + idb.getAutoIncrement("INLAGG", "iid") + ",'" + titel + "', '" + date2 + "', '" + time + "', '" + visible + "', " + aid + ", '" + text + "');";  
           idb.insert(sqlFraga);
                 
           }

@@ -19,14 +19,18 @@ public class SkrivaInlagg extends javax.swing.JFrame {
     private static String aid;
     private InlaggMgt mgt;
     private Calendar cal;
+    private static Inlagg inlaggRuta;
     /**
      * Creates new form SkrivaInlagg
      */
-    public SkrivaInlagg(String aid) {
+    public SkrivaInlagg(String aid, Inlagg inlaggRuta) {
         initComponents();
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.aid = aid;
         System.out.println(aid);
         mgt = new InlaggMgt();
+        this.inlaggRuta = inlaggRuta;
     }
 
     /**
@@ -145,6 +149,8 @@ public class SkrivaInlagg extends javax.swing.JFrame {
         String titel = tfTitel.getText();
         
         mgt.laggTillBloggInlagg(titel, text, aid);
+        inlaggRuta.refreshList();
+        dispose();
         JOptionPane.showMessageDialog(this, "Grattis, du har postat ett nytt inlägg!");
     }//GEN-LAST:event_btnPostaInlaggMouseClicked
 
@@ -184,7 +190,7 @@ public class SkrivaInlagg extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SkrivaInlagg(aid).setVisible(true);
+                new SkrivaInlagg(aid, inlaggRuta).setVisible(true);
             }
         });
     }
