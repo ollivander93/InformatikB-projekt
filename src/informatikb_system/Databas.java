@@ -35,5 +35,23 @@ private InfDB idb;
         {
             System.out.println(e.getMessage());
         }
-    }  
+    }
+    
+    public ArrayList hamtaMotesDatum()
+    {
+        ArrayList<String> datum = new ArrayList();
+        try
+        {
+            String sqlFraga = "SELECT DATUM FROM MOTE;";
+            datum = idb.fetchColumn(sqlFraga);
+            return datum;
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return datum;
+    }
+    
+    
 }
