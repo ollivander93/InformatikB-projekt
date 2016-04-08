@@ -86,7 +86,7 @@ public class MonthPanel extends JPanel {
         Calendar iterator = (Calendar) calendar.clone();
         iterator.add(Calendar.DAY_OF_MONTH,
                 -(iterator.get(Calendar.DAY_OF_WEEK) - 1));
-
+        //
         Calendar maximum = (Calendar) calendar.clone();
         maximum.add(Calendar.MONTH, +1);
 
@@ -100,7 +100,7 @@ public class MonthPanel extends JPanel {
 
         int count = 0;
         int limit = dayNames.length * 6;
-
+        //Loopar tills nästkommande månad
         while (iterator.getTimeInMillis() < maximum.getTimeInMillis()) {
             int lMonth = iterator.get(Calendar.MONTH);
             int lYear = iterator.get(Calendar.YEAR);
