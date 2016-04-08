@@ -5,8 +5,12 @@
  */
 package informatikb_system;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 /**
  *
@@ -29,6 +33,9 @@ public class Inlagg extends javax.swing.JFrame {
         this.aid = aid;
     }
 
+
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +53,8 @@ public class Inlagg extends javax.swing.JFrame {
         btnAll = new javax.swing.JButton();
         btnSkrivInlagg = new javax.swing.JButton();
         btnTest = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtPaneInlagg = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -91,6 +100,8 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane2.setViewportView(txtPaneInlagg);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,7 +119,11 @@ public class Inlagg extends javax.swing.JFrame {
                         .addGap(73, 73, 73)
                         .addComponent(btnTest)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -120,20 +135,25 @@ public class Inlagg extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSocial)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSocial)
                         .addGap(18, 18, 18)
                         .addComponent(btnUtbildning)
-                        .addGap(18, 18, 18)
+                        .addGap(21, 21, 21)
                         .addComponent(btnForskning)
                         .addGap(18, 18, 18)
                         .addComponent(btnAll)
-                        .addGap(93, 93, 93)
-                        .addComponent(btnTest))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 34, Short.MAX_VALUE))
+                        .addGap(93, 93, 93))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(btnTest)
+                .addGap(0, 68, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,15 +165,6 @@ public class Inlagg extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-        ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
-
-        for (int i = txtArea.size() - 1; i >= 0; i--) {
-            String firstName = txtArea.get(i).get("FIRST_NAME");
-            String datum = txtArea.get(i).get("DATUM");
-            String tid = txtArea.get(i).get("TID");
-            String bloggIn = txtArea.get(i).get("TEXT");
-            txtInlagg.append(firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n");
-        }
     }
 
     public void refreshList() {
@@ -170,8 +181,34 @@ public class Inlagg extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowOpened
 
+    public void showInlaggInPane(){
+       ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
+
+       
+            for (int i = txtArea.size() - 1; i >= 0; i--) {
+                 String firstName = txtArea.get(i).get("FIRST_NAME");
+                String datum = txtArea.get(i).get("DATUM");
+                String tid = txtArea.get(i).get("TID");
+                String bloggIn = txtArea.get(i).get("TEXT");
+                txtInlagg.append(firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n");
+                
+                StyledDocument doc = txtPaneInlagg.getStyledDocument();
+                
+       
+                SimpleAttributeSet keyWord = new SimpleAttributeSet();
+                StyleConstants.setForeground(keyWord, Color.RED);
+                StyleConstants.setBackground(keyWord, Color.YELLOW);
+                StyleConstants.setBold(keyWord, true);
+                try{
+                doc.insertString(0,firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",keyWord );
+                    }catch(Exception e) { System.out.println(e); }
+                    }
+            }   
+
+    
     private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
         refreshList();
+        showInlaggInPane();
     }//GEN-LAST:event_btnAllMouseClicked
 
     private void btnSkrivInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkrivInlaggMouseClicked
@@ -226,6 +263,8 @@ public class Inlagg extends javax.swing.JFrame {
     private javax.swing.JButton btnTest;
     private javax.swing.JButton btnUtbildning;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea txtInlagg;
+    private javax.swing.JTextPane txtPaneInlagg;
     // End of variables declaration//GEN-END:variables
 }
