@@ -45,8 +45,6 @@ public class Inlagg extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtInlagg = new javax.swing.JTextArea();
         btnSocial = new javax.swing.JButton();
         btnUtbildning = new javax.swing.JButton();
         btnForskning = new javax.swing.JButton();
@@ -62,11 +60,6 @@ public class Inlagg extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-
-        txtInlagg.setEditable(false);
-        txtInlagg.setColumns(20);
-        txtInlagg.setRows(5);
-        jScrollPane1.setViewportView(txtInlagg);
 
         btnSocial.setText("Social");
 
@@ -110,7 +103,7 @@ public class Inlagg extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnUtbildning, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                            .addComponent(btnUtbildning, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                             .addComponent(btnForskning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnSocial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -119,12 +112,9 @@ public class Inlagg extends javax.swing.JFrame {
                         .addGap(73, 73, 73)
                         .addComponent(btnTest)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(44, 44, 44))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,23 +125,20 @@ public class Inlagg extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSocial)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(btnSocial)
                         .addGap(18, 18, 18)
                         .addComponent(btnUtbildning)
                         .addGap(21, 21, 21)
                         .addComponent(btnForskning)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAll)
-                        .addGap(93, 93, 93))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(btnAll))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTest)
                 .addGap(0, 68, Short.MAX_VALUE))
         );
@@ -168,17 +155,17 @@ public class Inlagg extends javax.swing.JFrame {
     }
 
     public void refreshList() {
-        ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
-
-        if (txtArea != null) {
-            for (int i = txtArea.size() - 1; i >= 0; i--) {
-                String firstName = txtArea.get(i).get("FIRST_NAME");
-                String datum = txtArea.get(i).get("DATUM");
-                String tid = txtArea.get(i).get("TID");
-                String bloggIn = txtArea.get(i).get("TEXT");
-                txtInlagg.append(firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n");
-            }
-        }
+//        ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
+//
+//        if (txtArea != null) {
+//            for (int i = txtArea.size() - 1; i >= 0; i--) {
+//                String firstName = txtArea.get(i).get("FIRST_NAME");
+//                String datum = txtArea.get(i).get("DATUM");
+//                String tid = txtArea.get(i).get("TID");
+//                String bloggIn = txtArea.get(i).get("TEXT");
+//                txtInlagg.append(firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n");
+//            }
+//        }
     }//GEN-LAST:event_formWindowOpened
 
     public void showInlaggInPane(){
@@ -190,7 +177,7 @@ public class Inlagg extends javax.swing.JFrame {
                 String datum = txtArea.get(i).get("DATUM");
                 String tid = txtArea.get(i).get("TID");
                 String bloggIn = txtArea.get(i).get("TEXT");
-                txtInlagg.append(firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n");
+//                txtInlagg.append(firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n");
                 
                 StyledDocument doc = txtPaneInlagg.getStyledDocument();
                 
@@ -262,9 +249,7 @@ public class Inlagg extends javax.swing.JFrame {
     private javax.swing.JButton btnSocial;
     private javax.swing.JButton btnTest;
     private javax.swing.JButton btnUtbildning;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea txtInlagg;
     private javax.swing.JTextPane txtPaneInlagg;
     // End of variables declaration//GEN-END:variables
 }
