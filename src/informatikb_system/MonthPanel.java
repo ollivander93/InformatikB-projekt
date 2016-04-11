@@ -19,10 +19,13 @@ import java.util.Calendar;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.util.ArrayList;
 
 public class MonthPanel extends JPanel {
 
     private static final long   serialVersionUID    = 1L;
+    private Databas db;
+    private ArrayList<String> motesDagar;
 
     protected int               month;
     protected int               year;
@@ -37,10 +40,22 @@ public class MonthPanel extends JPanel {
     public MonthPanel(int month, int year) {
         this.month = month;
         this.year = year;
+        db = new Databas();
+        motesDagar = new ArrayList<String>();
+        motesTest();
+        
 
         this.add(createGUI());
     }
 
+    
+    public void motesTest()
+    {
+        motesDagar = db.hamtaMotesDatum();
+    }
+
+            
+    
     protected JPanel createGUI() {
         JPanel monthPanel = new JPanel(true);
         monthPanel.setBorder(BorderFactory
@@ -111,22 +126,38 @@ public class MonthPanel extends JPanel {
 
             if ((lMonth == month) && (lYear == year)) {
                 int lDay = iterator.get(Calendar.DAY_OF_MONTH);
+                String finalLDay = Integer.toString(lDay);
+               // System.out.println(finalLDay);
                 dayLabel.setText(Integer.toString(lDay));
-// Här kommer satsen för dagens event
+                //kollar så att dagen finns i månaden
                 if ((tMonth == month) && (tYear == year) && (tDay == lDay)) {
                     dPanel.setBackground(Color.ORANGE);
-                } else {
-                    dPanel.setBackground(Color.WHITE);
+                } 
+                else{
+
+                    for(String dag : motesDagar)
+                    {
+                        
+                        if(finalLDay.equals(dag))
+                        {
+                            dPanel.setBackground(Color.GREEN);
+                        }
+                    }
                 }
-            } else {
-                dayLabel.setText(" ");
-                dPanel.setBackground(Color.WHITE);
             }
+                    else
+                    {
+                        dayLabel.setText(" ");
+                        dPanel.setBackground(Color.WHITE);
+                    }
+                    
+            
             dPanel.add(dayLabel);
             dayPanel.add(dPanel);
             iterator.add(Calendar.DAY_OF_YEAR, +1);
             count++;
-        }
+    }
+        
 
         for (int i = count; i < limit; i++) {
             JPanel dPanel = new JPanel(true);
@@ -141,3 +172,4 @@ public class MonthPanel extends JPanel {
         return dayPanel;
     }
 }
+
