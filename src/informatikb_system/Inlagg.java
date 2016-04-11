@@ -8,7 +8,11 @@ package informatikb_system;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
@@ -165,13 +169,14 @@ public class Inlagg extends javax.swing.JFrame {
     public void refreshList() {
 
     }//GEN-LAST:event_formWindowOpened
-   
+  
     
     public void showInlaggInPane(){
        
        ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
        StyledDocument doc = txtPaneInlagg.getStyledDocument();
-      
+       inlagg.emptyInlaggPane(doc);
+       
             for (int i = txtArea.size() - 1; i >= 0; i--) {
                  String firstName = txtArea.get(i).get("FIRST_NAME");
                 String datum = txtArea.get(i).get("DATUM");
@@ -190,7 +195,7 @@ public class Inlagg extends javax.swing.JFrame {
 
     
     private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
-        txtPaneInlagg.removeAll();
+   
         showInlaggInPane();
     }//GEN-LAST:event_btnAllMouseClicked
 
