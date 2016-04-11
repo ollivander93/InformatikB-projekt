@@ -32,6 +32,7 @@ public class Inlagg extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         inlagg = new InlaggMgt();
         this.aid = aid;
+        showInlaggInPane();
     }
 
 
@@ -109,9 +110,9 @@ public class Inlagg extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(180, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -120,7 +121,7 @@ public class Inlagg extends javax.swing.JFrame {
                         .addComponent(btnForskning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAll, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnTest))
-                .addGap(97, 97, 97))
+                .addGap(909, 909, 909))
             .addGroup(layout.createSequentialGroup()
                 .addGap(348, 348, 348)
                 .addComponent(jButton1)
@@ -145,8 +146,9 @@ public class Inlagg extends javax.swing.JFrame {
                         .addComponent(btnAll)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTest)
-                        .addGap(0, 231, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2)))
+                        .addGap(0, 92, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
         );
 
         pack();
@@ -161,46 +163,34 @@ public class Inlagg extends javax.swing.JFrame {
     }
 
     public void refreshList() {
-//        ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
-//
-//        if (txtArea != null) {
-//            for (int i = txtArea.size() - 1; i >= 0; i--) {
-//                String firstName = txtArea.get(i).get("FIRST_NAME");
-//                String datum = txtArea.get(i).get("DATUM");
-//                String tid = txtArea.get(i).get("TID");
-//                String bloggIn = txtArea.get(i).get("TEXT");
-//                txtInlagg.append(firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n");
-//            }
-//        }
+
     }//GEN-LAST:event_formWindowOpened
-
+   
+    
     public void showInlaggInPane(){
-       ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
-
        
+       ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
+       StyledDocument doc = txtPaneInlagg.getStyledDocument();
+      
             for (int i = txtArea.size() - 1; i >= 0; i--) {
                  String firstName = txtArea.get(i).get("FIRST_NAME");
                 String datum = txtArea.get(i).get("DATUM");
                 String tid = txtArea.get(i).get("TID");
                 String bloggIn = txtArea.get(i).get("TEXT");
-//                txtInlagg.append(firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n");
-                
-                StyledDocument doc = txtPaneInlagg.getStyledDocument();
-                
-       
-                SimpleAttributeSet keyWord = new SimpleAttributeSet();
-                StyleConstants.setForeground(keyWord, Color.RED);
-                StyleConstants.setBackground(keyWord, Color.YELLOW);
-                StyleConstants.setBold(keyWord, true);
+
+                SimpleAttributeSet AtrSet = new SimpleAttributeSet();
+                StyleConstants.setForeground(AtrSet, Color.RED);
+                StyleConstants.setBackground(AtrSet, Color.YELLOW);
+                StyleConstants.setBold(AtrSet, true);
                 try{
-                doc.insertString(0,firstName + " Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",keyWord );
+                doc.insertString(0," ------------------------------------------------" + "\n" + firstName + "\n" + "Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
                     }catch(Exception e) { System.out.println(e); }
                     }
             }   
 
     
     private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
-        refreshList();
+        txtPaneInlagg.removeAll();
         showInlaggInPane();
     }//GEN-LAST:event_btnAllMouseClicked
 
