@@ -15,6 +15,7 @@ public class MoteTest extends javax.swing.JFrame {
     
     private final Mote mote;
     private final Date datum;
+    private Databas db;
 
     /**
      * Creates new form MoteTest
@@ -23,6 +24,7 @@ public class MoteTest extends javax.swing.JFrame {
         initComponents();
         mote = new Mote();
         datum = new Date();
+        db = new Databas();
     }
 
     /**
@@ -40,6 +42,7 @@ public class MoteTest extends javax.swing.JFrame {
         btnSkapaMote = new javax.swing.JButton();
         lblStatus = new javax.swing.JLabel();
         dpDatum = new org.jdesktop.swingx.JXDatePicker();
+        btnTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,6 +61,13 @@ public class MoteTest extends javax.swing.JFrame {
 
         lblStatus.setText("jLabel1");
 
+        btnTest.setText("testknapp");
+        btnTest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTestMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,7 +78,9 @@ public class MoteTest extends javax.swing.JFrame {
                         .addGap(144, 144, 144)
                         .addComponent(btnSkapaMote))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
+                        .addContainerGap()
+                        .addComponent(btnTest)
+                        .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(tfMID, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
@@ -85,8 +97,13 @@ public class MoteTest extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(tfMID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(tfMID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(btnTest)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dpDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -112,6 +129,10 @@ public class MoteTest extends javax.swing.JFrame {
         String plats = tfSal.getText();
         mote.skapaMote(id, finalDatum, tid, plats);
     }//GEN-LAST:event_btnSkapaMoteMouseClicked
+
+    private void btnTestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTestMouseClicked
+        db.hamtaMotesDatum();
+    }//GEN-LAST:event_btnTestMouseClicked
 
     /**
      * @param args the command line arguments
@@ -150,6 +171,7 @@ public class MoteTest extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSkapaMote;
+    private javax.swing.JButton btnTest;
     private org.jdesktop.swingx.JXDatePicker dpDatum;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JTextField tfMID;
