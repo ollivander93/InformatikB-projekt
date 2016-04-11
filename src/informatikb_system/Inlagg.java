@@ -54,6 +54,7 @@ public class Inlagg extends javax.swing.JFrame {
         btnTest = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtPaneInlagg = new javax.swing.JTextPane();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -96,6 +97,13 @@ public class Inlagg extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(txtPaneInlagg);
 
+        jButton1.setText("Titta på kalender");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,11 +121,17 @@ public class Inlagg extends javax.swing.JFrame {
                         .addComponent(btnAll, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnTest))
                 .addGap(97, 97, 97))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(348, 348, 348)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,6 +213,10 @@ public class Inlagg extends javax.swing.JFrame {
         System.out.println(aid);
     }//GEN-LAST:event_btnTestMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CalendarFrame cal = new CalendarFrame();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -241,6 +259,7 @@ public class Inlagg extends javax.swing.JFrame {
     private javax.swing.JButton btnSocial;
     private javax.swing.JButton btnTest;
     private javax.swing.JButton btnUtbildning;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane txtPaneInlagg;
     // End of variables declaration//GEN-END:variables
