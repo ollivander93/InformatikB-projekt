@@ -90,14 +90,14 @@ public class MonthPanel extends JPanel {
         Calendar maximum = (Calendar) calendar.clone();
         maximum.add(Calendar.MONTH, +1);
 
-        for (int i = 0; i < dayNames.length; i++) {
+        for (String dayName : dayNames) {
             JPanel dPanel = new JPanel(true);
             dPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            JLabel dLabel = new JLabel(dayNames[i]);
+            JLabel dLabel = new JLabel(dayName);
             dPanel.add(dLabel);
             dayPanel.add(dPanel);
         }
-
+        
         int count = 0;
         int limit = dayNames.length * 6;
         //Loopar tills nästkommande månad
@@ -112,6 +112,7 @@ public class MonthPanel extends JPanel {
             if ((lMonth == month) && (lYear == year)) {
                 int lDay = iterator.get(Calendar.DAY_OF_MONTH);
                 dayLabel.setText(Integer.toString(lDay));
+// Här kommer satsen för dagens event
                 if ((tMonth == month) && (tYear == year) && (tDay == lDay)) {
                     dPanel.setBackground(Color.ORANGE);
                 } else {
@@ -139,5 +140,4 @@ public class MonthPanel extends JPanel {
 
         return dayPanel;
     }
-
 }
