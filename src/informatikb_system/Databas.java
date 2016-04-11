@@ -60,6 +60,7 @@ private InfDB idb;
                 if(manadForInlagg.equals(thisMonth))
                 {
                     dagar.add(dag);
+                    System.out.println(dagar);
                 }
             }
         }
@@ -67,6 +68,8 @@ private InfDB idb;
         {
             System.out.println(e.getMessage());
         }
+
+        
         return dagar;
     }
     
