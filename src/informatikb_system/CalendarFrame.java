@@ -20,7 +20,7 @@ public class CalendarFrame implements Runnable {
     public void run() {
         // Month is zero based
         MonthPanel panel = new MonthPanel(3, 2016);
-
+        
         frame = new JFrame();
         frame.setTitle("Calendar");
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
