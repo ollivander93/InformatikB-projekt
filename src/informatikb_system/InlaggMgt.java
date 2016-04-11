@@ -37,6 +37,8 @@ public class InlaggMgt {
             System.out.println(e.getMessage());
         }
     } 
+     
+     
       public ArrayList<HashMap<String, String>> hamtaInlagg()
     {
         ArrayList inlagg = new ArrayList<HashMap<String, String>>();

@@ -205,6 +205,8 @@ public class Inlagg extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CalendarFrame cal = new CalendarFrame();
+        cal.run();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
