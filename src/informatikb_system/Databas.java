@@ -89,15 +89,17 @@ private InfDB idb;
         return mote;
     }
    
-    public ArrayList<String> hamtaAnstalldaMote()
+    public ArrayList<String> hamtaAnstalldaMote(String mid)
     {
         ArrayList<String> anstallda = new ArrayList<String>();
         try
         {
             String sqlFornamn = "SELECT ANSTALLD.FIRST_NAME FROM "
-                    + "ANSTALLD JOIN MOTE_ANSTALLD ON ANSTALLD.AID = MOTE_ANSTALLD.AID;";
+                    + "ANSTALLD JOIN MOTE_ANSTALLD ON ANSTALLD.AID = MOTE_ANSTALLD.AID "
+                    + "WHERE MID = '" + mid + "'";
             String sqlEfternamn = "SELECT ANSTALLD.LAST_NAME FROM "
-                    + "ANSTALLD JOIN MOTE_ANSTALLD ON ANSTALLD.AID = MOTE_ANSTALLD.AID;";
+                    + "ANSTALLD JOIN MOTE_ANSTALLD ON ANSTALLD.AID = MOTE_ANSTALLD.AID "
+                    + "WHERE MID = '" + mid + "'";
             ArrayList<String> fornamn = idb.fetchColumn(sqlFornamn);
             ArrayList<String> efternamn = idb.fetchColumn(sqlEfternamn);
             int i = 0;
