@@ -8,6 +8,8 @@ package informatikb_system;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -57,6 +59,14 @@ public class InlaggMgt {
         return inlagg;
     }
       
+       public void emptyInlaggPane(StyledDocument dok){
+           
+        try {
+            dok.remove(0, dok.getLength());
+        } catch (BadLocationException ex) {
+            System.out.print(ex.getMessage());
+        }
+   }
       public void laggTillBloggInlagg(String titel, String text, String aid)
       {
         String date = LocalDateTime.now().toString();
