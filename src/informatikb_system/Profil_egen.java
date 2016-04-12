@@ -123,17 +123,22 @@ public class Profil_egen extends javax.swing.JFrame {
         btnLclPic.addActionListener(new ActionListener()
         {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                JOptionPane.showMessageDialog(null, "This is the second dialog!");
+            public void actionPerformed(ActionEvent e){
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setCurrentDirectory(new java.io.File(System.getProperty("user.home")));
+                int result = fileChooser.showOpenDialog(null);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                java.io.File selectedFile = fileChooser.getSelectedFile();
+                System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+}
+                //JOptionPane.showMessageDialog(null, "This is the second dialog!");
             }
         });
         JButton btnURL = new JButton("URL");
         btnURL.addActionListener(new ActionListener()
         {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e){
                 JOptionPane.showMessageDialog(null, "This is the second dialog!");
             }
         });
@@ -157,7 +162,7 @@ public class Profil_egen extends javax.swing.JFrame {
                         //setLabel("Please tell me what you want!");
                     }*/
     }//GEN-LAST:event_Edit_Picture_BtnActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
