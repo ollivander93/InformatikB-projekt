@@ -20,6 +20,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 public class MonthPanel extends JPanel {
 
@@ -44,7 +45,6 @@ public class MonthPanel extends JPanel {
         motesDagar = new ArrayList<String>();
         motesTest();
         
-
         this.add(createGUI());
     }
 
