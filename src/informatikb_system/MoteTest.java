@@ -6,6 +6,7 @@
 package informatikb_system;
 import java.util.*;
 import java.text.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,21 +37,20 @@ public class MoteTest extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tfMID = new javax.swing.JTextField();
+        tfTitel = new javax.swing.JTextField();
         tfTid = new javax.swing.JTextField();
         tfSal = new javax.swing.JTextField();
         btnSkapaMote = new javax.swing.JButton();
         lblStatus = new javax.swing.JLabel();
         dpDatum = new org.jdesktop.swingx.JXDatePicker();
-        btnTest = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taBeskrivning = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        tfMID.setText("MID");
-
-        tfTid.setText("Tid");
-
-        tfSal.setText("Sal");
 
         btnSkapaMote.setText("Skapa möte");
         btnSkapaMote.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -58,15 +58,25 @@ public class MoteTest extends javax.swing.JFrame {
                 btnSkapaMoteMouseClicked(evt);
             }
         });
-
-        lblStatus.setText("jLabel1");
-
-        btnTest.setText("testknapp");
-        btnTest.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnTestMouseClicked(evt);
+        btnSkapaMote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSkapaMoteActionPerformed(evt);
             }
         });
+
+        lblStatus.setText("Titel");
+
+        jLabel1.setText("Datum");
+
+        jLabel2.setText("Tid");
+
+        jLabel3.setText("Sal");
+
+        jLabel4.setText("Beskrivning");
+
+        taBeskrivning.setColumns(20);
+        taBeskrivning.setRows(5);
+        jScrollPane1.setViewportView(taBeskrivning);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,46 +85,59 @@ public class MoteTest extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(btnSkapaMote))
+                        .addGap(181, 181, 181)
+                        .addComponent(lblStatus))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnTest)
-                        .addGap(42, 42, 42)
+                        .addGap(184, 184, 184)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tfMID, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                                .addGap(134, 134, 134))
-                            .addComponent(tfTid)
+                            .addComponent(dpDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfSal)
-                            .addComponent(dpDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblStatus)
-                .addGap(79, 79, 79))
+                            .addComponent(tfTid)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(295, 295, 295)
+                        .addComponent(btnSkapaMote)))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(tfMID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(btnTest)))
+                .addGap(29, 29, 29)
+                .addComponent(lblStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(dpDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addComponent(tfTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tfSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnSkapaMote)
-                .addGap(18, 18, 18)
-                .addComponent(lblStatus)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -124,15 +147,17 @@ public class MoteTest extends javax.swing.JFrame {
         // TODO add your handling code here:
         Date datum = dpDatum.getDate();
         String finalDatum = new SimpleDateFormat("yyyy-MM-dd").format(datum);
-        String id = tfMID.getText();
         String tid = tfTid.getText();
         String plats = tfSal.getText();
-        mote.skapaMote(id, finalDatum, tid, plats);
+        String titel = tfTitel.getText();
+        String beskrivning = taBeskrivning.getText();
+        mote.skapaMote(finalDatum, tid, plats, titel, beskrivning);
+        JOptionPane.showMessageDialog(this, "Mötet har nu sparats");
     }//GEN-LAST:event_btnSkapaMoteMouseClicked
 
-    private void btnTestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTestMouseClicked
-        db.hamtaMotesDatum();
-    }//GEN-LAST:event_btnTestMouseClicked
+    private void btnSkapaMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaMoteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSkapaMoteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,11 +196,16 @@ public class MoteTest extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSkapaMote;
-    private javax.swing.JButton btnTest;
     private org.jdesktop.swingx.JXDatePicker dpDatum;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblStatus;
-    private javax.swing.JTextField tfMID;
+    private javax.swing.JTextArea taBeskrivning;
     private javax.swing.JTextField tfSal;
     private javax.swing.JTextField tfTid;
+    private javax.swing.JTextField tfTitel;
     // End of variables declaration//GEN-END:variables
 }
