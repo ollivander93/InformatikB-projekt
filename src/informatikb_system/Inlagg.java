@@ -60,6 +60,7 @@ public class Inlagg extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtPaneInlagg = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
+        btnLaggTillMote = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -72,7 +73,7 @@ public class Inlagg extends javax.swing.JFrame {
 
         btnUtbildning.setText("Utbildning");
 
-        btnForskning.setText("Förskning");
+        btnForskning.setText("Forskning");
         btnForskning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnForskningActionPerformed(evt);
@@ -109,11 +110,22 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
+        btnLaggTillMote.setText("Lägg till möte");
+        btnLaggTillMote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillMoteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(348, 348, 348)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -124,12 +136,9 @@ public class Inlagg extends javax.swing.JFrame {
                         .addComponent(btnUtbildning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnForskning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAll, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnTest))
+                    .addComponent(btnTest)
+                    .addComponent(btnLaggTillMote))
                 .addGap(909, 909, 909))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(348, 348, 348)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +159,9 @@ public class Inlagg extends javax.swing.JFrame {
                         .addComponent(btnAll)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTest)
-                        .addGap(0, 92, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLaggTillMote)
+                        .addGap(0, 48, Short.MAX_VALUE))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -175,7 +186,7 @@ public class Inlagg extends javax.swing.JFrame {
        
        ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
        StyledDocument doc = txtPaneInlagg.getStyledDocument();
-       inlagg.emptyInlaggPane(doc);
+       
        
             for (int i = txtArea.size() - 1; i >= 0; i--) {
                  String firstName = txtArea.get(i).get("FIRST_NAME");
@@ -195,7 +206,8 @@ public class Inlagg extends javax.swing.JFrame {
 
     
     private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
-   
+        StyledDocument doc = txtPaneInlagg.getStyledDocument();
+        inlagg.emptyInlaggPane(doc);
         showInlaggInPane();
     }//GEN-LAST:event_btnAllMouseClicked
 
@@ -213,6 +225,11 @@ public class Inlagg extends javax.swing.JFrame {
         cal.run();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnLaggTillMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillMoteActionPerformed
+        MoteTest mote = new MoteTest();
+        mote.setVisible(true);
+    }//GEN-LAST:event_btnLaggTillMoteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,6 +269,7 @@ public class Inlagg extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAll;
     private javax.swing.JButton btnForskning;
+    private javax.swing.JButton btnLaggTillMote;
     private javax.swing.JButton btnSkrivInlagg;
     private javax.swing.JButton btnSocial;
     private javax.swing.JButton btnTest;
