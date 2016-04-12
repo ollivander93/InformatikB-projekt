@@ -51,16 +51,18 @@ private InfDB idb;
         {
             String sqlFraga = "SELECT DATUM FROM MOTE;";
             datum = idb.fetchColumn(sqlFraga);
-           
-            for(String manad : datum)
+            if(datum != null)
             {
-                String dag = manad.substring(8, manad.length());
-                String manadForInlagg = manad.substring(5, 7);
-                //om inlägget är gjort samma månad som nuvarande så läggs den till
-                if(manadForInlagg.equals(thisMonth))
+                for(String manad : datum)
                 {
+                    String dag = manad.substring(8, manad.length());
+                    String manadForInlagg = manad.substring(5, 7);
+                    //om inlägget är gjort samma månad som nuvarande så läggs den till
+                    if(manadForInlagg.equals(thisMonth))
+                    {
                     dagar.add(dag);
                     System.out.println(dagar);
+                    }
                 }
             }
         }
