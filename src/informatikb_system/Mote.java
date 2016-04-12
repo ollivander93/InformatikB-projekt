@@ -32,12 +32,12 @@ private InfDB idb;
         }
     }
     
-    public void skapaMote(String id, String datum, String tid, String plats)
+    public void skapaMote(String datum, String tid, String plats, String titel, String beskrivning)
     {
         try
         {
-            String sqlFraga = "insert into MOTE values (" + id + ", '" + datum +
-                    "', '" + tid + "', '" + plats + "');";
+            String sqlFraga = "insert into MOTE values (" + idb.getAutoIncrement("MOTE", "MID") + ", '" + datum +
+                    "', '" + tid + "', '" + plats + "', '" + titel + "', '" + beskrivning + "');";
             System.out.println(sqlFraga);
             idb.insert(sqlFraga);
             System.out.println("Success");
