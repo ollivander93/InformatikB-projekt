@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package informatikb_system;
+import java.beans.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
@@ -29,6 +33,7 @@ public class Profil_egen extends javax.swing.JFrame {
 
         profil_main = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        Edit_Picture_Btn = new javax.swing.JButton();
         Profil_info = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,13 +55,24 @@ public class Profil_egen extends javax.swing.JFrame {
             .addGap(0, 160, Short.MAX_VALUE)
         );
 
+        Edit_Picture_Btn.setText("Sätt in bild / Bytt bild");
+        Edit_Picture_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Edit_Picture_BtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout profil_mainLayout = new javax.swing.GroupLayout(profil_main);
         profil_main.setLayout(profil_mainLayout);
         profil_mainLayout.setHorizontalGroup(
             profil_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profil_mainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(profil_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profil_mainLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Edit_Picture_Btn)))
                 .addContainerGap())
         );
         profil_mainLayout.setVerticalGroup(
@@ -64,7 +80,9 @@ public class Profil_egen extends javax.swing.JFrame {
             .addGroup(profil_mainLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Edit_Picture_Btn)
+                .addContainerGap(376, Short.MAX_VALUE))
         );
 
         Profil_info.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -98,6 +116,47 @@ public class Profil_egen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Edit_Picture_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Picture_BtnActionPerformed
+        // TODO add your handling code here:
+        JButton btnLclPic = new JButton("Open File");
+        btnLclPic.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                JOptionPane.showMessageDialog(null, "This is the second dialog!");
+            }
+        });
+        JButton btnURL = new JButton("URL");
+        btnURL.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                JOptionPane.showMessageDialog(null, "This is the second dialog!");
+            }
+        });
+        
+        Object[] options = {"Cancel", btnURL, btnLclPic};
+                    int n = JOptionPane.showOptionDialog(frame,
+                                    "What kind of picture do you want to upload?",
+                                    "Picture Upload",
+                                    JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+                                    null,
+                                    options,
+                                    options[2]);
+                    /*if (n == JOptionPane.YES_OPTION) {
+                        //setLabel("Here you go: green eggs and ham!");
+                        
+                    } else if (n == JOptionPane.NO_OPTION) {
+                        //setLabel("OK, just the ham, then.");
+                    } else if (n == JOptionPane.CANCEL_OPTION) {
+                        //setLabel("Well, I'm certainly not going to eat them!");
+                    } else {
+                        //setLabel("Please tell me what you want!");
+                    }*/
+    }//GEN-LAST:event_Edit_Picture_BtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,10 +192,16 @@ public class Profil_egen extends javax.swing.JFrame {
             }
         });
     }
-
+/** Sets the text displayed at the bottom of the frame. */
+    void setLabel(String newText) {
+        GLobal_label.setText(newText);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Edit_Picture_Btn;
     private javax.swing.JPanel Profil_info;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel profil_main;
     // End of variables declaration//GEN-END:variables
+    private JLabel GLobal_label;
+    private JFrame frame;
 }
