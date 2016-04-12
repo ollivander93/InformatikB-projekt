@@ -67,7 +67,7 @@ public class InlaggMgt {
             System.out.print(ex.getMessage());
         }
    }
-      
+
       public void laggTillBloggInlagg(String titel, String text, String aid)
       {
         String date = LocalDateTime.now().toString();
