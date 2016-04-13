@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package informatikb_system;
+package informatikb_system.Profile;
 import java.beans.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -13,12 +13,12 @@ import javax.swing.*;
  *
  * @author adro
  */
-public class Profil_egen extends javax.swing.JFrame {
+public class Profil_egen_edit extends javax.swing.JFrame {
 
     /**
      * Creates new form Profil_egen
      */
-    public Profil_egen() {
+    public Profil_egen_edit() {
         initComponents();
     }
 
@@ -32,6 +32,7 @@ public class Profil_egen extends javax.swing.JFrame {
     private void initComponents() {
 
         profil_main = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         Edit_Picture_Btn = new javax.swing.JButton();
         Profil_info = new javax.swing.JPanel();
@@ -44,6 +45,7 @@ public class Profil_egen extends javax.swing.JFrame {
         profil_main.setName("Profile_maininfo"); // NOI18N
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel1.setToolTipText("Din Profilbild");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -56,6 +58,7 @@ public class Profil_egen extends javax.swing.JFrame {
             .addGap(0, 160, Short.MAX_VALUE)
         );
 
+        Edit_Picture_Btn.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         Edit_Picture_Btn.setText("Sätt in bild / Bytt bild");
         Edit_Picture_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,27 +66,39 @@ public class Profil_egen extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout profil_mainLayout = new javax.swing.GroupLayout(profil_main);
-        profil_main.setLayout(profil_mainLayout);
-        profil_mainLayout.setHorizontalGroup(
-            profil_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(profil_mainLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(profil_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profil_mainLayout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(Edit_Picture_Btn)))
                 .addContainerGap())
         );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(Edit_Picture_Btn))
+        );
+
+        javax.swing.GroupLayout profil_mainLayout = new javax.swing.GroupLayout(profil_main);
+        profil_main.setLayout(profil_mainLayout);
+        profil_mainLayout.setHorizontalGroup(
+            profil_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         profil_mainLayout.setVerticalGroup(
             profil_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profil_mainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Edit_Picture_Btn)
-                .addContainerGap(376, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Profil_info.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -96,7 +111,7 @@ public class Profil_egen extends javax.swing.JFrame {
         );
         Profil_infoLayout.setVerticalGroup(
             Profil_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 582, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,20 +195,20 @@ public class Profil_egen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Profil_egen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Profil_egen_edit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Profil_egen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Profil_egen_edit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Profil_egen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Profil_egen_edit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Profil_egen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Profil_egen_edit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Profil_egen().setVisible(true);
+                new Profil_egen_edit().setVisible(true);
             }
         });
     }
@@ -205,6 +220,7 @@ public class Profil_egen extends javax.swing.JFrame {
     private javax.swing.JButton Edit_Picture_Btn;
     private javax.swing.JPanel Profil_info;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel profil_main;
     // End of variables declaration//GEN-END:variables
     private JLabel GLobal_label;
