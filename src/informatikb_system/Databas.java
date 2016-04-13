@@ -74,6 +74,9 @@ private InfDB idb;
         return dagar;
     }
     
+    /*
+    * Hämtar all info om ett specifikt möte utifrån titel
+    */
     public HashMap<String, String> hamtaMotesInfo(String titel)
     {
         String sqlFraga = "SELECT * FROM MOTE WHERE TITEL = '" + titel + "'";
@@ -89,6 +92,9 @@ private InfDB idb;
         return mote;
     }
    
+    /*
+    * Hämtar alla anställda för ett visst möte. Mötes-id som parameter
+    */
     public ArrayList<String> hamtaAnstalldaMote(String mid)
     {
         ArrayList<String> anstallda = new ArrayList<String>();

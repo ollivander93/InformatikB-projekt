@@ -5,17 +5,69 @@
  */
 package informatikb_system;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.DefaultListModel;
+import oru.inf.InfDB;
+
 /**
  *
  * @author Maximilian
  */
 public class MotesInfo extends javax.swing.JFrame {
+    
+    private Databas db;
+    private HashMap<String, String> info;
+    private String titel;
 
     /**
      * Creates new form MotesInfo
      */
     public MotesInfo() {
+        titel = "Bukkake";
         initComponents();
+        db = new Databas();
+        hamtaMotesInfo(titel);
+        fillMotesInfo();
+        fillDeltagare();
+        
+    }
+    /*
+    * Metod för att hämta info om valt möte
+    */
+    public void fillMotesInfo()
+    {
+        lblTitel.setText(info.get("TITEL"));
+        lblDatum.setText(info.get("DATUM"));
+        lblStarttid1.setText(info.get("START_TID"));
+        lblSluttid1.setText(info.get("SLUT_TID"));
+        lblPlats1.setText(info.get("SAL"));
+        taBeskrivning.setText(info.get("BESKRIVNING"));
+    }
+    
+    /*
+    * Hämtar info för det valda mötet och sparar lokalt i objektet
+    */
+    public void hamtaMotesInfo(String titel)
+    {
+        info = db.hamtaMotesInfo(titel);
+    }
+    
+    /*
+    * Fyller listan med namn på deltagande för möte
+    */
+    public void fillDeltagare()
+    {
+        String MID = info.get("MID");
+        System.out.println(MID);
+        ArrayList<String> deltagande = db.hamtaAnstalldaMote(MID);
+        DefaultListModel listModel = new DefaultListModel();
+        listDeltagare.setModel(listModel);
+        
+        for(String deltagare : deltagande)
+        {
+            listModel.addElement(deltagare);
+        }
     }
 
     /**
@@ -32,101 +84,116 @@ public class MotesInfo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taBeskrivning = new javax.swing.JTextArea();
-        tfTitel = new javax.swing.JTextField();
         lblSluttid = new javax.swing.JLabel();
-        tfPlats = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        tfDatum = new javax.swing.JTextField();
-        tfStarttid = new javax.swing.JTextField();
-        tfSluttid = new javax.swing.JTextField();
+        lblDeltagare = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listDeltagare = new javax.swing.JList<>();
+        lblTitel = new javax.swing.JLabel();
+        lblDatum = new javax.swing.JLabel();
+        lblStarttid1 = new javax.swing.JLabel();
+        lblSluttid1 = new javax.swing.JLabel();
+        lblPlats1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         lblStarttid.setText("Starttid:");
 
-        jLabel3.setText("Plats");
+        jLabel3.setText("Plats:");
 
-        jLabel4.setText("Beskrivning");
+        jLabel4.setText("Beskrivning:");
 
         taBeskrivning.setEditable(false);
         taBeskrivning.setColumns(20);
         taBeskrivning.setRows(5);
         jScrollPane1.setViewportView(taBeskrivning);
 
-        tfTitel.setEditable(false);
-        tfTitel.setFont(new java.awt.Font("Palatino Linotype", 1, 24)); // NOI18N
-
         lblSluttid.setText("Sluttid:");
 
-        tfPlats.setEditable(false);
+        jLabel1.setText("Datum:");
 
-        jLabel1.setText("Datum");
+        lblDeltagare.setText("Deltagare:");
 
-        tfDatum.setEditable(false);
-        tfDatum.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jScrollPane2.setViewportView(listDeltagare);
 
-        tfStarttid.setEditable(false);
+        lblTitel.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        lblTitel.setText("Titel");
 
-        tfSluttid.setEditable(false);
+        lblDatum.setText("DATUM");
+
+        lblStarttid1.setText("STARTTID");
+
+        lblSluttid1.setText("SLUTTID");
+
+        lblPlats1.setText("PLATS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(lblSluttid)
+                            .addComponent(lblStarttid)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDatum)
+                            .addComponent(lblStarttid1)
+                            .addComponent(lblSluttid1)
+                            .addComponent(lblPlats1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblSluttid)
-                                        .addComponent(lblStarttid)
-                                        .addComponent(jLabel3)))
-                                .addGap(9, 9, 9))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfSluttid, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfStarttid, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfPlats, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(540, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(lblTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDeltagare)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(tfTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(8, 8, 8)
+                .addGap(31, 31, 31)
+                .addComponent(lblTitel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStarttid)
-                    .addComponent(tfStarttid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDeltagare)
+                    .addComponent(jLabel1)
+                    .addComponent(lblDatum))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfSluttid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSluttid))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(tfPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblStarttid)
+                            .addComponent(lblStarttid1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSluttid)
+                            .addComponent(lblSluttid1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lblPlats1)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addGap(36, 36, 36))
         );
 
         pack();
@@ -172,13 +239,16 @@ public class MotesInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblDatum;
+    private javax.swing.JLabel lblDeltagare;
+    private javax.swing.JLabel lblPlats1;
     private javax.swing.JLabel lblSluttid;
+    private javax.swing.JLabel lblSluttid1;
     private javax.swing.JLabel lblStarttid;
+    private javax.swing.JLabel lblStarttid1;
+    private javax.swing.JLabel lblTitel;
+    private javax.swing.JList<String> listDeltagare;
     private javax.swing.JTextArea taBeskrivning;
-    private javax.swing.JTextField tfDatum;
-    private javax.swing.JTextField tfPlats;
-    private javax.swing.JTextField tfSluttid;
-    private javax.swing.JTextField tfStarttid;
-    private javax.swing.JTextField tfTitel;
     // End of variables declaration//GEN-END:variables
 }
