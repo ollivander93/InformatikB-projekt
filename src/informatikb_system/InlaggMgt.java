@@ -48,7 +48,7 @@ public class InlaggMgt {
      String amne = "Socialt";
      ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
        
-       if(!(list.isEmpty())){
+       if(!(list==null)){
             for (int i = list.size() - 1; i >= 0; i--) {
                 String firstName = list.get(i).get("FIRST_NAME");
                 String datum = list.get(i).get("DATUM");
@@ -78,7 +78,7 @@ public class InlaggMgt {
      String amne = "Forskning";
      ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
        
-       if(!(list.isEmpty())){
+       if(!(list == null)){
             for (int i = list.size() - 1; i >= 0; i--) {
                 String firstName = list.get(i).get("FIRST_NAME");
                 String datum = list.get(i).get("DATUM");
@@ -108,7 +108,7 @@ public class InlaggMgt {
      String amne = "Utbildning";
      ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
        
-       if(!(list.isEmpty())){
+       if(!(list==null)){
             for (int i = list.size() - 1; i >= 0; i--) {
                 String firstName = list.get(i).get("FIRST_NAME");
                 String datum = list.get(i).get("DATUM");
@@ -161,27 +161,7 @@ public class InlaggMgt {
         }
    }
 
-      public void laggTillBloggInlagg(String titel, String text, String aid)
-      {
-        String date = LocalDateTime.now().toString();
-        String date2 = date.substring(0,10);
-        String time = date.substring(11, 19);
-        System.out.println(date2 + " Tid: " + time);
-        String visible = "true";
-          try
-          {
-    
-          String sqlFraga = "INSERT INTO INLAGG "
-                + "VALUES(" + idb.getAutoIncrement("INLAGG", "iid") + ",'" + titel + "', '" + date2 + "', '" + time + "', '" + visible + "', " + aid + ", '" + text + "');";  
-          idb.insert(sqlFraga);
-                
-          }
-          catch(InfException e)
-          {
-              System.out.println(e.getMessage());
-          }
-                  
-      }
+     
 
   
 }

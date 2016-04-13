@@ -29,6 +29,7 @@ public class Inlagg extends javax.swing.JFrame {
     private InlaggMgt inlagg;
 
     private static String aid;
+    private String tab = "Socialt";
 
     public Inlagg(String aid) {
         initComponents();
@@ -123,6 +124,12 @@ public class Inlagg extends javax.swing.JFrame {
         btnLaggTillMote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLaggTillMoteActionPerformed(evt);
+            }
+        });
+
+        jTabPanelAmnen.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabPanelAmnenStateChanged(evt);
             }
         });
 
@@ -250,6 +257,7 @@ public class Inlagg extends javax.swing.JFrame {
   
     
     public void showSocInlagg(){
+       
        StyledDocument doc = txtPaneSocialt.getStyledDocument();
        inlagg.showSocInlagg1(doc);
        }
@@ -266,13 +274,14 @@ public class Inlagg extends javax.swing.JFrame {
     
     private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
         StyledDocument soc = txtPaneSocialt.getStyledDocument();
-        StyledDocument forsk = txtPaneSocialt.getStyledDocument();
-        StyledDocument utb = txtPaneSocialt.getStyledDocument();
+        StyledDocument forsk = txtPaneForsk.getStyledDocument();
+        StyledDocument utb = txtPaneUtbildning.getStyledDocument();
         inlagg.emptyInlaggPane(forsk);
         inlagg.emptyInlaggPane(utb);
         inlagg.emptyInlaggPane(soc);
         showSocInlagg();
         showForskInlagg();
+        showUtbInlagg();
     }//GEN-LAST:event_btnAllMouseClicked
 
     private void btnSkrivInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkrivInlaggMouseClicked
@@ -294,6 +303,20 @@ public class Inlagg extends javax.swing.JFrame {
         MoteTest mote = new MoteTest(aid);
         mote.setVisible(true);
     }//GEN-LAST:event_btnLaggTillMoteActionPerformed
+
+    private void jTabPanelAmnenStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabPanelAmnenStateChanged
+        String tab = jTabPanelAmnen.getTitleAt(jTabPanelAmnen.getSelectedIndex());
+        if(tab.equals("Utbildning")){
+            showUtbInlagg();
+            showSocInlagg();
+        }
+       
+        if (tab.equals("Forskning")){
+            showForskInlagg();
+            showSocInlagg();
+        }
+        System.out.println(tab);
+    }//GEN-LAST:event_jTabPanelAmnenStateChanged
 
     /**
      * @param args the command line arguments
