@@ -77,9 +77,9 @@ private InfDB idb;
     /*
     * Hämtar all info om ett specifikt möte utifrån titel
     */
-    public HashMap<String, String> hamtaMotesInfo(String titel)
+    public HashMap<String, String> hamtaMotesInfo(String mid)
     {
-        String sqlFraga = "SELECT * FROM MOTE WHERE TITEL = '" + titel + "'";
+        String sqlFraga = "SELECT * FROM MOTE WHERE MID = " + mid + ";";
         HashMap<String, String> mote = new HashMap<String, String>();
         try
         {
@@ -109,11 +109,18 @@ private InfDB idb;
             ArrayList<String> fornamn = idb.fetchColumn(sqlFornamn);
             ArrayList<String> efternamn = idb.fetchColumn(sqlEfternamn);
             int i = 0;
+            if(fornamn.isEmpty())
+            {
+                System.out.println("rebarmuskel");
+            }
+            else
+            {
             while(i < fornamn.size())
             {
                 String heltNamn = fornamn.get(i) + " " + efternamn.get(i);
                 anstallda.add(heltNamn);
                 i++;
+            }
             }
         }
         catch(InfException e)
@@ -122,6 +129,7 @@ private InfDB idb;
         }
         return anstallda;
     }
+    
     
     public String hamtaAnstalldNamn(String ID)
     {
