@@ -73,7 +73,66 @@ public class InlaggMgt {
                     }catch(Exception e) { System.out.println(e); }
                     }
        }
+     
+     public void showForskInlagg1(StyledDocument d){
+     String amne = "Forskning";
+     ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
        
+       if(!(list.isEmpty())){
+            for (int i = list.size() - 1; i >= 0; i--) {
+                String firstName = list.get(i).get("FIRST_NAME");
+                String datum = list.get(i).get("DATUM");
+                String tid = list.get(i).get("TID");
+                String bloggIn = list.get(i).get("TEXT");
+
+                SimpleAttributeSet AtrSet = new SimpleAttributeSet();
+                StyleConstants.setForeground(AtrSet, Color.RED);
+                StyleConstants.setBackground(AtrSet, Color.YELLOW);
+                StyleConstants.setBold(AtrSet, true);
+                try{
+                d.insertString(0," ------------------------------------------------" + "\n" + firstName + "\n" + "Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
+                    }catch(Exception e) { System.out.println(e); }
+                    }
+            }else{
+           try{
+               SimpleAttributeSet AtrSet = new SimpleAttributeSet();
+                StyleConstants.setForeground(AtrSet, Color.RED);
+                StyleConstants.setBackground(AtrSet, Color.YELLOW);
+                StyleConstants.setBold(AtrSet, true);
+                d.insertString(0," Ooops, inga inlägg alls just nu #lonely" ,AtrSet );
+                    }catch(Exception e) { System.out.println(e); }
+                    }
+       }
+       
+     public void showUtbInlagg1(StyledDocument d){
+     String amne = "Utbildning";
+     ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
+       
+       if(!(list.isEmpty())){
+            for (int i = list.size() - 1; i >= 0; i--) {
+                String firstName = list.get(i).get("FIRST_NAME");
+                String datum = list.get(i).get("DATUM");
+                String tid = list.get(i).get("TID");
+                String bloggIn = list.get(i).get("TEXT");
+
+                SimpleAttributeSet AtrSet = new SimpleAttributeSet();
+                StyleConstants.setForeground(AtrSet, Color.RED);
+                StyleConstants.setBackground(AtrSet, Color.YELLOW);
+                StyleConstants.setBold(AtrSet, true);
+                try{
+                d.insertString(0," ------------------------------------------------" + "\n" + firstName + "\n" + "Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
+                    }catch(Exception e) { System.out.println(e); }
+                    }
+            }else{
+           try{
+               SimpleAttributeSet AtrSet = new SimpleAttributeSet();
+                StyleConstants.setForeground(AtrSet, Color.RED);
+                StyleConstants.setBackground(AtrSet, Color.YELLOW);
+                StyleConstants.setBold(AtrSet, true);
+                d.insertString(0," Ooops, inga inlägg alls just nu #lonely" ,AtrSet );
+                    }catch(Exception e) { System.out.println(e); }
+                    }
+       }
       public ArrayList<HashMap<String, String>> hamtaInlagg(String amne )
     {
         ArrayList inlagg = new ArrayList<HashMap<String, String>>();

@@ -38,6 +38,8 @@ public class Inlagg extends javax.swing.JFrame {
         inlagg = new InlaggMgt();
         this.aid = aid;
         showSocInlagg();
+        showForskInlagg();
+        showUtbInlagg();
     }
 
 
@@ -65,7 +67,11 @@ public class Inlagg extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtPaneSocialt = new javax.swing.JTextPane();
         jtabPaneForsk = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtPaneForsk = new javax.swing.JTextPane();
         tabPaneUtb = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtPaneUtbildning = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -137,28 +143,44 @@ public class Inlagg extends javax.swing.JFrame {
 
         jTabPanelAmnen.addTab("Socialt", jPanel1);
 
+        jScrollPane1.setViewportView(txtPaneForsk);
+
         javax.swing.GroupLayout jtabPaneForskLayout = new javax.swing.GroupLayout(jtabPaneForsk);
         jtabPaneForsk.setLayout(jtabPaneForskLayout);
         jtabPaneForskLayout.setHorizontalGroup(
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 539, Short.MAX_VALUE)
+            .addGroup(jtabPaneForskLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jtabPaneForskLayout.setVerticalGroup(
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 229, Short.MAX_VALUE)
+            .addGroup(jtabPaneForskLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabPanelAmnen.addTab("Forskning", jtabPaneForsk);
+
+        jScrollPane3.setViewportView(txtPaneUtbildning);
 
         javax.swing.GroupLayout tabPaneUtbLayout = new javax.swing.GroupLayout(tabPaneUtb);
         tabPaneUtb.setLayout(tabPaneUtbLayout);
         tabPaneUtbLayout.setHorizontalGroup(
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 539, Short.MAX_VALUE)
+            .addGroup(tabPaneUtbLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addContainerGap())
         );
         tabPaneUtbLayout.setVerticalGroup(
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 229, Short.MAX_VALUE)
+            .addGroup(tabPaneUtbLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabPanelAmnen.addTab("Utbildning", tabPaneUtb);
@@ -230,14 +252,27 @@ public class Inlagg extends javax.swing.JFrame {
     public void showSocInlagg(){
        StyledDocument doc = txtPaneSocialt.getStyledDocument();
        inlagg.showSocInlagg1(doc);
-       
        }
-
+    
+    public void showForskInlagg(){
+      StyledDocument doc = txtPaneForsk.getStyledDocument();
+      inlagg.showForskInlagg1(doc);
+       }
+    
+    public void showUtbInlagg(){
+      StyledDocument doc = txtPaneUtbildning.getStyledDocument();
+      inlagg.showUtbInlagg1(doc);
+       }
     
     private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
-        StyledDocument doc = txtPaneSocialt.getStyledDocument();
-        inlagg.emptyInlaggPane(doc);
+        StyledDocument soc = txtPaneSocialt.getStyledDocument();
+        StyledDocument forsk = txtPaneSocialt.getStyledDocument();
+        StyledDocument utb = txtPaneSocialt.getStyledDocument();
+        inlagg.emptyInlaggPane(forsk);
+        inlagg.emptyInlaggPane(utb);
+        inlagg.emptyInlaggPane(soc);
         showSocInlagg();
+        showForskInlagg();
     }//GEN-LAST:event_btnAllMouseClicked
 
     private void btnSkrivInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkrivInlaggMouseClicked
@@ -305,10 +340,14 @@ public class Inlagg extends javax.swing.JFrame {
     private javax.swing.JButton btnUtbildning;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabPanelAmnen;
     private javax.swing.JPanel jtabPaneForsk;
     private javax.swing.JPanel tabPaneUtb;
+    private javax.swing.JTextPane txtPaneForsk;
     private javax.swing.JTextPane txtPaneSocialt;
+    private javax.swing.JTextPane txtPaneUtbildning;
     // End of variables declaration//GEN-END:variables
 }
