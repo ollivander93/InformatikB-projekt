@@ -139,4 +139,35 @@ private InfDB idb;
         }
         return fullName;
     }
+    
+    public void anmalAnstalldTillMote(String AID, String MID)
+    {
+        String sqlFraga = "INSERT INTO MOTE_ANSTALLD VALUES(" + MID + ", " + AID + ");";
+        try
+        {
+            idb.insert(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public String hamtaAnsvarigForMote(String MID)
+    {
+        String sqlFraga = "SELECT ANSVARIG FROM MOTE WHERE MID = " + MID + ";";
+        String fullName = "";
+        try
+        {
+            String aid = idb.fetchSingle(sqlFraga);
+            String firstName = "SELECT FIRST_NAME FROM ANSTALLD WHERE AID = " + aid + ";";
+            String lastName = "SELECT LAST_NAME FROM ANSTALLD WHERE AID = " + aid + ";";
+            fullName = firstName + lastName;
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return fullName;
+    }
 }

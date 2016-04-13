@@ -24,8 +24,9 @@ public class MotesInfo extends javax.swing.JFrame {
     /**
      * Creates new form MotesInfo
      */
-    public MotesInfo(String aid) {
+    public MotesInfo() {
         titel = "Bukkake";
+        aid = "2";
         initComponents();
         db = new Databas();
         hamtaMotesInfo(titel);
@@ -51,9 +52,9 @@ public class MotesInfo extends javax.swing.JFrame {
     /*
     * Hämtar info för det valda mötet och sparar lokalt i objektet
     */
-    public void hamtaMotesInfo(String titel)
+    public void hamtaMotesInfo(String MID)
     {
-        info = db.hamtaMotesInfo(titel);
+        info = db.hamtaMotesInfo(MID);
     }
     
     /*
