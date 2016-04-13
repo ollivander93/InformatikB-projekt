@@ -32,8 +32,13 @@ public class Anvandarhantering extends javax.swing.JFrame {
         String lastname = tfLastName.getText();
         String losenord = pfPassword.getText();
         String telefon = tfTelefon.getText();
-        //if()
-        //String administrator = tfAdmin.getText();
+        String administrator;
+        if(Admin_True.isSelected()){
+            administrator = "true";
+        }
+        else if(Admin_False.isSelected()){
+            administrator = "false";
+        }
         String anvandarnamn = tfUserName.getText();
         
         user.laggTillNyAnvandare(firstname, lastname, losenord, telefon, telefon, anvandarnamn);
