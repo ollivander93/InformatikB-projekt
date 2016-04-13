@@ -57,10 +57,14 @@ public class Inlagg extends javax.swing.JFrame {
         btnAll = new javax.swing.JButton();
         btnSkrivInlagg = new javax.swing.JButton();
         btnTest = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtPaneInlagg = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
         btnLaggTillMote = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtPaneSocialt = new javax.swing.JTextPane();
+        jPanel2 = new javax.swing.JPanel();
+        tabPanelAmnen = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -101,8 +105,6 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane2.setViewportView(txtPaneInlagg);
-
         jButton1.setText("Titta på kalender");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,18 +119,59 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane2.setViewportView(txtPaneSocialt);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2)
+        );
+
+        jTabbedPane1.addTab("Socialt", jPanel1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 539, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 229, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Forskning", jPanel2);
+
+        javax.swing.GroupLayout tabPanelAmnenLayout = new javax.swing.GroupLayout(tabPanelAmnen);
+        tabPanelAmnen.setLayout(tabPanelAmnenLayout);
+        tabPanelAmnenLayout.setHorizontalGroup(
+            tabPanelAmnenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 539, Short.MAX_VALUE)
+        );
+        tabPanelAmnenLayout.setVerticalGroup(
+            tabPanelAmnenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 229, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Utbildning", tabPanelAmnen);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(348, 348, 348)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(217, 217, 217)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -143,13 +186,11 @@ public class Inlagg extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
                         .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSocial)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnUtbildning)
@@ -160,10 +201,13 @@ public class Inlagg extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTest)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLaggTillMote)
-                        .addGap(0, 48, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
-                .addContainerGap())
+                        .addComponent(btnLaggTillMote))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(214, Short.MAX_VALUE))
         );
 
         pack();
@@ -185,7 +229,7 @@ public class Inlagg extends javax.swing.JFrame {
     public void showInlaggInPane(){
        
        ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
-       StyledDocument doc = txtPaneInlagg.getStyledDocument();
+       StyledDocument doc = txtPaneSocialt.getStyledDocument();
        
        
             for (int i = txtArea.size() - 1; i >= 0; i--) {
@@ -206,7 +250,7 @@ public class Inlagg extends javax.swing.JFrame {
 
     
     private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
-        StyledDocument doc = txtPaneInlagg.getStyledDocument();
+        StyledDocument doc = txtPaneSocialt.getStyledDocument();
         inlagg.emptyInlaggPane(doc);
         showInlaggInPane();
     }//GEN-LAST:event_btnAllMouseClicked
@@ -275,7 +319,11 @@ public class Inlagg extends javax.swing.JFrame {
     private javax.swing.JButton btnTest;
     private javax.swing.JButton btnUtbildning;
     private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane txtPaneInlagg;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel tabPanelAmnen;
+    private javax.swing.JTextPane txtPaneSocialt;
     // End of variables declaration//GEN-END:variables
 }
