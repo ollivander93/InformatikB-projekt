@@ -8,6 +8,7 @@ package informatikb_system;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 
 /**
@@ -18,18 +19,18 @@ public class MotesInfo extends javax.swing.JFrame {
     
     private Databas db;
     private HashMap<String, String> info;
-    private String titel;
+    private static String MID;
     private static String aid;
 
     /**
      * Creates new form MotesInfo
      */
     public MotesInfo() {
-        titel = "Bukkake";
+        MID = "6";
         aid = "2";
         initComponents();
         db = new Databas();
-        hamtaMotesInfo(titel);
+        hamtaMotesInfo(MID);
         fillMotesInfo();
         fillDeltagare();
         
@@ -39,8 +40,7 @@ public class MotesInfo extends javax.swing.JFrame {
     */
     public void fillMotesInfo()
     {
-        String ansvarig = "balle";
-        lblAnsvarig.setText("ANSVARIG");
+        lblAnsvarig.setText(info.get("ANSVARIG"));
         lblTitel.setText(info.get("TITEL"));
         lblDatum.setText(info.get("DATUM"));
         lblStarttid1.setText(info.get("START_TID"));
@@ -62,17 +62,32 @@ public class MotesInfo extends javax.swing.JFrame {
     */
     public void fillDeltagare()
     {
-        String MID = info.get("MID");
-        System.out.println(MID);
+        String kebab = "Det finns inga anställda som är anmälda till detta möte än";
         ArrayList<String> deltagande = db.hamtaAnstalldaMote(MID);
         DefaultListModel listModel = new DefaultListModel();
         listDeltagare.setModel(listModel);
-        
+        if(deltagande.isEmpty())
+        {
+            listModel.addElement(kebab);
+        }
+        else
+        {
         for(String deltagare : deltagande)
         {
+            
             listModel.addElement(deltagare);
         }
+        }
     }
+    
+    public void anmalTillMote(String aid, String MID)
+    {
+         db.anmalAnstalldTillMote(aid, MID);
+         JOptionPane.showMessageDialog(this, "Du är nu anmäld till mötet");
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -140,6 +155,11 @@ public class MotesInfo extends javax.swing.JFrame {
         lblAnsvarig.setText("ANSVARIG");
 
         btnAnmal.setText("Anmäl");
+        btnAnmal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAnmalMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,32 +183,29 @@ public class MotesInfo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDatum)
                             .addComponent(lblStarttid1)
-                            .addComponent(lblSluttid1)
                             .addComponent(lblPlats1)
-                            .addComponent(lblAnsvarig)))
+                            .addComponent(lblAnsvarig)
+                            .addComponent(lblSluttid1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAnmal)
-                    .addComponent(lblDeltagare)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDeltagare))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitel)
+                    .addComponent(lblDeltagare))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lblDeltagare)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(lblAnsvarig))
@@ -204,23 +221,28 @@ public class MotesInfo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblSluttid)
                             .addComponent(lblSluttid1))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(lblPlats1)))
+                            .addComponent(jLabel3)
+                            .addComponent(lblPlats1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(4, 4, 4)
-                .addComponent(btnAnmal))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAnmal)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAnmalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnmalMouseClicked
+       anmalTillMote(aid, MID);
+    }//GEN-LAST:event_btnAnmalMouseClicked
 
     /**
      * @param args the command line arguments
