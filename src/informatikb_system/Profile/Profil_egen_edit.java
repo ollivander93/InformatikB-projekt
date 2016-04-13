@@ -9,8 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-/**
- *
+/*
  * @author adro
  */
 public class Profil_egen_edit extends javax.swing.JFrame {
@@ -20,6 +19,7 @@ public class Profil_egen_edit extends javax.swing.JFrame {
      */
     public Profil_egen_edit() {
         initComponents();
+        ProfileEdit_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
     }
 
     /**
