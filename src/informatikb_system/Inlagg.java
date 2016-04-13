@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Style;
@@ -36,7 +37,7 @@ public class Inlagg extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         inlagg = new InlaggMgt();
         this.aid = aid;
-        showInlaggInPane();
+        showSocInlagg();
     }
 
 
@@ -59,12 +60,12 @@ public class Inlagg extends javax.swing.JFrame {
         btnTest = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnLaggTillMote = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabPanelAmnen = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtPaneSocialt = new javax.swing.JTextPane();
-        jPanel2 = new javax.swing.JPanel();
-        tabPanelAmnen = new javax.swing.JPanel();
+        jtabPaneForsk = new javax.swing.JPanel();
+        tabPaneUtb = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -134,33 +135,33 @@ public class Inlagg extends javax.swing.JFrame {
             .addComponent(jScrollPane2)
         );
 
-        jTabbedPane1.addTab("Socialt", jPanel1);
+        jTabPanelAmnen.addTab("Socialt", jPanel1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jtabPaneForskLayout = new javax.swing.GroupLayout(jtabPaneForsk);
+        jtabPaneForsk.setLayout(jtabPaneForskLayout);
+        jtabPaneForskLayout.setHorizontalGroup(
+            jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 539, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jtabPaneForskLayout.setVerticalGroup(
+            jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 229, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Forskning", jPanel2);
+        jTabPanelAmnen.addTab("Forskning", jtabPaneForsk);
 
-        javax.swing.GroupLayout tabPanelAmnenLayout = new javax.swing.GroupLayout(tabPanelAmnen);
-        tabPanelAmnen.setLayout(tabPanelAmnenLayout);
-        tabPanelAmnenLayout.setHorizontalGroup(
-            tabPanelAmnenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tabPaneUtbLayout = new javax.swing.GroupLayout(tabPaneUtb);
+        tabPaneUtb.setLayout(tabPaneUtbLayout);
+        tabPaneUtbLayout.setHorizontalGroup(
+            tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 539, Short.MAX_VALUE)
         );
-        tabPanelAmnenLayout.setVerticalGroup(
-            tabPanelAmnenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        tabPaneUtbLayout.setVerticalGroup(
+            tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 229, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Utbildning", tabPanelAmnen);
+        jTabPanelAmnen.addTab("Utbildning", tabPaneUtb);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,7 +171,7 @@ public class Inlagg extends javax.swing.JFrame {
                 .addGap(217, 217, 217)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane1))
+                    .addComponent(jTabPanelAmnen))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,7 +205,7 @@ public class Inlagg extends javax.swing.JFrame {
                         .addComponent(btnLaggTillMote))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTabPanelAmnen, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap(214, Short.MAX_VALUE))
@@ -226,33 +227,17 @@ public class Inlagg extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
   
     
-    public void showInlaggInPane(){
-       
-       ArrayList<HashMap<String, String>> txtArea = inlagg.hamtaInlagg();
+    public void showSocInlagg(){
        StyledDocument doc = txtPaneSocialt.getStyledDocument();
+       inlagg.showSocInlagg1(doc);
        
-       
-            for (int i = txtArea.size() - 1; i >= 0; i--) {
-                 String firstName = txtArea.get(i).get("FIRST_NAME");
-                String datum = txtArea.get(i).get("DATUM");
-                String tid = txtArea.get(i).get("TID");
-                String bloggIn = txtArea.get(i).get("TEXT");
-
-                SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-                StyleConstants.setForeground(AtrSet, Color.RED);
-                StyleConstants.setBackground(AtrSet, Color.YELLOW);
-                StyleConstants.setBold(AtrSet, true);
-                try{
-                doc.insertString(0," ------------------------------------------------" + "\n" + firstName + "\n" + "Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
-                    }catch(Exception e) { System.out.println(e); }
-                    }
-            }   
+       }
 
     
     private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
         StyledDocument doc = txtPaneSocialt.getStyledDocument();
         inlagg.emptyInlaggPane(doc);
-        showInlaggInPane();
+        showSocInlagg();
     }//GEN-LAST:event_btnAllMouseClicked
 
     private void btnSkrivInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkrivInlaggMouseClicked
@@ -320,10 +305,10 @@ public class Inlagg extends javax.swing.JFrame {
     private javax.swing.JButton btnUtbildning;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JPanel tabPanelAmnen;
+    private javax.swing.JTabbedPane jTabPanelAmnen;
+    private javax.swing.JPanel jtabPaneForsk;
+    private javax.swing.JPanel tabPaneUtb;
     private javax.swing.JTextPane txtPaneSocialt;
     // End of variables declaration//GEN-END:variables
 }

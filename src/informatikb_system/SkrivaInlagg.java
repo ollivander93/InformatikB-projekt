@@ -149,7 +149,7 @@ public class SkrivaInlagg extends javax.swing.JFrame {
         String titel = tfTitel.getText();
         
         mgt.laggTillBloggInlagg(titel, text, aid);
-        inlaggRuta.showInlaggInPane();
+        inlaggRuta.showSocInlagg();
         dispose();
         JOptionPane.showMessageDialog(this, "Grattis, du har postat ett nytt inlägg!");
     }//GEN-LAST:event_btnPostaInlaggMouseClicked
