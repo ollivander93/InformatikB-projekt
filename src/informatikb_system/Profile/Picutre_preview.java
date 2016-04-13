@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package informatikb_system;
+package informatikb_system.Profile;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -93,8 +93,6 @@ public class Picutre_preview extends javax.swing.JPanel {
                 .addComponent(Cancel_Button)
                 .addGap(14, 14, 14))
         );
-
-        OK_Button.getAccessibleContext().setAccessibleName("OK");
 
         jPanel3.setBorder(new javax.swing.border.MatteBorder(null));
 
