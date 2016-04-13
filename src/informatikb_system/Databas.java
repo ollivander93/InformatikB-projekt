@@ -122,4 +122,21 @@ private InfDB idb;
         }
         return anstallda;
     }
+    
+    public String hamtaAnstalldNamn(String ID)
+    {
+        String sqlFraga = "SELECT FIRST_NAME FROM ANSTALLD WHERE AID = '" + ID + "';";
+        String sqlFraga1 = "SELECT LAST_NAME FROM ANSTALLD WHERE AID = '" + ID + "';";
+        String fullName = "";
+        
+        try
+        {
+            fullName = idb.fetchSingle(sqlFraga) + idb.fetchSingle(sqlFraga1);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return fullName;
+    }
 }
