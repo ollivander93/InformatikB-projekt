@@ -13,10 +13,6 @@ import javax.swing.*;
  * @author Sethox
  */
 public class Profil_egen_visa extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Profil_egen_visa
-     */
     public Profil_egen_visa() {
         initComponents();
         Profile_Bio.setEditable(false);

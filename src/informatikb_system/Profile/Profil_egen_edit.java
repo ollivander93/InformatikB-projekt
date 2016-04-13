@@ -13,10 +13,6 @@ import javax.swing.*;
  * @author Sethox
  */
 public class Profil_egen_edit extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Profil_egen
-     */
     public Profil_egen_edit() {
         initComponents();
         ProfileEdit_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
