@@ -10,7 +10,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /*
- * @author adro
+ * @author Sethox
  */
 public class Profil_egen_edit extends javax.swing.JFrame {
 
