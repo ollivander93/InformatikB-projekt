@@ -55,12 +55,7 @@ public class Inlagg extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnSocial = new javax.swing.JButton();
-        btnUtbildning = new javax.swing.JButton();
-        btnForskning = new javax.swing.JButton();
-        btnAll = new javax.swing.JButton();
         btnSkrivInlagg = new javax.swing.JButton();
-        btnTest = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnLaggTillMote = new javax.swing.JButton();
         jTabPanelAmnen = new javax.swing.JTabbedPane();
@@ -81,35 +76,10 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
-        btnSocial.setText("Social");
-
-        btnUtbildning.setText("Utbildning");
-
-        btnForskning.setText("Forskning");
-        btnForskning.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnForskningActionPerformed(evt);
-            }
-        });
-
-        btnAll.setText("All");
-        btnAll.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAllMouseClicked(evt);
-            }
-        });
-
         btnSkrivInlagg.setText("Skriv inlägg");
         btnSkrivInlagg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSkrivInlaggMouseClicked(evt);
-            }
-        });
-
-        btnTest.setText("testAID");
-        btnTest.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnTestMouseClicked(evt);
             }
         });
 
@@ -124,6 +94,12 @@ public class Inlagg extends javax.swing.JFrame {
         btnLaggTillMote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLaggTillMoteActionPerformed(evt);
+            }
+        });
+
+        jTabPanelAmnen.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabPanelAmnenStateChanged(evt);
             }
         });
 
@@ -196,15 +172,9 @@ public class Inlagg extends javax.swing.JFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTabPanelAmnen))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnSocial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnUtbildning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnForskning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAll, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnTest)
-                    .addComponent(btnLaggTillMote))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                    .addComponent(btnLaggTillMote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(909, 909, 909))
         );
         layout.setVerticalGroup(
@@ -215,16 +185,6 @@ public class Inlagg extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSocial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnUtbildning)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnForskning)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAll)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTest)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLaggTillMote))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
@@ -249,39 +209,26 @@ public class Inlagg extends javax.swing.JFrame {
     public void showSocInlagg(){
        
        StyledDocument doc = txtPaneSocialt.getStyledDocument();
+       inlagg.emptyInlaggPane(doc);
        inlagg.showSocInlagg1(doc);
        }
     
     public void showForskInlagg(){
       StyledDocument doc = jTextPaneForsk.getStyledDocument();
+      inlagg.emptyInlaggPane(doc);
       inlagg.showForskInlagg1(doc);
        }
     
     public void showUtbInlagg(){
       StyledDocument doc = jTextPaneUtbildning.getStyledDocument();
+      inlagg.emptyInlaggPane(doc);
       inlagg.showUtbInlagg1(doc);
        }
     
-    private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
-        StyledDocument soc = txtPaneSocialt.getStyledDocument();
-        StyledDocument forsk = jTextPaneForsk.getStyledDocument();
-        StyledDocument utb = jTextPaneUtbildning.getStyledDocument();
-        inlagg.emptyInlaggPane(forsk);
-        inlagg.emptyInlaggPane(utb);
-        inlagg.emptyInlaggPane(soc);
-        showSocInlagg();
-        showForskInlagg();
-        showUtbInlagg();
-    }//GEN-LAST:event_btnAllMouseClicked
-
     private void btnSkrivInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkrivInlaggMouseClicked
         SkrivaInlagg skriva = new SkrivaInlagg(aid, this);
         skriva.setVisible(true);
     }//GEN-LAST:event_btnSkrivInlaggMouseClicked
-
-    private void btnTestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTestMouseClicked
-        System.out.println(aid);
-    }//GEN-LAST:event_btnTestMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CalendarFrame cal = new CalendarFrame();
@@ -294,9 +241,20 @@ public class Inlagg extends javax.swing.JFrame {
         mote.setVisible(true);
     }//GEN-LAST:event_btnLaggTillMoteActionPerformed
 
-    private void btnForskningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForskningActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnForskningActionPerformed
+    private void jTabPanelAmnenStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabPanelAmnenStateChanged
+        String a = jTabPanelAmnen.getTitleAt(jTabPanelAmnen.getSelectedIndex());
+        String b = "Forskning";
+        String c = "Utbildning";
+        if(a.equals(b)){
+            
+            showForskInlagg();
+            showSocInlagg();
+        }
+        if(a.equals(c)){
+            showUtbInlagg();
+            showSocInlagg();
+        }
+    }//GEN-LAST:event_jTabPanelAmnenStateChanged
 
     /**
      * @param args the command line arguments
@@ -334,13 +292,8 @@ public class Inlagg extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAll;
-    private javax.swing.JButton btnForskning;
     private javax.swing.JButton btnLaggTillMote;
     private javax.swing.JButton btnSkrivInlagg;
-    private javax.swing.JButton btnSocial;
-    private javax.swing.JButton btnTest;
-    private javax.swing.JButton btnUtbildning;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

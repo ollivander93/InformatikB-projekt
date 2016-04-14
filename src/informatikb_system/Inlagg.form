@@ -33,16 +33,9 @@
                   <Component id="jTabPanelAmnen" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="274" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnSkrivInlagg" min="-2" pref="131" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="btnSocial" max="32767" attributes="0"/>
-                      <Component id="btnUtbildning" max="32767" attributes="0"/>
-                      <Component id="btnForskning" max="32767" attributes="0"/>
-                      <Component id="btnAll" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="btnTest" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnLaggTillMote" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnSkrivInlagg" pref="131" max="32767" attributes="0"/>
+                  <Component id="btnLaggTillMote" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="909" max="-2" attributes="0"/>
           </Group>
@@ -56,16 +49,6 @@
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Component id="btnSkrivInlagg" min="-2" pref="51" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnSocial" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnUtbildning" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnForskning" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnAll" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnTest" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnLaggTillMote" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -81,46 +64,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnSocial">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Social"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnUtbildning">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Utbildning"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnForskning">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Forskning"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnForskningActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAll">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="All"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAllMouseClicked"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnSkrivInlagg">
       <Properties>
         <Property name="text" type="java.lang.String" value="Skriv inl&#xe4;gg"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSkrivInlaggMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnTest">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="testAID"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTestMouseClicked"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
@@ -140,6 +89,9 @@
       </Events>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="jTabPanelAmnen">
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jTabPanelAmnenStateChanged"/>
+      </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
