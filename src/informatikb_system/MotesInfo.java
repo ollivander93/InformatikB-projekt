@@ -87,8 +87,9 @@ public class MotesInfo extends javax.swing.JFrame {
     {
         if(anmald)
         {
-            
+            db.avanmalAnstalldMote(aid, MID);
             JOptionPane.showMessageDialog(this, "Du är nu avanmäld till mötet");
+            anmald = false;
         }
         else
         {
@@ -97,11 +98,12 @@ public class MotesInfo extends javax.swing.JFrame {
             anmald = true;
         }
         fillDeltagare();
+        setAnmalKnapp();
     }
     
     public void setAnmalKnapp()
     {
-        if(db.anmaldTillMote(aid, MID))
+        if(anmald)
         {
             btnAnmal.setText("Avanmäl");
         }

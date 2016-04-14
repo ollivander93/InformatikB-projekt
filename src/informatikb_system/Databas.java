@@ -160,7 +160,21 @@ private InfDB idb;
             System.out.println(e.getMessage());
         }
     }
-    
+    public void avanmalAnstalldMote(String aid, String MID)
+    {
+        String sqlFraga = "DELETE FROM MOTE_ANSTALLD WHERE MID = " + MID + " AND AID = " + aid + ";";
+        System.out.println(sqlFraga);
+        try
+        {
+            idb.delete(sqlFraga);
+        }
+        catch(InfException e)
+                {
+                    System.out.println(e.getMessage());
+                }
+    }
+        
+        
     public String hamtaAnsvarigForMote(String MID)
     {
         String sqlFraga = "SELECT ANSVARIG FROM MOTE WHERE MID = " + MID + ";";
