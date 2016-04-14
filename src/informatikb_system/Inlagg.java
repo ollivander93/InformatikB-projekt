@@ -69,10 +69,10 @@ public class Inlagg extends javax.swing.JFrame {
         txtPaneSocialt = new javax.swing.JTextPane();
         jtabPaneForsk = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtPaneForsk = new javax.swing.JTextPane();
+        jTextPaneForsk = new javax.swing.JTextPane();
         tabPaneUtb = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        txtPaneUtbildning = new javax.swing.JTextPane();
+        jTextPaneUtbildning = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -127,12 +127,6 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
-        jTabPanelAmnen.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jTabPanelAmnenStateChanged(evt);
-            }
-        });
-
         jScrollPane2.setViewportView(txtPaneSocialt);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -150,7 +144,7 @@ public class Inlagg extends javax.swing.JFrame {
 
         jTabPanelAmnen.addTab("Socialt", jPanel1);
 
-        jScrollPane1.setViewportView(txtPaneForsk);
+        jScrollPane1.setViewportView(jTextPaneForsk);
 
         javax.swing.GroupLayout jtabPaneForskLayout = new javax.swing.GroupLayout(jtabPaneForsk);
         jtabPaneForsk.setLayout(jtabPaneForskLayout);
@@ -171,7 +165,7 @@ public class Inlagg extends javax.swing.JFrame {
 
         jTabPanelAmnen.addTab("Forskning", jtabPaneForsk);
 
-        jScrollPane3.setViewportView(txtPaneUtbildning);
+        jScrollPane3.setViewportView(jTextPaneUtbildning);
 
         javax.swing.GroupLayout tabPaneUtbLayout = new javax.swing.GroupLayout(tabPaneUtb);
         tabPaneUtb.setLayout(tabPaneUtbLayout);
@@ -243,10 +237,6 @@ public class Inlagg extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnForskningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForskningActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnForskningActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
     }
@@ -263,19 +253,19 @@ public class Inlagg extends javax.swing.JFrame {
        }
     
     public void showForskInlagg(){
-      StyledDocument doc = txtPaneForsk.getStyledDocument();
+      StyledDocument doc = jTextPaneForsk.getStyledDocument();
       inlagg.showForskInlagg1(doc);
        }
     
     public void showUtbInlagg(){
-      StyledDocument doc = txtPaneUtbildning.getStyledDocument();
+      StyledDocument doc = jTextPaneUtbildning.getStyledDocument();
       inlagg.showUtbInlagg1(doc);
        }
     
     private void btnAllMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAllMouseClicked
         StyledDocument soc = txtPaneSocialt.getStyledDocument();
-        StyledDocument forsk = txtPaneForsk.getStyledDocument();
-        StyledDocument utb = txtPaneUtbildning.getStyledDocument();
+        StyledDocument forsk = jTextPaneForsk.getStyledDocument();
+        StyledDocument utb = jTextPaneUtbildning.getStyledDocument();
         inlagg.emptyInlaggPane(forsk);
         inlagg.emptyInlaggPane(utb);
         inlagg.emptyInlaggPane(soc);
@@ -304,19 +294,9 @@ public class Inlagg extends javax.swing.JFrame {
         mote.setVisible(true);
     }//GEN-LAST:event_btnLaggTillMoteActionPerformed
 
-    private void jTabPanelAmnenStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabPanelAmnenStateChanged
-        String tab = jTabPanelAmnen.getTitleAt(jTabPanelAmnen.getSelectedIndex());
-        if(tab.equals("Utbildning")){
-            showUtbInlagg();
-            showSocInlagg();
-        }
-       
-        if (tab.equals("Forskning")){
-            showForskInlagg();
-            showSocInlagg();
-        }
-        System.out.println(tab);
-    }//GEN-LAST:event_jTabPanelAmnenStateChanged
+    private void btnForskningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForskningActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnForskningActionPerformed
 
     /**
      * @param args the command line arguments
@@ -367,10 +347,10 @@ public class Inlagg extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabPanelAmnen;
+    private javax.swing.JTextPane jTextPaneForsk;
+    private javax.swing.JTextPane jTextPaneUtbildning;
     private javax.swing.JPanel jtabPaneForsk;
     private javax.swing.JPanel tabPaneUtb;
-    private javax.swing.JTextPane txtPaneForsk;
     private javax.swing.JTextPane txtPaneSocialt;
-    private javax.swing.JTextPane txtPaneUtbildning;
     // End of variables declaration//GEN-END:variables
 }
