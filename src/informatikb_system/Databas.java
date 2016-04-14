@@ -178,4 +178,19 @@ private InfDB idb;
         }
         return fullName;
     }
+    
+    public ArrayList<String> hamtaAidFromMote(String MID)
+    {
+        String sqlFraga = "SELECT AID FROM MOTE_ANSTALLD WHERE MID = " + MID + ";";
+        ArrayList<String> deltagare = new ArrayList<String>();
+        try
+        {
+            deltagare = idb.fetchColumn(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return deltagare;
+    }
 }

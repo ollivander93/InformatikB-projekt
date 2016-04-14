@@ -27,7 +27,7 @@ public class MotesInfo extends javax.swing.JFrame {
      */
     public MotesInfo() {
         MID = "6";
-        aid = "2";
+        aid = "1";
         initComponents();
         db = new Databas();
         hamtaMotesInfo(MID);
@@ -82,8 +82,28 @@ public class MotesInfo extends javax.swing.JFrame {
     
     public void anmalTillMote(String aid, String MID)
     {
-         db.anmalAnstalldTillMote(aid, MID);
-         JOptionPane.showMessageDialog(this, "Du är nu anmäld till mötet");
+        ArrayList<String> deltagare = new ArrayList<String>();
+        deltagare = db.hamtaAidFromMote(MID);
+        boolean anmald = false;
+        
+        for(String deltagande : deltagare)
+        {
+            if(deltagande.equals(aid))
+            {
+                anmald = true;
+            }
+        }
+        
+        if(anmald)
+        {
+            JOptionPane.showMessageDialog(this, "Du är redan anmäld till mötet");
+        }
+        else
+        {
+            db.anmalAnstalldTillMote(aid, MID);
+            JOptionPane.showMessageDialog(this, "Du är nu anmäld till mötet");
+        }
+        fillDeltagare();
     }
     
     
