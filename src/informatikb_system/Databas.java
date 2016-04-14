@@ -193,4 +193,22 @@ private InfDB idb;
         }
         return deltagare;
     }
+    
+    /*
+    *Kollar om en anställd är anmäld till ett möte
+    */
+    public boolean anmaldTillMote(String aid, String mid)
+    {
+        boolean anmald = false;
+        ArrayList<String> deltagare = new ArrayList<String>();
+        deltagare = hamtaAidFromMote(mid);
+        for(String deltagande : deltagare)
+        {
+            if(deltagande.equals(aid))
+            {
+                anmald = true;
+            }
+        }
+        return anmald;
+    }
 }
