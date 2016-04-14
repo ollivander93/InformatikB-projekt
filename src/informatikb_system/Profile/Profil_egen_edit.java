@@ -10,13 +10,9 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /*
- * @author adro
+ * @author Sethox
  */
 public class Profil_egen_edit extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Profil_egen
-     */
     public Profil_egen_edit() {
         initComponents();
         ProfileEdit_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
@@ -78,7 +74,6 @@ public class Profil_egen_edit extends javax.swing.JFrame {
             .addGap(0, 160, Short.MAX_VALUE)
         );
 
-        Edit_Picture_Btn.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         Edit_Picture_Btn.setText("Sätt in bild / Bytt bild");
         Edit_Picture_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,23 +118,17 @@ public class Profil_egen_edit extends javax.swing.JFrame {
 
         Profil_info.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        ProfileEdit_LastName.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         ProfileEdit_LastName.setToolTipText("Skriv ditt Efternamn");
 
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jLabel2.setText("Efternamn:");
         jLabel2.setToolTipText("");
 
-        ProfileEdit_Name.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         ProfileEdit_Name.setToolTipText("Skriv ditt Namn");
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jLabel1.setText("Namn:");
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jLabel3.setText("Ort:");
 
-        ProfileEdit_City.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         ProfileEdit_City.setToolTipText("Din adress");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -158,7 +147,7 @@ public class Profil_egen_edit extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ProfileEdit_LastName, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,17 +164,10 @@ public class Profil_egen_edit extends javax.swing.JFrame {
                     .addComponent(ProfileEdit_City, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        ProfileEdit_Mobile.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-
-        ProfileEdit_Telephone.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
-
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jLabel4.setText("Telefonnummer:");
 
-        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jLabel5.setText("Mobiltelefon:");
 
-        jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jLabel7.setText("Email:");
 
         jTextField1.setToolTipText("");
@@ -223,10 +205,10 @@ public class Profil_egen_edit extends javax.swing.JFrame {
                     .addComponent(ProfileEdit_Mobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jLabel6.setText("Biografi:");
 
         ProfileEdit_Bio.setColumns(20);
+        ProfileEdit_Bio.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ProfileEdit_Bio.setRows(5);
         jScrollPane1.setViewportView(ProfileEdit_Bio);
 
@@ -272,7 +254,6 @@ public class Profil_egen_edit extends javax.swing.JFrame {
 
         ProfileEdit_Cancel_Exit.setText("Cancel");
 
-        ProfileEdit_OK_Exit.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         ProfileEdit_OK_Exit.setText("OK");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -297,13 +278,11 @@ public class Profil_egen_edit extends javax.swing.JFrame {
             .addComponent(profil_main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Profil_info, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ProfileEdit_OK_Exit)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ProfileEdit_Cancel_Exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(1, 1, 1)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(ProfileEdit_Cancel_Exit))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();

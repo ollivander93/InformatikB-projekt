@@ -77,9 +77,9 @@ private InfDB idb;
     /*
     * Hämtar all info om ett specifikt möte utifrån titel
     */
-    public HashMap<String, String> hamtaMotesInfo(String titel)
+    public HashMap<String, String> hamtaMotesInfo(String mid)
     {
-        String sqlFraga = "SELECT * FROM MOTE WHERE TITEL = '" + titel + "'";
+        String sqlFraga = "SELECT * FROM MOTE WHERE MID = " + mid + ";";
         HashMap<String, String> mote = new HashMap<String, String>();
         try
         {
@@ -109,11 +109,18 @@ private InfDB idb;
             ArrayList<String> fornamn = idb.fetchColumn(sqlFornamn);
             ArrayList<String> efternamn = idb.fetchColumn(sqlEfternamn);
             int i = 0;
+            if(fornamn.isEmpty())
+            {
+                System.out.println("rebarmuskel");
+            }
+            else
+            {
             while(i < fornamn.size())
             {
                 String heltNamn = fornamn.get(i) + " " + efternamn.get(i);
                 anstallda.add(heltNamn);
                 i++;
+            }
             }
         }
         catch(InfException e)
@@ -122,6 +129,7 @@ private InfDB idb;
         }
         return anstallda;
     }
+    
     
     public String hamtaAnstalldNamn(String ID)
     {
@@ -152,7 +160,21 @@ private InfDB idb;
             System.out.println(e.getMessage());
         }
     }
-    
+    public void avanmalAnstalldMote(String aid, String MID)
+    {
+        String sqlFraga = "DELETE FROM MOTE_ANSTALLD WHERE MID = " + MID + " AND AID = " + aid + ";";
+        System.out.println(sqlFraga);
+        try
+        {
+            idb.delete(sqlFraga);
+        }
+        catch(InfException e)
+                {
+                    System.out.println(e.getMessage());
+                }
+    }
+        
+        
     public String hamtaAnsvarigForMote(String MID)
     {
         String sqlFraga = "SELECT ANSVARIG FROM MOTE WHERE MID = " + MID + ";";
@@ -169,5 +191,38 @@ private InfDB idb;
             System.out.println(e.getMessage());
         }
         return fullName;
+    }
+    
+    public ArrayList<String> hamtaAidFromMote(String MID)
+    {
+        String sqlFraga = "SELECT AID FROM MOTE_ANSTALLD WHERE MID = " + MID + ";";
+        ArrayList<String> deltagare = new ArrayList<String>();
+        try
+        {
+            deltagare = idb.fetchColumn(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return deltagare;
+    }
+    
+    /*
+    *Kollar om en anställd är anmäld till ett möte
+    */
+    public boolean anmaldTillMote(String aid, String mid)
+    {
+        boolean anmald = false;
+        ArrayList<String> deltagare = new ArrayList<String>();
+        deltagare = hamtaAidFromMote(mid);
+        for(String deltagande : deltagare)
+        {
+            if(deltagande.equals(aid))
+            {
+                anmald = true;
+            }
+        }
+        return anmald;
     }
 }

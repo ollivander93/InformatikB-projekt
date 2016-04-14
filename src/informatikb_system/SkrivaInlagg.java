@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -20,10 +22,13 @@ public class SkrivaInlagg extends javax.swing.JFrame {
     private InlaggMgt mgt;
     private Calendar cal;
     private static Inlagg inlaggRuta;
+    private InfDB idb; 
+ 
     /**
      * Creates new form SkrivaInlagg
      */
     public SkrivaInlagg(String aid, Inlagg inlaggRuta) {
+        anslutDatabas();
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -33,6 +38,41 @@ public class SkrivaInlagg extends javax.swing.JFrame {
         this.inlaggRuta = inlaggRuta;
     }
 
+     private void anslutDatabas()
+    {
+                try
+        {
+            String path = System.getProperty("user.dir"); //Hämtar user direcotry
+            idb = new InfDB(path + "/databas/DATABASE.FDB"); 
+            System.out.println("Uppkopplingen lyckades");
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    } 
+    
+     public void laggTillBloggInlagg(String titel, String text, String aid, String amne)
+      {
+        String date = LocalDateTime.now().toString();
+        String date2 = date.substring(0,10);
+        String time = date.substring(11, 19);
+        System.out.println(date2 + " Tid: " + time);
+        String visible = "true";
+          try
+          {
+    
+          String sqlFraga = "INSERT INTO INLAGG "
+                + "VALUES(" + idb.getAutoIncrement("INLAGG", "iid") + ",'" + titel + "', '" + date2 + "', '" + time + "', '" + visible + "', " + aid + ", '" + text + "', '" + amne + "');";  
+          idb.insert(sqlFraga);
+                
+          }
+          catch(InfException e)
+          {
+              System.out.println(e.getMessage());
+          }
+                  
+      }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +92,7 @@ public class SkrivaInlagg extends javax.swing.JFrame {
         tfTitel = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        cbxAmnen = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +124,13 @@ public class SkrivaInlagg extends javax.swing.JFrame {
             }
         });
 
+        cbxAmnen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Socialt", "Forskning", "Utbildning" }));
+        cbxAmnen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxAmnenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,6 +159,8 @@ public class SkrivaInlagg extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(tfTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxAmnen, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -127,7 +177,8 @@ public class SkrivaInlagg extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox1)
-                    .addComponent(tfTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfTitel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxAmnen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -147,18 +198,23 @@ public class SkrivaInlagg extends javax.swing.JFrame {
 
         String text = taBloggInlagg.getText();
         String titel = tfTitel.getText();
-        
-        mgt.laggTillBloggInlagg(titel, text, aid);
-        inlaggRuta.showInlaggInPane();
+        String amne = cbxAmnen.getSelectedItem().toString();
+        laggTillBloggInlagg(titel, text, aid, amne);
+        inlaggRuta.showSocInlagg();
         dispose();
         JOptionPane.showMessageDialog(this, "Grattis, du har postat ett nytt inlägg!");
     }//GEN-LAST:event_btnPostaInlaggMouseClicked
 
+     
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
      System.out.println(aid);
      System.out.println(tfTitel.getText());
      System.out.println(taBloggInlagg.getText());
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void cbxAmnenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAmnenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxAmnenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +253,7 @@ public class SkrivaInlagg extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPostaInlagg;
+    private javax.swing.JComboBox<String> cbxAmnen;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
