@@ -50,24 +50,25 @@ public class InlaggMgt {
        
        if(!(list==null)){
             for (int i = list.size() - 1; i >= 0; i--) {
-                String firstName = list.get(i).get("FIRST_NAME");
+              String name = list.get(i).get("FIRST_NAME");
+                String lastName = list.get(i).get("LAST_NAME");
                 String datum = list.get(i).get("DATUM");
                 String tid = list.get(i).get("TID");
                 String bloggIn = list.get(i).get("TEXT");
 
                 SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-                StyleConstants.setForeground(AtrSet, Color.RED);
-                StyleConstants.setBackground(AtrSet, Color.YELLOW);
+                StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
+                d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
                 StyleConstants.setBold(AtrSet, true);
                 try{
-                d.insertString(0," ------------------------------------------------" + "\n" + firstName + "\n" + "Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
+                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + datum  +" "+ tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
                     }catch(Exception e) { System.out.println(e); }
                     }
             }else{
            try{
                SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-                StyleConstants.setForeground(AtrSet, Color.RED);
-                StyleConstants.setBackground(AtrSet, Color.YELLOW);
+                StyleConstants.setForeground(AtrSet, Color.BLACK);
+                StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
                 StyleConstants.setBold(AtrSet, true);
                 d.insertString(0," Ooops, inga inlägg alls just nu #lonely" ,AtrSet );
                     }catch(Exception e) { System.out.println(e); }
@@ -80,24 +81,27 @@ public class InlaggMgt {
        
        if(!(list == null)){
             for (int i = list.size() - 1; i >= 0; i--) {
-                String firstName = list.get(i).get("FIRST_NAME");
+                String name = list.get(i).get("FIRST_NAME");
+                String lastName = list.get(i).get("LAST_NAME");
                 String datum = list.get(i).get("DATUM");
                 String tid = list.get(i).get("TID");
                 String bloggIn = list.get(i).get("TEXT");
 
                 SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-                StyleConstants.setForeground(AtrSet, Color.RED);
-                StyleConstants.setBackground(AtrSet, Color.YELLOW);
+                StyleConstants.setForeground(AtrSet, Color.BLACK);
+                StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
+                d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
                 StyleConstants.setBold(AtrSet, true);
                 try{
-                d.insertString(0," ------------------------------------------------" + "\n" + firstName + "\n" + "Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
+                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + datum  +" "+ tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
                     }catch(Exception e) { System.out.println(e); }
                     }
             }else{
            try{
-               SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-                StyleConstants.setForeground(AtrSet, Color.RED);
-                StyleConstants.setBackground(AtrSet, Color.YELLOW);
+                SimpleAttributeSet AtrSet = new SimpleAttributeSet();
+                StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
+                d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
+                StyleConstants.setForeground(AtrSet, Color.BLACK);
                 StyleConstants.setBold(AtrSet, true);
                 d.insertString(0," Ooops, inga inlägg alls just nu #lonely" ,AtrSet );
                     }catch(Exception e) { System.out.println(e); }
@@ -110,25 +114,29 @@ public class InlaggMgt {
        
        if(!(list==null)){
             for (int i = list.size() - 1; i >= 0; i--) {
-                String firstName = list.get(i).get("FIRST_NAME");
+                String name = list.get(i).get("FIRST_NAME");
+                String lastName = list.get(i).get("LAST_NAME");
                 String datum = list.get(i).get("DATUM");
                 String tid = list.get(i).get("TID");
                 String bloggIn = list.get(i).get("TEXT");
 
                 SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-                StyleConstants.setForeground(AtrSet, Color.RED);
-                StyleConstants.setBackground(AtrSet, Color.YELLOW);
+                StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
+                d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
+                StyleConstants.setForeground(AtrSet, Color.BLACK);
                 StyleConstants.setBold(AtrSet, true);
+                d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
                 try{
-                d.insertString(0," ------------------------------------------------" + "\n" + firstName + "\n" + "Datum: " + datum + " Klockan: " + tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
+                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + datum  +" "+ tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
                     }catch(Exception e) { System.out.println(e); }
                     }
             }else{
            try{
                SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-                StyleConstants.setForeground(AtrSet, Color.RED);
-                StyleConstants.setBackground(AtrSet, Color.YELLOW);
-                StyleConstants.setBold(AtrSet, true);
+               StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
+               d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
+               StyleConstants.setForeground(AtrSet, Color.BLACK);
+               StyleConstants.setBold(AtrSet, true);
                 d.insertString(0," Ooops, inga inlägg alls just nu #lonely" ,AtrSet );
                     }catch(Exception e) { System.out.println(e); }
                     }
@@ -136,7 +144,7 @@ public class InlaggMgt {
       public ArrayList<HashMap<String, String>> hamtaInlagg(String amne )
     {
         ArrayList inlagg = new ArrayList<HashMap<String, String>>();
-        String sqlFraga = "select ANSTALLD.FIRST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT " +
+        String sqlFraga = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL " +
         "FROM ANSTALLD " +
         "JOIN INLAGG " +
         "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = '" + amne + "';";
