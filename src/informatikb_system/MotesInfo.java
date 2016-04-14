@@ -21,6 +21,7 @@ public class MotesInfo extends javax.swing.JFrame {
     private HashMap<String, String> info;
     private static String MID;
     private static String aid;
+    private boolean anmald;
 
     /**
      * Creates new form MotesInfo
@@ -33,6 +34,8 @@ public class MotesInfo extends javax.swing.JFrame {
         hamtaMotesInfo(MID);
         fillMotesInfo();
         fillDeltagare();
+        anmald = db.anmaldTillMote(aid, MID);
+        setAnmalKnapp();
         
     }
     /*
@@ -80,31 +83,37 @@ public class MotesInfo extends javax.swing.JFrame {
         }
     }
     
-    public void anmalTillMote(String aid, String MID)
+    public void anmalTillMote()
     {
-        ArrayList<String> deltagare = new ArrayList<String>();
-        deltagare = db.hamtaAidFromMote(MID);
-        boolean anmald = false;
-        
-        for(String deltagande : deltagare)
-        {
-            if(deltagande.equals(aid))
-            {
-                anmald = true;
-            }
-        }
-        
         if(anmald)
         {
-            JOptionPane.showMessageDialog(this, "Du är redan anmäld till mötet");
+            db.avanmalAnstalldMote(aid, MID);
+            JOptionPane.showMessageDialog(this, "Du är nu avanmäld till mötet");
+            anmald = false;
         }
         else
         {
             db.anmalAnstalldTillMote(aid, MID);
             JOptionPane.showMessageDialog(this, "Du är nu anmäld till mötet");
+            anmald = true;
         }
         fillDeltagare();
+        setAnmalKnapp();
     }
+    
+    public void setAnmalKnapp()
+    {
+        if(anmald)
+        {
+            btnAnmal.setText("Avanmäl");
+        }
+        else
+        {
+            btnAnmal.setText("Anmäl");
+        }
+    }
+
+    
     
     
     
@@ -261,7 +270,7 @@ public class MotesInfo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnmalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnmalMouseClicked
-       anmalTillMote(aid, MID);
+       anmalTillMote();
     }//GEN-LAST:event_btnAnmalMouseClicked
 
     /**

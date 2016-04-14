@@ -18,6 +18,7 @@ public class MoteTest extends javax.swing.JFrame {
     private final Date datum;
     private Databas db;
     private static String aid;
+    private Kalender_TestFrame kalenderF;
 
     /**
      * Creates new form MoteTest
@@ -179,7 +180,11 @@ public class MoteTest extends javax.swing.JFrame {
         String plats = tfSal.getText();
         String titel = tfTitel.getText();
         String beskrivning = taBeskrivning.getText();
-        mote.skapaMote(aid, finalDatum, plats, starttid, sluttid, titel, beskrivning);
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.setTime(datum);
+        int veckodag = mote.getDayOfWeek(finalDatum);
+        int vecka = gc.get(Calendar.WEEK_OF_YEAR);
+        mote.skapaMote(aid, finalDatum, plats, starttid, sluttid, titel, beskrivning, vecka, veckodag);
         JOptionPane.showMessageDialog(this, "Mötet har nu sparats");
     }//GEN-LAST:event_btnSkapaMoteMouseClicked
 
