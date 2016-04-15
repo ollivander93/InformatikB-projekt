@@ -237,7 +237,7 @@ public class Inlagg extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnLaggTillMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillMoteActionPerformed
-        MoteTest mote = new MoteTest(aid);
+        LaggTillMote mote = new LaggTillMote(aid);
         mote.setVisible(true);
     }//GEN-LAST:event_btnLaggTillMoteActionPerformed
 
