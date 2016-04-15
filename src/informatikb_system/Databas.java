@@ -148,6 +148,31 @@ private InfDB idb;
         return fullName;
     }
     
+    public ArrayList<String> hamtaAllaAnstallda()
+    {
+        String sqlFraga = "SELECT FIRST_NAME FROM ANSTALLD;";
+        String sqlFraga1 = "SELECT LAST_NAME FROM ANSTALLD;";
+        String fullName = "";
+        ArrayList<String> anstallda = new ArrayList<String>();
+        ArrayList<String> fornamn = new ArrayList<String>();
+        ArrayList<String> efternamn = new ArrayList<String>();
+        try
+        {
+            fornamn = idb.fetchColumn(sqlFraga);
+            efternamn = idb.fetchColumn(sqlFraga1);
+            for(int i = 0; i < fornamn.size(); i++)
+            {
+                fullName = fornamn.get(i) + " " + efternamn.get(i);
+                anstallda.add(fullName);
+            }
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return anstallda;
+    }
+    
     public void anmalAnstalldTillMote(String AID, String MID)
     {
         String sqlFraga = "INSERT INTO MOTE_ANSTALLD VALUES(" + MID + ", " + AID + ");";
