@@ -16,6 +16,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -26,8 +28,9 @@ public class Inlagg extends javax.swing.JFrame {
     /**
      * Creates new form Inlagg
      */
+     
     private InlaggMgt inlagg;
-
+    
     private static String aid;
     private String tab = "Socialt";
 
@@ -36,6 +39,7 @@ public class Inlagg extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    
         inlagg = new InlaggMgt();
         this.aid = aid;
         showSocInlagg();
@@ -43,7 +47,7 @@ public class Inlagg extends javax.swing.JFrame {
         showUtbInlagg();
     }
 
-
+    
     
 
     /**
@@ -83,7 +87,7 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Titta på kalender");
+        jButton1.setText("KALENDER");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -103,6 +107,7 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
+        txtPaneSocialt.setEditable(false);
         jScrollPane2.setViewportView(txtPaneSocialt);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -111,15 +116,19 @@ public class Inlagg extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1216, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabPanelAmnen.addTab("Socialt", jPanel1);
 
+        jTextPaneForsk.setEditable(false);
         jScrollPane1.setViewportView(jTextPaneForsk);
 
         javax.swing.GroupLayout jtabPaneForskLayout = new javax.swing.GroupLayout(jtabPaneForsk);
@@ -128,19 +137,20 @@ public class Inlagg extends javax.swing.JFrame {
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jtabPaneForskLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1216, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jtabPaneForskLayout.setVerticalGroup(
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jtabPaneForskLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabPanelAmnen.addTab("Forskning", jtabPaneForsk);
 
+        jTextPaneUtbildning.setEditable(false);
         jScrollPane3.setViewportView(jTextPaneUtbildning);
 
         javax.swing.GroupLayout tabPaneUtbLayout = new javax.swing.GroupLayout(tabPaneUtb);
@@ -149,14 +159,14 @@ public class Inlagg extends javax.swing.JFrame {
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPaneUtbLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1216, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabPaneUtbLayout.setVerticalGroup(
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPaneUtbLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -167,31 +177,28 @@ public class Inlagg extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabPanelAmnen))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                    .addComponent(btnLaggTillMote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(909, 909, 909))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLaggTillMote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTabPanelAmnen)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(810, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLaggTillMote))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(jTabPanelAmnen, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                    .addComponent(btnLaggTillMote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabPanelAmnen, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -243,6 +250,7 @@ public class Inlagg extends javax.swing.JFrame {
 
     private void jTabPanelAmnenStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabPanelAmnenStateChanged
         String a = jTabPanelAmnen.getTitleAt(jTabPanelAmnen.getSelectedIndex());
+        System.out.println(a);
         String b = "Forskning";
         String c = "Utbildning";
         if(a.equals(b)){
