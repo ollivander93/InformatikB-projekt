@@ -168,8 +168,4 @@ public class InlaggMgt {
             System.out.print(ex.getMessage());
         }
    }
-
-     
-
-  
 }

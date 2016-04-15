@@ -7,18 +7,61 @@ package informatikb_system.Profile;
 import java.beans.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 import javax.swing.*;
+import javax.swing.text.*;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /*
  * @author Sethox
  */
 public class Profil_egen_visa extends javax.swing.JFrame {
+    private InfDB idb;
+    private ArrayList<HashMap<String, String>> ProfileInfo;
+    
     public Profil_egen_visa() {
         initComponents();
         Profile_Bio.setEditable(false);
         Profile_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
+        anslutDatabas();
+    }
+    
+        
+    private void anslutDatabas(){
+        try{
+            String path = System.getProperty("user.dir"); //Hämtar user direcotry
+            idb = new InfDB(path + "/databas/DATABASE.FDB"); 
+            System.out.println("Uppkopplingen lyckades");
+        }
+        catch(InfException e){
+            System.out.println(e.getMessage());
+        }
     }
 
+    public void setupProfile(){
+        for(int i = 0; i< ProfileInfo.size(); i++){
+            String name = ProfileInfo.get(i).get("FIRST_NAME");
+            String lastName = ProfileInfo.get(i).get("LAST_NAME");
+            String datum = ProfileInfo.get(i).get("DATUM");
+            String tid = ProfileInfo.get(i).get("TID");
+            String bloggIn = ProfileInfo.get(i).get("TEXT");
+        }
+    }
+    
+    public ArrayList<HashMap<String, String>> hamtaInlagg(String amne ){
+        ProfileInfo = new ArrayList<HashMap<String, String>>();
+        String sql_Q = "SELECT ";
+        String sqlF = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, ANSTALLD.TELEFON, ANSTALLD.ADMINISTRATOR, ANSTALLD.ANVANDARNAMN, ANSTALLD.BIO FROM ANSTALLD;";
+        System.out.println(sql_Q);
+        try{
+           ProfileInfo = idb.fetchRows(sql_Q);
+        } catch(InfException e) {
+            System.out.println(e.getMessage());
+        }
+        return ProfileInfo;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
