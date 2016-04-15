@@ -198,7 +198,15 @@ public class SkrivaInlagg extends javax.swing.JFrame {
     private void btnPostaInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPostaInlaggMouseClicked
 
         String text = taBloggInlagg.getText();
+        int count = text.length();
         String titel = tfTitel.getText();
+        int titelCount = titel.length();
+        if(titelCount > 50){  
+        JOptionPane.showMessageDialog(this, "Vad är då för titel så long som över 50 tecken??? Korta ner lite!!");
+        return;} 
+        if(count > 1000){  
+        JOptionPane.showMessageDialog(this, "Max 1000 tillåtna tecken i ett inlägg!");
+        return;}   
         String amne = cbxAmnen.getSelectedItem().toString();
         laggTillBloggInlagg(titel, text, aid, amne);
         inlaggRuta.showSocInlagg();
@@ -208,6 +216,7 @@ public class SkrivaInlagg extends javax.swing.JFrame {
         
         dispose();
         JOptionPane.showMessageDialog(this, "Grattis, du har postat ett nytt inlägg!");
+        
     }//GEN-LAST:event_btnPostaInlaggMouseClicked
 
      
