@@ -147,7 +147,7 @@ public class InlaggMgt {
         String sqlFraga = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL " +
         "FROM ANSTALLD " +
         "JOIN INLAGG " +
-        "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = '" + amne + "';";
+        "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = '" + amne + "' ORDER BY IID ASC ;";
         System.out.println(sqlFraga);
         try
         {

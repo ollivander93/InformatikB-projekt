@@ -107,6 +107,7 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
+        txtPaneSocialt.setEditable(false);
         jScrollPane2.setViewportView(txtPaneSocialt);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -127,6 +128,7 @@ public class Inlagg extends javax.swing.JFrame {
 
         jTabPanelAmnen.addTab("Socialt", jPanel1);
 
+        jTextPaneForsk.setEditable(false);
         jScrollPane1.setViewportView(jTextPaneForsk);
 
         javax.swing.GroupLayout jtabPaneForskLayout = new javax.swing.GroupLayout(jtabPaneForsk);
@@ -148,6 +150,7 @@ public class Inlagg extends javax.swing.JFrame {
 
         jTabPanelAmnen.addTab("Forskning", jtabPaneForsk);
 
+        jTextPaneUtbildning.setEditable(false);
         jScrollPane3.setViewportView(jTextPaneUtbildning);
 
         javax.swing.GroupLayout tabPaneUtbLayout = new javax.swing.GroupLayout(tabPaneUtb);
