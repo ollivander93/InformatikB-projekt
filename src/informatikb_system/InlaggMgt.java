@@ -6,6 +6,8 @@
 package informatikb_system;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.font.TextAttribute;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,14 +57,23 @@ public class InlaggMgt {
                 String datum = list.get(i).get("DATUM");
                 String tid = list.get(i).get("TID");
                 String bloggIn = list.get(i).get("TEXT");
-
+                String title = list.get(i).get("TITEL");
+                
                 SimpleAttributeSet AtrSet = new SimpleAttributeSet();
                 StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
                 d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
                 StyleConstants.setBold(AtrSet, true);
+                
+                SimpleAttributeSet AtrSet1 = new SimpleAttributeSet();
+                Font font = new Font ("Serif", Font.ROMAN_BASELINE, 20);
+                
+                StyleConstants.setFontFamily(AtrSet1, font.getFamily());
+                StyleConstants.setFontSize(AtrSet1, font.getSize());
+                
                 try{
-                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + datum  +" "+ tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
-                    }catch(Exception e) { System.out.println(e); }
+                d.insertString(0, bloggIn + "\n", AtrSet1);
+                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + title + "\n" + datum  +" "+ tid + "\n" + "\n",AtrSet );
+                   }catch(Exception e) { System.out.println(e); }
                     }
             }else{
            try{
@@ -86,14 +97,25 @@ public class InlaggMgt {
                 String datum = list.get(i).get("DATUM");
                 String tid = list.get(i).get("TID");
                 String bloggIn = list.get(i).get("TEXT");
-
+                String title = list.get(i).get("TITEL");
+                
                 SimpleAttributeSet AtrSet = new SimpleAttributeSet();
                 StyleConstants.setForeground(AtrSet, Color.BLACK);
                 StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
                 d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
                 StyleConstants.setBold(AtrSet, true);
+                
+                SimpleAttributeSet AtrSet1 = new SimpleAttributeSet();
+                Font font = new Font ("Serif", Font.ROMAN_BASELINE, 20);
+                
+                StyleConstants.setFontFamily(AtrSet1, font.getFamily());
+                StyleConstants.setFontSize(AtrSet1, font.getSize());
+                
+                
                 try{
-                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + datum  +" "+ tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
+                d.insertString(0, bloggIn + "\n", AtrSet1);
+                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + title + "\n" + datum  +" "+ tid + "\n" + "\n" + "\n",AtrSet );
+               
                     }catch(Exception e) { System.out.println(e); }
                     }
             }else{
@@ -119,7 +141,8 @@ public class InlaggMgt {
                 String datum = list.get(i).get("DATUM");
                 String tid = list.get(i).get("TID");
                 String bloggIn = list.get(i).get("TEXT");
-
+                String title = list.get(i).get("TITEL");
+                
                 SimpleAttributeSet AtrSet = new SimpleAttributeSet();
                 StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
                 d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
@@ -127,7 +150,7 @@ public class InlaggMgt {
                 StyleConstants.setBold(AtrSet, true);
                 d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
                 try{
-                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + datum  +" "+ tid + "\n" + "\n" + bloggIn + "\n" + "\n" + "\n",AtrSet );
+                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + title + "\n" + datum  +" "+ tid + "\n" + "\n" + bloggIn  +"\n" + "\n",AtrSet );
                     }catch(Exception e) { System.out.println(e); }
                     }
             }else{
