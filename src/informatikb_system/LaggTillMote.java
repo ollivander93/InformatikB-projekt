@@ -46,10 +46,14 @@ public class LaggTillMote extends javax.swing.JFrame {
     
     public void laggTillIDeltagareLista()
     {
-
         listDeltagare.add(listAnstallda.getSelectedItem());
-        
-        
+        listAnstallda.remove(listAnstallda.getSelectedItem()); 
+    }
+    
+    public void taBortDeltagareLista()
+    {
+        listAnstallda.add(listDeltagare.getSelectedItem());
+        listDeltagare.remove(listDeltagare.getSelectedItem());
     }
     
 
@@ -135,6 +139,11 @@ public class LaggTillMote extends javax.swing.JFrame {
         });
 
         btnTaBort.setText("Ta bort");
+        btnTaBort.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTaBortMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,6 +278,10 @@ public class LaggTillMote extends javax.swing.JFrame {
     private void btnLaggTillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLaggTillMouseClicked
         laggTillIDeltagareLista();
     }//GEN-LAST:event_btnLaggTillMouseClicked
+
+    private void btnTaBortMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortMouseClicked
+        taBortDeltagareLista();
+    }//GEN-LAST:event_btnTaBortMouseClicked
 
     /**
      * @param args the command line arguments

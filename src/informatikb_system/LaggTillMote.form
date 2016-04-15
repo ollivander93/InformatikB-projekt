@@ -333,6 +333,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ta bort"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTaBortMouseClicked"/>
+      </Events>
     </Component>
     <Component class="java.awt.List" name="listAnstallda">
     </Component>
