@@ -65,7 +65,8 @@ public class SkrivaInlagg extends javax.swing.JFrame {
           String sqlFraga = "INSERT INTO INLAGG "
                 + "VALUES(" + idb.getAutoIncrement("INLAGG", "iid") + ",'" + titel + "', '" + date2 + "', '" + time + "', '" + visible + "', " + aid + ", '" + text + "', '" + amne + "');";  
           idb.insert(sqlFraga);
-                
+         
+          
           }
           catch(InfException e)
           {
@@ -201,6 +202,10 @@ public class SkrivaInlagg extends javax.swing.JFrame {
         String amne = cbxAmnen.getSelectedItem().toString();
         laggTillBloggInlagg(titel, text, aid, amne);
         inlaggRuta.showSocInlagg();
+        inlaggRuta.showForskInlagg();
+        inlaggRuta.showUtbInlagg();
+       
+        
         dispose();
         JOptionPane.showMessageDialog(this, "Grattis, du har postat ett nytt inlägg!");
     }//GEN-LAST:event_btnPostaInlaggMouseClicked

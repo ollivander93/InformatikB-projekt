@@ -16,6 +16,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -26,8 +28,9 @@ public class Inlagg extends javax.swing.JFrame {
     /**
      * Creates new form Inlagg
      */
+     
     private InlaggMgt inlagg;
-
+    
     private static String aid;
     private String tab = "Socialt";
 
@@ -36,6 +39,7 @@ public class Inlagg extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    
         inlagg = new InlaggMgt();
         this.aid = aid;
         showSocInlagg();
@@ -43,7 +47,7 @@ public class Inlagg extends javax.swing.JFrame {
         showUtbInlagg();
     }
 
-
+    
     
 
     /**
@@ -243,6 +247,7 @@ public class Inlagg extends javax.swing.JFrame {
 
     private void jTabPanelAmnenStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabPanelAmnenStateChanged
         String a = jTabPanelAmnen.getTitleAt(jTabPanelAmnen.getSelectedIndex());
+        System.out.println(a);
         String b = "Forskning";
         String c = "Utbildning";
         if(a.equals(b)){
