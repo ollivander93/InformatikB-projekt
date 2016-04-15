@@ -19,13 +19,25 @@ import oru.inf.InfException;
 public class Profil_egen_visa extends javax.swing.JFrame {
     private InfDB idb;
     private ArrayList<HashMap<String, String>> ProfileInfo;
+    private String AID;
     
+    // Konstruktor för test
     public Profil_egen_visa() {
         initComponents();
         Profile_Bio.setEditable(false);
         Profile_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
         anslutDatabas();
     }
+    
+    public Profil_egen_visa(String AID) {
+        this.AID = AID;
+        initComponents();
+        Profile_Bio.setEditable(false);
+        Profile_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
+        anslutDatabas();
+        setupProfile();
+    }
+    
     
         
     private void anslutDatabas(){
@@ -40,12 +52,16 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     }
 
     public void setupProfile(){
+        // Loopar igenom hela ProfileInfo
         for(int i = 0; i< ProfileInfo.size(); i++){
-            String name = ProfileInfo.get(i).get("FIRST_NAME");
-            String lastName = ProfileInfo.get(i).get("LAST_NAME");
-            String datum = ProfileInfo.get(i).get("DATUM");
-            String tid = ProfileInfo.get(i).get("TID");
-            String bloggIn = ProfileInfo.get(i).get("TEXT");
+            //Sparar AID's info
+            if(AID.equals(ProfileInfo.get(i).get("AID"))){
+                String name = ProfileInfo.get(i).get("FIRST_NAME");
+                String lastName = ProfileInfo.get(i).get("LAST_NAME");
+                String datum = ProfileInfo.get(i).get("DATUM");
+                String tid = ProfileInfo.get(i).get("TID");
+                String bloggIn = ProfileInfo.get(i).get("TEXT");
+            }
         }
     }
     
