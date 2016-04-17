@@ -38,8 +38,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         setupProfile();
     }
     
-    
-        
+           
     private void anslutDatabas(){
         try{
             String path = System.getProperty("user.dir"); //Hämtar user direcotry
