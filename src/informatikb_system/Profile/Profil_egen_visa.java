@@ -28,7 +28,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         Profile_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
         anslutDatabas();
     }
-    
+    // Standardkonstruktor
     public Profil_egen_visa(String AID) {
         this.AID = AID;
         initComponents();
@@ -38,7 +38,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         setupProfile();
     }
     
-           
+    // Metod för att ansluta till databasen
     private void anslutDatabas(){
         try{
             String path = System.getProperty("user.dir"); //Hämtar user direcotry
@@ -49,25 +49,35 @@ public class Profil_egen_visa extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
-
+    // Metod för att sätta upp profilen med data
     public void setupProfile(){
+        String name = null, lastName = null, city = null, email = null, phone = null, cellphone = null, BIO = null;
         // Loopar igenom hela ProfileInfo
         for(int i = 0; i< ProfileInfo.size(); i++){
-            //Sparar AID's info
+            //Sparar Profilens info
             if(AID.equals(ProfileInfo.get(i).get("AID"))){
-                String name = ProfileInfo.get(i).get("FIRST_NAME");
-                String lastName = ProfileInfo.get(i).get("LAST_NAME");
-                String datum = ProfileInfo.get(i).get("DATUM");
-                String tid = ProfileInfo.get(i).get("TID");
-                String bloggIn = ProfileInfo.get(i).get("TEXT");
+                name = ProfileInfo.get(i).get("FIRST_NAME");
+                lastName = ProfileInfo.get(i).get("LAST_NAME");
+                city = ProfileInfo.get(i).get("CITY");
+                email = ProfileInfo.get(i).get("EMAIL");
+                phone = ProfileInfo.get(i).get("TELEFON");
+                cellphone = ProfileInfo.get(i).get("MOBILTELEFON");
+                BIO = ProfileInfo.get(i).get("BIO");
+                break;
             }
         }
+        Name_Get.setText(name);
+        LastName_Get.setText(lastName);
+        City_Get.setText(city);
+        Email_Get.setText(email);
+        TelefonNr_Get.setText(phone);
+        MobilNr_Get.setText(cellphone);
+        Profile_Bio.setText(BIO);
     }
     
     public ArrayList<HashMap<String, String>> hamtaInlagg(String amne ){
         ProfileInfo = new ArrayList<HashMap<String, String>>();
-        String sql_Q = "SELECT ";
-        String sqlF = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, ANSTALLD.TELEFON, ANSTALLD.ADMINISTRATOR, ANSTALLD.ANVANDARNAMN, ANSTALLD.BIO FROM ANSTALLD;";
+        String sql_Q = "SELECT ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, ANSTALLD.CITY, ANSTALLD.EMAIL, ANSTALLD.TELEFON, ANSTALLD.MOBILTELEFON, ANSTALLD.BIO, ANSTALLD.AID, ANSTALLD.ADMINISTRATOR FROM ANSTALLD;";
         System.out.println(sql_Q);
         try{
            ProfileInfo = idb.fetchRows(sql_Q);
@@ -92,13 +102,13 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         Profile_PM = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        Name_Get = new javax.swing.JLabel();
+        LastName_Get = new javax.swing.JLabel();
+        City_Get = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        TelefonNr_Get = new javax.swing.JLabel();
+        MobilNr_Get = new javax.swing.JLabel();
+        Email_Get = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Profile_Bio = new javax.swing.JTextArea();
@@ -164,11 +174,11 @@ public class Profil_egen_visa extends javax.swing.JFrame {
 
         jPanel3.setPreferredSize(new java.awt.Dimension(537, 493));
 
-        jLabel1.setText("Name_Get");
+        Name_Get.setText("Name_Get");
 
-        jLabel2.setText("LastName_Get");
+        LastName_Get.setText("LastName_Get");
 
-        jLabel3.setText("City_Get");
+        City_Get.setText("City_Get");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -177,10 +187,10 @@ public class Profil_egen_visa extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Name_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(City_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LastName_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -188,18 +198,18 @@ public class Profil_egen_visa extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(Name_Get)
+                    .addComponent(LastName_Get))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(City_Get)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel4.setText("TelefonNr_Get");
+        TelefonNr_Get.setText("TelefonNr_Get");
 
-        jLabel5.setText("MobilNr_Get");
+        MobilNr_Get.setText("MobilNr_Get");
 
-        jLabel6.setText("Email_Get");
+        Email_Get.setText("Email_Get");
 
         Profile_Bio.setColumns(20);
         Profile_Bio.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -225,11 +235,11 @@ public class Profil_egen_visa extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Email_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(TelefonNr_Get, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                    .addComponent(MobilNr_Get, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29))
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -238,10 +248,10 @@ public class Profil_egen_visa extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6))
+                    .addComponent(TelefonNr_Get)
+                    .addComponent(Email_Get))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(MobilNr_Get)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -335,16 +345,16 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel City_Get;
+    private javax.swing.JLabel Email_Get;
+    private javax.swing.JLabel LastName_Get;
+    private javax.swing.JLabel MobilNr_Get;
+    public javax.swing.JLabel Name_Get;
     private javax.swing.JTextArea Profile_Bio;
     private javax.swing.JToggleButton Profile_Cancel_Exit;
     private javax.swing.JToggleButton Profile_OK_Exit;
     private javax.swing.JButton Profile_PM;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel TelefonNr_Get;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
