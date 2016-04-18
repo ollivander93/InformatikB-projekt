@@ -226,7 +226,7 @@ private InfDB idb;
     */
     public ArrayList<String> hamtaAidFromMote(String MID)
     {
-        String sqlFraga = "SELECT AID FROM MOTE_ANSTALLD WHERE MID = " + MID + ";";
+        String sqlFraga = "SELECT AID FROM DELTAGARE_MOTE WHERE MID = " + MID + ";";
         ArrayList<String> deltagare = new ArrayList<String>();
         try
         {
