@@ -19,22 +19,24 @@ public class MotesInfo extends javax.swing.JFrame {
     
     private Databas db;
     private HashMap<String, String> info;
-    private static String MID;
+    private static String mID;
     private static String aid;
     private boolean anmald;
 
     /**
      * Creates new form MotesInfo
      */
-    public MotesInfo() {
-        MID = "6";
-        aid = "1";
+    public MotesInfo(String mid, String aid) {
+        mID = mid;
+        this.aid = aid;
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
         db = new Databas();
-        hamtaMotesInfo(MID);
+        hamtaMotesInfo(mID);
         fillMotesInfo();
         fillDeltagare();
-        anmald = db.anmaldTillMote(aid, MID);
+        anmald = db.anmaldTillMote(aid, mID);
         setAnmalKnapp();
         
     }
@@ -55,9 +57,9 @@ public class MotesInfo extends javax.swing.JFrame {
     /*
     * Hämtar info för det valda mötet och sparar lokalt i objektet
     */
-    public void hamtaMotesInfo(String MID)
+    public void hamtaMotesInfo(String mID)
     {
-        info = db.hamtaMotesInfo(MID);
+        info = db.hamtaMotesInfo(mID);
     }
     
     /*
@@ -66,7 +68,7 @@ public class MotesInfo extends javax.swing.JFrame {
     public void fillDeltagare()
     {
         String kebab = "Det finns inga anställda som är anmälda till detta möte än";
-        ArrayList<String> deltagande = db.hamtaAnstalldaMote(MID);
+        ArrayList<String> deltagande = db.hamtaAnstalldaMote(mID);
         DefaultListModel listModel = new DefaultListModel();
         listDeltagare.setModel(listModel);
         if(deltagande.isEmpty())
@@ -87,13 +89,13 @@ public class MotesInfo extends javax.swing.JFrame {
     {
         if(anmald)
         {
-            db.avanmalAnstalldMote(aid, MID);
+            db.avanmalAnstalldMote(aid, mID);
             JOptionPane.showMessageDialog(this, "Du är nu avanmäld till mötet");
             anmald = false;
         }
         else
         {
-            db.anmalAnstalldTillMote(aid, MID);
+            db.anmalAnstalldTillMote(aid, mID);
             JOptionPane.showMessageDialog(this, "Du är nu anmäld till mötet");
             anmald = true;
         }
@@ -303,7 +305,7 @@ public class MotesInfo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MotesInfo().setVisible(true);
+                new MotesInfo(mID, aid).setVisible(true);
             }
         });
     }

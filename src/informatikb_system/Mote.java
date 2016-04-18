@@ -74,7 +74,6 @@ private InfDB idb;
                 dayOfWeek = 7;
                 return dayOfWeek;
             }
-            System.out.println(dayOfWeek);
             return dayOfWeek - 1;
         }
         catch(Exception e)
@@ -87,7 +86,7 @@ private InfDB idb;
     public ArrayList<HashMap<String, String>> hamtaMotenForVecka(int vecka)
     {
         ArrayList<HashMap<String, String>> moten = new ArrayList<HashMap<String, String>>();
-        String sqlFraga = "Select mote.titel, mote.start_tid, mote.slut_tid, mote.ansvarig, mote.datum, mote.veckodag from mote" + 
+        String sqlFraga = "Select mote.titel, mote.start_tid, mote.slut_tid, mote.ansvarig, mote.datum, mote.veckodag, mote.mid from mote" + 
                 " where mote.vecka = " + vecka + ";";
         try
         {
@@ -98,5 +97,36 @@ private InfDB idb;
             System.out.println(e.getMessage());
         }
         return moten;
+    }
+    
+    public String getMoteTitel(String mid)
+    {
+        String sqlFraga = "Select mote.titel from mote where mote.mid = " + mid + ";";
+        String titel = null;
+        try
+        {
+            titel = idb.fetchSingle(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return titel;
+    }
+    
+    public HashMap<String, String> getMoteId(String titel, String mid)
+    {
+        String sqlFraga = "Select mote.titel, mote.mid from mote where mote.mid = " + mid + " and mote.titel = '" + titel + "';";
+        HashMap<String, String> info = new HashMap<>();
+        try
+        {
+            info = idb.fetchRow(sqlFraga);
+            return info;
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return info;
     }
 }

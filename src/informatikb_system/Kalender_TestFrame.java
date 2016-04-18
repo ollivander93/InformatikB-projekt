@@ -13,7 +13,11 @@ import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import java.text.DateFormat;
+import java.util.Map;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -22,9 +26,17 @@ import java.text.DateFormat;
 public class Kalender_TestFrame extends javax.swing.JFrame {
 
     private Mote mote;
+    private ArrayList<HashMap<String, String>> motesIden;
+    private static String aid;
+    private MyRenderer renderer;
     
-    public Kalender_TestFrame() {
+    public Kalender_TestFrame(String aid) {
         initComponents();
+        getContentPane().setBackground(Color.white);
+        renderer = new MyRenderer();
+        tableCalendar.setDefaultRenderer(Object.class, renderer);
+        this.aid = aid;
+        motesIden = new ArrayList<HashMap<String, String>>();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         mote = new Mote();
@@ -32,8 +44,10 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         fillTime();
         setLableWeek();
         fillCbWeeks();
+        tableCalendar.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
+        setSondagRod();
         fyllKalender();
-
+        
     }
     
     private void fillCbWeeks()
@@ -53,8 +67,10 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
     {
         String week = cbWeeks.getSelectedItem().toString();
         int realWeek = Integer.parseInt(week);
-        String dag = getMandagDatum();
         ArrayList<HashMap<String, String>> moten = mote.hamtaMotenForVecka(realWeek);
+        HashMap<String, String> motesInfoHash = new HashMap<>();
+        if(moten != null)
+        {
         for(int i = 0; i < moten.size(); i++)
         {
            String datum = moten.get(i).get("DATUM");
@@ -63,92 +79,61 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
            String startTid = moten.get(i).get("START_TID");
            String slutTid = moten.get(i).get("SLUT_TID");
            String veckoDag = moten.get(i).get("VECKODAG");
+           String mid = moten.get(i).get("MID");
+           
+           motesInfoHash.put(mid, titel);
+           
+          
            int veckoDag2 = Integer.parseInt(veckoDag);
            String startTid2 = startTid.substring(0, 2);
            int start = Integer.parseInt(startTid2);
            int motesDag = mote.getDayOfWeek(datum);
-               DefaultTableModel model = (DefaultTableModel) tableCalendar.getModel();
+           DefaultTableModel model = (DefaultTableModel) tableCalendar.getModel();
                //tid, dag
                model.setValueAt(titel, start, veckoDag2);
+               renderer.getTableCellRendererComponent(tableCalendar, titel, true, true, start, veckoDag2);
+        }
+        }
+        motesIden.add(motesInfoHash);
+    }
+    
+    public void visaInfoOmMote()
+    {
+        int column = tableCalendar.getSelectedColumn();
+        int row = tableCalendar.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) tableCalendar.getModel();
+        Object obj = model.getValueAt(row, column);
+        if(obj != null)
+        {
+            for(int i = 0; i < motesIden.size(); i++)
+            {
+                HashMap<String, String> hash = motesIden.get(i);
+                for(Map.Entry<String, String> entry : hash.entrySet())
+                {
+                    String key = entry.getKey();
+                    String titel2 = entry.getValue();
+                    String selectedTitel = getSelectedTitel();
+                    HashMap<String, String> info = mote.getMoteId(titel2, key);
+                    String mid21 = info.get("MID");
+                    String titel21 = info.get("TITEL");
+                            if(key.equals(mid21) && titel2.equals(titel21) && titel21.equals(selectedTitel))
+                            {
+                                MotesInfo motesInfo = new MotesInfo(mid21, aid);
+                                motesInfo.setVisible(true);
+                            }
+                    
+                }
+            }
         }
     }
     
-    private String getMandagDatum()
+    private String getSelectedTitel()
     {
-        String week = cbWeeks.getSelectedItem().toString();
-        int realWeek = Integer.parseInt(week);
-        SimpleDateFormat simple = new SimpleDateFormat();
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.WEEK_OF_YEAR, realWeek);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-        String monday = simple.format(cal.getTime()).substring(8, 10);
-        return monday;
-    }
-    
-    private void getTisdagDatum()
-    {
-        String week = cbWeeks.getSelectedItem().toString();
-        int realWeek = Integer.parseInt(week);
-        SimpleDateFormat simple = new SimpleDateFormat();
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.WEEK_OF_YEAR, realWeek);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
-        String monday = simple.format(cal.getTime()).substring(8, 10);
-    }
-    
-    private void getOnsdagDatum()
-    {
-        String week = cbWeeks.getSelectedItem().toString();
-        int realWeek = Integer.parseInt(week);
-        SimpleDateFormat simple = new SimpleDateFormat();
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.WEEK_OF_YEAR, realWeek);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
-        String monday = simple.format(cal.getTime()).substring(8, 10);
-    }
-        
-    private void getTorsdagDatum()
-    {
-        String week = cbWeeks.getSelectedItem().toString();
-        int realWeek = Integer.parseInt(week);
-        SimpleDateFormat simple = new SimpleDateFormat();
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.WEEK_OF_YEAR, realWeek);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-        String monday = simple.format(cal.getTime()).substring(8, 10);
-    }
-            
-    private void getFredagDatum()
-    {
-        String week = cbWeeks.getSelectedItem().toString();
-        int realWeek = Integer.parseInt(week);
-        SimpleDateFormat simple = new SimpleDateFormat();
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.WEEK_OF_YEAR, realWeek);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-        String monday = simple.format(cal.getTime()).substring(8, 10);
-    }
-          
-    private void getLordagDatum()
-    {
-        String week = cbWeeks.getSelectedItem().toString();
-        int realWeek = Integer.parseInt(week);
-        SimpleDateFormat simple = new SimpleDateFormat();
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.WEEK_OF_YEAR, realWeek);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
-        String monday = simple.format(cal.getTime()).substring(8, 10);
-    }
-                    
-    private void getSondagDatum()
-    {
-        String week = cbWeeks.getSelectedItem().toString();
-        int realWeek = Integer.parseInt(week);
-        SimpleDateFormat simple = new SimpleDateFormat();
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.WEEK_OF_YEAR, realWeek);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-        String monday = simple.format(cal.getTime()).substring(8, 10);
+        int column = tableCalendar.getSelectedColumn();
+        int row = tableCalendar.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) tableCalendar.getModel();
+        String titel = model.getValueAt(row, column).toString();
+        return titel;
     }
     
     private void fillTime()
@@ -183,6 +168,13 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         tableCalendar.setCellSelectionEnabled(true);
         tableCalendar.getSelectionModel().addListSelectionListener(tableCalendar);
     }
+    
+    private void setSondagRod()
+    {
+        DefaultTableCellRenderer headerRender = new DefaultTableCellRenderer();
+        headerRender.setForeground(Color.red);
+        tableCalendar.getColumnModel().getColumn(7).setHeaderRenderer(headerRender);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -200,13 +192,16 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        tableCalendar.setBackground(new java.awt.Color(255, 255, 255));
+        tableCalendar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         tableCalendar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+                "Tid", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"
             }
         ) {
             Class[] types = new Class [] {
@@ -217,8 +212,13 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tableCalendar.setGridColor(new java.awt.Color(0, 0, 0));
         tableCalendar.setRowHeight(50);
-        tableCalendar.setShowVerticalLines(true);
+        tableCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableCalendarMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableCalendar);
         if (tableCalendar.getColumnModel().getColumnCount() > 0) {
             tableCalendar.getColumnModel().getColumn(0).setMinWidth(50);
@@ -265,6 +265,10 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tableCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCalendarMouseClicked
+        visaInfoOmMote();
+    }//GEN-LAST:event_tableCalendarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -295,7 +299,7 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Kalender_TestFrame().setVisible(true);
+                new Kalender_TestFrame(aid).setVisible(true);
             }
         });
     }

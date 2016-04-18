@@ -26,16 +26,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="btnSkrivInlagg" min="-2" pref="568" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnLaggTillMote" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnVisaKalender" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="btnSkrivInlagg" min="-2" pref="568" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btnLaggTillMote" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="jTabPanelAmnen" max="32767" attributes="0"/>
+                      <Component id="jButton1" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jTabPanelAmnen" max="32767" attributes="0"/>
-                  <Component id="jButton1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="810" max="32767" attributes="0"/>
           </Group>
@@ -44,7 +47,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnVisaKalender" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnSkrivInlagg" pref="51" max="32767" attributes="0"/>
                   <Component id="btnLaggTillMote" max="32767" attributes="0"/>
@@ -220,5 +225,13 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="btnVisaKalender">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Visa Kalender"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnVisaKalenderMouseClicked"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
