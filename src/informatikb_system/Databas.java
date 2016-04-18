@@ -101,10 +101,10 @@ private InfDB idb;
         try
         {
             String sqlFornamn = "SELECT ANSTALLD.FIRST_NAME FROM "
-                    + "ANSTALLD JOIN MOTE_ANSTALLD ON ANSTALLD.AID = MOTE_ANSTALLD.AID "
+                    + "ANSTALLD JOIN DELTAGARE_MOTE ON ANSTALLD.AID = DELTAGARE_MOTE.AID "
                     + "WHERE MID = '" + mid + "'";
             String sqlEfternamn = "SELECT ANSTALLD.LAST_NAME FROM "
-                    + "ANSTALLD JOIN MOTE_ANSTALLD ON ANSTALLD.AID = MOTE_ANSTALLD.AID "
+                    + "ANSTALLD JOIN DELTAGARE_MOTE ON ANSTALLD.AID = DELTAGARE_MOTE.AID "
                     + "WHERE MID = '" + mid + "'";
             ArrayList<String> fornamn = idb.fetchColumn(sqlFornamn);
             ArrayList<String> efternamn = idb.fetchColumn(sqlEfternamn);
@@ -178,7 +178,7 @@ private InfDB idb;
     
     public void anmalAnstalldTillMote(String AID, String MID)
     {
-        String sqlFraga = "INSERT INTO MOTE_ANSTALLD VALUES(" + MID + ", " + AID + ");";
+        String sqlFraga = "INSERT INTO DELTAGARE_MOTE VALUES(" + MID + ", " + AID + ");";
         try
         {
             idb.insert(sqlFraga);
@@ -188,9 +188,9 @@ private InfDB idb;
             System.out.println(e.getMessage());
         }
     }
-    public void avanmalAnstalldMote(String aid, String MID)
+    public void avanmalAnstalldMote(String AID, String MID)
     {
-        String sqlFraga = "DELETE FROM MOTE_ANSTALLD WHERE MID = " + MID + " AND AID = " + aid + ";";
+        String sqlFraga = "DELETE FROM DELTAGARE_MOTE WHERE MID = " + MID + " AND AID = " + AID + ";";
         System.out.println(sqlFraga);
         try
         {
@@ -221,6 +221,9 @@ private InfDB idb;
         return fullName;
     }
     
+    /*
+    *Hämtar aid för de som bekräftat att de kommer på ett möte
+    */
     public ArrayList<String> hamtaAidFromMote(String MID)
     {
         String sqlFraga = "SELECT AID FROM MOTE_ANSTALLD WHERE MID = " + MID + ";";
@@ -282,4 +285,20 @@ private InfDB idb;
         }
         return mid;
     }
+    
+    public ArrayList<String> hamtaInbjudnaTillMote(String MID)
+    {
+        String sqlFraga = "SELECT AID FROM MOTE_ANSTALLD WHERE MID ='" + MID + "';";
+        ArrayList<String> inbjudna = new ArrayList<String>();
+        try
+        {
+            inbjudna = idb.fetchColumn(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return inbjudna;
+    }
+    
 }
