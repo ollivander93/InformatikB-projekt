@@ -46,8 +46,7 @@ public class InlaggMgt {
         }
     } 
      
-     public void showSocInlagg1(StyledDocument d){
-     String amne = "Socialt";
+     public void showSocInlagg1(StyledDocument d, String amne){
      ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
        
        if(!(list==null)){
@@ -86,84 +85,6 @@ public class InlaggMgt {
                     }
        }
      
-     public void showForskInlagg1(StyledDocument d){
-     String amne = "Forskning";
-     ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
-       
-       if(!(list == null)){
-            for (int i = list.size() - 1; i >= 0; i--) {
-                String name = list.get(i).get("FIRST_NAME");
-                String lastName = list.get(i).get("LAST_NAME");
-                String datum = list.get(i).get("DATUM");
-                String tid = list.get(i).get("TID");
-                String bloggIn = list.get(i).get("TEXT");
-                String title = list.get(i).get("TITEL");
-                
-                SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-                StyleConstants.setForeground(AtrSet, Color.BLACK);
-                StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
-                d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
-                StyleConstants.setBold(AtrSet, true);
-                
-                SimpleAttributeSet AtrSet1 = new SimpleAttributeSet();
-                Font font = new Font ("Serif", Font.ROMAN_BASELINE, 20);
-                
-                StyleConstants.setFontFamily(AtrSet1, font.getFamily());
-                StyleConstants.setFontSize(AtrSet1, font.getSize());
-                
-                
-                try{
-                d.insertString(0, bloggIn + "\n", AtrSet1);
-                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + title + "\n" + datum  +" "+ tid + "\n" + "\n" + "\n",AtrSet );
-               
-                    }catch(Exception e) { System.out.println(e); }
-                    }
-            }else{
-           try{
-                SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-                StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
-                d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
-                StyleConstants.setForeground(AtrSet, Color.BLACK);
-                StyleConstants.setBold(AtrSet, true);
-                d.insertString(0," Ooops, inga inlägg alls just nu #lonely" ,AtrSet );
-                    }catch(Exception e) { System.out.println(e); }
-                    }
-       }
-       
-     public void showUtbInlagg1(StyledDocument d){
-     String amne = "Utbildning";
-     ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
-       
-       if(!(list==null)){
-            for (int i = list.size() - 1; i >= 0; i--) {
-                String name = list.get(i).get("FIRST_NAME");
-                String lastName = list.get(i).get("LAST_NAME");
-                String datum = list.get(i).get("DATUM");
-                String tid = list.get(i).get("TID");
-                String bloggIn = list.get(i).get("TEXT");
-                String title = list.get(i).get("TITEL");
-                
-                SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-                StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
-                d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
-                StyleConstants.setForeground(AtrSet, Color.BLACK);
-                StyleConstants.setBold(AtrSet, true);
-                d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
-                try{
-                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + title + "\n" + datum  +" "+ tid + "\n" + "\n" + bloggIn  +"\n" + "\n",AtrSet );
-                    }catch(Exception e) { System.out.println(e); }
-                    }
-            }else{
-           try{
-               SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-               StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
-               d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
-               StyleConstants.setForeground(AtrSet, Color.BLACK);
-               StyleConstants.setBold(AtrSet, true);
-                d.insertString(0," Ooops, inga inlägg alls just nu #lonely" ,AtrSet );
-                    }catch(Exception e) { System.out.println(e); }
-                    }
-       }
       public ArrayList<HashMap<String, String>> hamtaInlagg(String amne )
     {
         ArrayList inlagg = new ArrayList<HashMap<String, String>>();

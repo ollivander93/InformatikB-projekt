@@ -32,7 +32,7 @@ public class Inlagg extends javax.swing.JFrame {
     private InlaggMgt inlagg;
     
     private static String aid;
-    private String tab = "Socialt";
+    String amne;
 
     public Inlagg(String aid) {
         initComponents();
@@ -42,9 +42,9 @@ public class Inlagg extends javax.swing.JFrame {
     
         inlagg = new InlaggMgt();
         this.aid = aid;
-        showSocInlagg();
-        showForskInlagg();
-        showUtbInlagg();
+        showSocInlagg(amne);
+//        showForskInlagg();
+//        showUtbInlagg();
     }
 
     
@@ -225,24 +225,34 @@ public class Inlagg extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
   
     
-    public void showSocInlagg(){
+    public void showSocInlagg(String amne1){
+    amne = jTabPanelAmnen.getTitleAt(jTabPanelAmnen.getSelectedIndex());
+    amne1 = amne;
+       if(amne1 == null){
+           amne1 = "Socialt";
+           StyledDocument docSoc = txtPaneSocialt.getStyledDocument();
+           inlagg.emptyInlaggPane(docSoc);
+           inlagg.showSocInlagg1(docSoc, amne1);
+       }
+       if(amne1.equals("Socialt")){
+           amne1 = "Socialt";
+           StyledDocument docSoc = txtPaneSocialt.getStyledDocument();
+           inlagg.emptyInlaggPane(docSoc);
+           inlagg.showSocInlagg1(docSoc, amne1);
+       }
+       if(amne1.equals("Forskning")){
+            StyledDocument docForsk = jTextPaneForsk.getStyledDocument();  
+            inlagg.emptyInlaggPane(docForsk);
+            inlagg.showSocInlagg1(docForsk, amne1);
+       }
+       if(amne1.equals("Utbildning")){
        
-       StyledDocument doc = txtPaneSocialt.getStyledDocument();
-       inlagg.emptyInlaggPane(doc);
-       inlagg.showSocInlagg1(doc);
+       StyledDocument docUtb = jTextPaneUtbildning.getStyledDocument();
+       inlagg.emptyInlaggPane(docUtb);
+       inlagg.showSocInlagg1(docUtb, amne1);
        }
-    
-    public void showForskInlagg(){
-      StyledDocument doc = jTextPaneForsk.getStyledDocument();
-      inlagg.emptyInlaggPane(doc);
-      inlagg.showForskInlagg1(doc);
        }
-    
-    public void showUtbInlagg(){
-      StyledDocument doc = jTextPaneUtbildning.getStyledDocument();
-      inlagg.emptyInlaggPane(doc);
-      inlagg.showUtbInlagg1(doc);
-       }
+   
     
     private void btnSkrivInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkrivInlaggMouseClicked
         SkrivaInlagg skriva = new SkrivaInlagg(aid, this);
@@ -267,12 +277,10 @@ public class Inlagg extends javax.swing.JFrame {
         String c = "Utbildning";
         if(a.equals(b)){
             
-            showForskInlagg();
-            showSocInlagg();
+            showSocInlagg(a);
         }
         if(a.equals(c)){
-            showUtbInlagg();
-            showSocInlagg();
+            showSocInlagg(a);
         }
     }//GEN-LAST:event_jTabPanelAmnenStateChanged
 

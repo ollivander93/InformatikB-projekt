@@ -210,9 +210,7 @@ public class SkrivaInlagg extends javax.swing.JFrame {
         }else{
         String amne = cbxAmnen.getSelectedItem().toString();
         laggTillBloggInlagg(titel, text, aid, amne);
-        inlaggRuta.showSocInlagg();
-        inlaggRuta.showForskInlagg();
-        inlaggRuta.showUtbInlagg();
+        inlaggRuta.showSocInlagg(amne);
        
         
         dispose();
