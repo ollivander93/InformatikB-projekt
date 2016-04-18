@@ -16,6 +16,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
@@ -26,8 +28,9 @@ public class Inlagg extends javax.swing.JFrame {
     /**
      * Creates new form Inlagg
      */
+     
     private InlaggMgt inlagg;
-
+    
     private static String aid;
     private String tab = "Socialt";
 
@@ -36,6 +39,7 @@ public class Inlagg extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    
         inlagg = new InlaggMgt();
         this.aid = aid;
         showSocInlagg();
@@ -43,7 +47,7 @@ public class Inlagg extends javax.swing.JFrame {
         showUtbInlagg();
     }
 
-
+    
     
 
     /**
@@ -104,6 +108,7 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
+        txtPaneSocialt.setEditable(false);
         jScrollPane2.setViewportView(txtPaneSocialt);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -124,6 +129,7 @@ public class Inlagg extends javax.swing.JFrame {
 
         jTabPanelAmnen.addTab("Socialt", jPanel1);
 
+        jTextPaneForsk.setEditable(false);
         jScrollPane1.setViewportView(jTextPaneForsk);
 
         javax.swing.GroupLayout jtabPaneForskLayout = new javax.swing.GroupLayout(jtabPaneForsk);
@@ -145,6 +151,7 @@ public class Inlagg extends javax.swing.JFrame {
 
         jTabPanelAmnen.addTab("Forskning", jtabPaneForsk);
 
+        jTextPaneUtbildning.setEditable(false);
         jScrollPane3.setViewportView(jTextPaneUtbildning);
 
         javax.swing.GroupLayout tabPaneUtbLayout = new javax.swing.GroupLayout(tabPaneUtb);
@@ -249,12 +256,13 @@ public class Inlagg extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnLaggTillMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillMoteActionPerformed
-        MoteTest mote = new MoteTest(aid);
+        LaggTillMote mote = new LaggTillMote(aid);
         mote.setVisible(true);
     }//GEN-LAST:event_btnLaggTillMoteActionPerformed
 
     private void jTabPanelAmnenStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabPanelAmnenStateChanged
         String a = jTabPanelAmnen.getTitleAt(jTabPanelAmnen.getSelectedIndex());
+        System.out.println(a);
         String b = "Forskning";
         String c = "Utbildning";
         if(a.equals(b)){
