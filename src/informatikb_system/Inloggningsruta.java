@@ -5,6 +5,8 @@
  */
 package informatikb_system;
 
+import com.sun.glass.events.KeyEvent;
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -21,6 +23,7 @@ public class Inloggningsruta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         tfUsername.setText("");
         user = new Anvandare();
+        getContentPane().setBackground(Color.white);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -39,12 +42,19 @@ public class Inloggningsruta extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnLogIn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1000, 500));
+        setSize(new java.awt.Dimension(600, 400));
+        getContentPane().setLayout(null);
 
         lblInloggning.setBackground(java.awt.SystemColor.activeCaption);
         lblInloggning.setFont(new java.awt.Font("Malgun Gothic", 1, 36)); // NOI18N
+        lblInloggning.setForeground(new java.awt.Color(0, 0, 0));
         lblInloggning.setText("Inloggning");
+        getContentPane().add(lblInloggning);
+        lblInloggning.setBounds(380, 50, 188, 49);
 
         pfPassword.setText("jPasswordField1");
         pfPassword.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -52,9 +62,24 @@ public class Inloggningsruta extends javax.swing.JFrame {
                 pfPasswordFocusGained(evt);
             }
         });
+        pfPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pfPasswordKeyPressed(evt);
+            }
+        });
+        getContentPane().add(pfPassword);
+        pfPassword.setBounds(370, 260, 225, 28);
 
+        tfUsername.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(tfUsername);
+        tfUsername.setBounds(370, 170, 225, 28);
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Användarnamn");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(400, 130, 175, 33);
 
         btnLogIn.setText("Logga in");
         btnLogIn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -62,54 +87,20 @@ public class Inloggningsruta extends javax.swing.JFrame {
                 btnLogInMouseClicked(evt);
             }
         });
+        getContentPane().add(btnLogIn);
+        btnLogIn.setBounds(440, 320, 120, 40);
 
+        jLabel2.setBackground(new java.awt.Color(0, 153, 153));
         jLabel2.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setLabelFor(pfPassword);
         jLabel2.setText("Lösenord");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(430, 220, 105, 33);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(pfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(150, 150, 150))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblInloggning)
-                                .addComponent(jLabel1))
-                            .addGap(173, 173, 173)))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(btnLogIn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblInloggning)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(btnLogIn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/informatikb_system/Icons/orebro_370x370.jpg"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 370, 370);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -137,6 +128,27 @@ public class Inloggningsruta extends javax.swing.JFrame {
     private void pfPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfPasswordFocusGained
         pfPassword.setText("");
     }//GEN-LAST:event_pfPasswordFocusGained
+
+    private void pfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfPasswordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            String losenord = pfPassword.getText();
+            String username = tfUsername.getText();
+        
+            boolean valid = user.valideraInloggning(username, losenord);
+            if(valid)
+            {
+                String aID = user.getAID();
+                Inlagg inlaggruta = new Inlagg(aID);
+                inlaggruta.setVisible(true);
+                dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Du har skrivit in fel användarnamn eller lösenord.");
+            }
+        }
+    }//GEN-LAST:event_pfPasswordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -177,6 +189,7 @@ public class Inloggningsruta extends javax.swing.JFrame {
     private javax.swing.JButton btnLogIn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblInloggning;
     private javax.swing.JPasswordField pfPassword;
     private javax.swing.JTextField tfUsername;

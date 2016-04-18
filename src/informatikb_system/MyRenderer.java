@@ -22,7 +22,8 @@ public class MyRenderer extends DefaultTableCellRenderer{
         
         if(table.getValueAt(row, column) != null)
         {
-        c.setBackground(Color.lightGray);
+        c.setBackground(Color.blue);
+        c.setForeground(Color.white);
         }
         else
         {

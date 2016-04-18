@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Event;
 import java.awt.Font;
 import java.text.DateFormat;
 import java.util.Map;
@@ -86,12 +87,23 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
           
            int veckoDag2 = Integer.parseInt(veckoDag);
            String startTid2 = startTid.substring(0, 2);
+           String slutTid2 = slutTid.substring(0, 2);
            int start = Integer.parseInt(startTid2);
+           int slut = Integer.parseInt(slutTid2);
            int motesDag = mote.getDayOfWeek(datum);
            DefaultTableModel model = (DefaultTableModel) tableCalendar.getModel();
                //tid, dag
                model.setValueAt(titel, start, veckoDag2);
                renderer.getTableCellRendererComponent(tableCalendar, titel, true, true, start, veckoDag2);
+               if(!slutTid2.equals(startTid2))
+               {
+                   while(slut > start)
+                   {
+                       model.setValueAt(" ", slut, veckoDag2);
+                       slut--;
+                   }
+                   
+               }
         }
         }
         motesIden.add(motesInfoHash);
@@ -195,6 +207,7 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
 
         tableCalendar.setBackground(new java.awt.Color(255, 255, 255));
+        tableCalendar.setBorder(null);
         tableCalendar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         tableCalendar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -221,6 +234,9 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         });
         tableCalendar.setGridColor(new java.awt.Color(0, 0, 0));
         tableCalendar.setRowHeight(50);
+        tableCalendar.setShowHorizontalLines(false);
+        tableCalendar.setShowVerticalLines(true
+        );
         tableCalendar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableCalendarMouseClicked(evt);
@@ -273,7 +289,10 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCalendarMouseClicked
-        visaInfoOmMote();
+        if(evt.getClickCount() == 2)
+        {
+            visaInfoOmMote();
+        }
     }//GEN-LAST:event_tableCalendarMouseClicked
 
     /**
