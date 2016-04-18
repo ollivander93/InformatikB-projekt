@@ -150,19 +150,22 @@ private InfDB idb;
     
     public ArrayList<String> hamtaAllaAnstallda()
     {
+        String sqlAids = "SELECT AID FROM ANSTALLD;";
         String sqlFraga = "SELECT FIRST_NAME FROM ANSTALLD;";
         String sqlFraga1 = "SELECT LAST_NAME FROM ANSTALLD;";
         String fullName = "";
+        ArrayList<String> aids = new ArrayList<String>();
         ArrayList<String> anstallda = new ArrayList<String>();
         ArrayList<String> fornamn = new ArrayList<String>();
         ArrayList<String> efternamn = new ArrayList<String>();
         try
         {
+            aids = idb.fetchColumn(sqlAids);
             fornamn = idb.fetchColumn(sqlFraga);
             efternamn = idb.fetchColumn(sqlFraga1);
             for(int i = 0; i < fornamn.size(); i++)
             {
-                fullName = fornamn.get(i) + " " + efternamn.get(i);
+                fullName = aids.get(i) + ". " + fornamn.get(i) + " " + efternamn.get(i);
                 anstallda.add(fullName);
             }
         }
@@ -249,5 +252,34 @@ private InfDB idb;
             }
         }
         return anmald;
+    }
+    
+    public void bjudInTillMote(String mid, String aid)
+    {
+        try
+        {
+            String sqlFraga = "insert into mote_anstalld values (" + mid + ", " + aid + ");";
+            System.out.println(sqlFraga);
+            idb.insert(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public String hamtaMid(String titel)
+    {
+        String mid = "";
+        try
+        {
+            String sqlFraga = "SELECT MID FROM MOTE WHERE TITEL = '" + titel + "';";
+            mid = idb.fetchSingle(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return mid;
     }
 }
