@@ -65,6 +65,9 @@ public class InlaggMgt {
                 
                 SimpleAttributeSet AtrSet1 = new SimpleAttributeSet();
                 Font font = new Font ("Serif", Font.ROMAN_BASELINE, 20);
+                StyleConstants.setForeground(AtrSet1, Color.white);
+                StyleConstants.setBackground(AtrSet1, Color.GRAY);
+                
                 
                 StyleConstants.setFontFamily(AtrSet1, font.getFamily());
                 StyleConstants.setFontSize(AtrSet1, font.getSize());
