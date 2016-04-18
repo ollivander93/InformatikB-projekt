@@ -7,15 +7,25 @@ package informatikb_system.Profile;
 import java.beans.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 import javax.swing.*;
 
 /*
  * @author Sethox
  */
-public class Profil_egen_edit extends javax.swing.JFrame {
+public class Profil_egen_edit extends JFrame{
+    // Test Konstruktor
     public Profil_egen_edit() {
         initComponents();
         ProfileEdit_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
+    }
+    // Standardkonstruktor
+    public Profil_egen_edit(ArrayList<String> ProfileInfo) {
+        initComponents();
+        ProfileEdit_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
+            frame.setVisible(false);
+            frame.dispose();
+        }});
     }
 
     /**
@@ -333,6 +343,21 @@ public class Profil_egen_edit extends javax.swing.JFrame {
                         //setLabel("Please tell me what you want!");
                     }*/
     }//GEN-LAST:event_Edit_Picture_BtnActionPerformed
+    
+    public void windowClosing(WindowEvent e) {
+        System.out.println("WindowListener method called: windowClosing.");
+        //A pause so user can see the message before
+        //the window actually closes.
+        ActionListener task = new ActionListener() {
+            boolean alreadyDisposed = false;
+            public void actionPerformed(ActionEvent e) {
+                if (frame.isDisplayable()) {
+                    alreadyDisposed = true;
+                    frame.dispose();
+                }
+            }
+        };
+    }
     
     /**
      * @param args the command line arguments
