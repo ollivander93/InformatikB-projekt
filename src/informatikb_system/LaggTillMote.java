@@ -56,6 +56,18 @@ public class LaggTillMote extends javax.swing.JFrame {
         listDeltagare.remove(listDeltagare.getSelectedItem());
     }
     
+    public ArrayList<String> hamtaDeltagare()
+    {
+        int size = listDeltagare.getItemCount();
+        ArrayList<String> deltagare = new ArrayList();
+        
+        for(int i = 0; i < size; i++)
+        {
+            deltagare.add(listDeltagare.getItem(i));
+        }
+        return deltagare;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -268,6 +280,15 @@ public class LaggTillMote extends javax.swing.JFrame {
         int veckodag = mote.getDayOfWeek(finalDatum);
         int vecka = gc.get(Calendar.WEEK_OF_YEAR);
         mote.skapaMote(aid, finalDatum, plats, starttid, sluttid, titel, beskrivning, vecka, veckodag);
+        String mid = db.hamtaMid(titel);
+        ArrayList<String> deltagare = hamtaDeltagare();
+        for(String deltagaren : deltagare)
+        {
+            String[] aidn = deltagaren.split("\\.");
+            String aid = aidn[0];
+            db.anmalAnstalldTillMote(aid, mid);
+        }
+        
         JOptionPane.showMessageDialog(this, "Mötet har nu sparats");
     }//GEN-LAST:event_btnSkapaMoteMouseClicked
 
