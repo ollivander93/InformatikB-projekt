@@ -64,6 +64,7 @@ public class SkrivaInlagg extends javax.swing.JFrame {
     
           String sqlFraga = "INSERT INTO INLAGG "
                 + "VALUES(" + idb.getAutoIncrement("INLAGG", "iid") + ",'" + titel + "', '" + date2 + "', '" + time + "', '" + visible + "', " + aid + ", '" + text + "', '" + amne + "');";  
+                System.err.println(sqlFraga);
           idb.insert(sqlFraga);
          
           
@@ -71,6 +72,8 @@ public class SkrivaInlagg extends javax.swing.JFrame {
           catch(InfException e)
           {
               System.out.println(e.getMessage());
+              JOptionPane.showMessageDialog(this, "Ooops something went wrong! Dont use symbol ' for now :)");
+              return;
           }
                   
       }
@@ -202,20 +205,19 @@ public class SkrivaInlagg extends javax.swing.JFrame {
         String titel = tfTitel.getText();
         int titelCount = titel.length();
         
-        if(titelCount > 50){  
-        JOptionPane.showMessageDialog(this, "Vad är då för titel så long som över 50 tecken??? Korta ner lite!!");
-        }
-        else if(count > 1000){  
-        JOptionPane.showMessageDialog(this, "Max 1000 tillåtna tecken i ett inlägg!");
-        }else{
-        String amne = cbxAmnen.getSelectedItem().toString();
-        laggTillBloggInlagg(titel, text, aid, amne);
-        inlaggRuta.showSocInlagg(amne);
-       
         
-        dispose();
-        JOptionPane.showMessageDialog(this, "Grattis, du har postat ett nytt inlägg!");
-        } 
+            if(titelCount > 50){  
+            JOptionPane.showMessageDialog(this, "Vad är då för titel så long som över 50 tecken??? Korta ner lite!!");
+            }
+            else if(count > 1000){  
+            JOptionPane.showMessageDialog(this, "Max 1000 tillåtna tecken i ett inlägg!");
+            }else{
+            String amne = cbxAmnen.getSelectedItem().toString();
+            laggTillBloggInlagg(titel, text, aid, amne);
+            inlaggRuta.showSocInlagg(amne);
+            dispose();
+            JOptionPane.showMessageDialog(this, "Grattis, du har postat ett nytt inlägg!");
+        }
     }//GEN-LAST:event_btnPostaInlaggMouseClicked
 
      

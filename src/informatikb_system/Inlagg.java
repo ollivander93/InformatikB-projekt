@@ -102,6 +102,7 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
+        jTabPanelAmnen.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabPanelAmnen.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jTabPanelAmnenStateChanged(evt);
@@ -227,6 +228,9 @@ public class Inlagg extends javax.swing.JFrame {
   
     
     public void showSocInlagg(String amne1){
+        jTextPaneUtbildning.setBackground(Color.LIGHT_GRAY);
+        jTextPaneForsk.setBackground(Color.LIGHT_GRAY);
+        txtPaneSocialt.setBackground(Color.lightGray);
     amne = jTabPanelAmnen.getTitleAt(jTabPanelAmnen.getSelectedIndex());
     amne1 = amne;
        if(amne1 == null){
@@ -236,21 +240,22 @@ public class Inlagg extends javax.swing.JFrame {
            inlagg.showSocInlagg1(docSoc, amne1);
        }
        if(amne1.equals("Socialt")){
-           amne1 = "Socialt";
+           
            StyledDocument docSoc = txtPaneSocialt.getStyledDocument();
            inlagg.emptyInlaggPane(docSoc);
            inlagg.showSocInlagg1(docSoc, amne1);
        }
        if(amne1.equals("Forskning")){
-            StyledDocument docForsk = jTextPaneForsk.getStyledDocument();  
-            inlagg.emptyInlaggPane(docForsk);
-            inlagg.showSocInlagg1(docForsk, amne1);
+           
+           StyledDocument docForsk = jTextPaneForsk.getStyledDocument();  
+           inlagg.emptyInlaggPane(docForsk);
+           inlagg.showSocInlagg1(docForsk, amne1);
        }
        if(amne1.equals("Utbildning")){
        
-       StyledDocument docUtb = jTextPaneUtbildning.getStyledDocument();
-       inlagg.emptyInlaggPane(docUtb);
-       inlagg.showSocInlagg1(docUtb, amne1);
+           StyledDocument docUtb = jTextPaneUtbildning.getStyledDocument();
+           inlagg.emptyInlaggPane(docUtb);
+           inlagg.showSocInlagg1(docUtb, amne1);
        }
        }
    

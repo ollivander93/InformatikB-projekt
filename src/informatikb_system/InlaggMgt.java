@@ -5,6 +5,7 @@
  */
 package informatikb_system;
 
+import com.sun.javafx.tk.FontLoader;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.font.TextAttribute;
@@ -73,17 +74,17 @@ public class InlaggMgt {
                 StyleConstants.setFontSize(AtrSet1, font.getSize());
                 
                 try{
-                d.insertString(0, bloggIn + "\n", AtrSet1);
+                d.insertString(0, " " + bloggIn + " " + "\n", AtrSet1);
                 d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + title + "\n" + datum  +" "+ tid + "\n" + "\n",AtrSet );
                    }catch(Exception e) { System.out.println(e); }
                     }
             }else{
            try{
-               SimpleAttributeSet AtrSet = new SimpleAttributeSet();
-                StyleConstants.setForeground(AtrSet, Color.BLACK);
-                StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
-                StyleConstants.setBold(AtrSet, true);
-                d.insertString(0," Ooops, inga inlägg alls just nu #lonely" ,AtrSet );
+               SimpleAttributeSet AtrSet2 = new SimpleAttributeSet();
+                StyleConstants.setForeground(AtrSet2, Color.BLACK);
+                StyleConstants.setAlignment(AtrSet2, StyleConstants.ALIGN_CENTER);
+                StyleConstants.setBold(AtrSet2, true);
+                d.insertString(0," Ooops, inga inlägg alls just nu #lonely" ,AtrSet2 );
                     }catch(Exception e) { System.out.println(e); }
                     }
        }
