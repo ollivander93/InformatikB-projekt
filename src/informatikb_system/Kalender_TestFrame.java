@@ -46,7 +46,6 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         setLableWeek();
         fillCbWeeks();
         tableCalendar.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
-        setSondagRod();
         fyllKalender();
         
     }
@@ -72,39 +71,30 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         HashMap<String, String> motesInfoHash = new HashMap<>();
         if(moten != null)
         {
-        for(int i = 0; i < moten.size(); i++)
-        {
-           String datum = moten.get(i).get("DATUM");
-           String datum2 = datum.substring(8, datum.length());
-           String titel = moten.get(i).get("TITEL");
-           String startTid = moten.get(i).get("START_TID");
-           String slutTid = moten.get(i).get("SLUT_TID");
-           String veckoDag = moten.get(i).get("VECKODAG");
-           String mid = moten.get(i).get("MID");
+            for(int i = 0; i < moten.size(); i++)
+            {
+            String datum = moten.get(i).get("DATUM");
+            String datum2 = datum.substring(8, datum.length());
+            String titel = moten.get(i).get("TITEL");
+            String startTid = moten.get(i).get("START_TID");
+            String slutTid = moten.get(i).get("SLUT_TID");
+            String veckoDag = moten.get(i).get("VECKODAG");
+            String mid = moten.get(i).get("MID");
            
-           motesInfoHash.put(mid, titel);
+            motesInfoHash.put(mid, titel);
            
           
-           int veckoDag2 = Integer.parseInt(veckoDag);
-           String startTid2 = startTid.substring(0, 2);
-           String slutTid2 = slutTid.substring(0, 2);
-           int start = Integer.parseInt(startTid2);
-           int slut = Integer.parseInt(slutTid2);
-           int motesDag = mote.getDayOfWeek(datum);
-           DefaultTableModel model = (DefaultTableModel) tableCalendar.getModel();
+            int veckoDag2 = Integer.parseInt(veckoDag);
+            String startTid2 = startTid.substring(0, 2);
+            String slutTid2 = slutTid.substring(0, 2);
+            int start = Integer.parseInt(startTid2);
+            int slut = Integer.parseInt(slutTid2);
+            int motesDag = mote.getDayOfWeek(datum);
+            DefaultTableModel model = (DefaultTableModel) tableCalendar.getModel();
                //tid, dag
                model.setValueAt(titel, start, veckoDag2);
                renderer.getTableCellRendererComponent(tableCalendar, titel, true, true, start, veckoDag2);
-               if(!slutTid2.equals(startTid2))
-               {
-                   while(slut > start)
-                   {
-                       model.setValueAt(" ", slut, veckoDag2);
-                       slut--;
-                   }
-                   
-               }
-        }
+            }
         }
         motesIden.add(motesInfoHash);
     }
