@@ -20,6 +20,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     private InfDB idb;
     private ArrayList<HashMap<String, String>> ProfileInfo;
     private String AID;
+    private Profil_egen_edit EditProfile;
     
     // Konstruktor för test
     public Profil_egen_visa() {
@@ -50,7 +51,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         }
     }
     // Metod för att sätta upp profilen med data
-    public void setupProfile(){
+    private void setupProfile(){
         String name = null, lastName = null, city = null, email = null, phone = null, cellphone = null, BIO = null;
         // Loopar igenom hela ProfileInfo
         for(int i = 0; i< ProfileInfo.size(); i++){
@@ -100,6 +101,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         Profile_PM = new javax.swing.JButton();
+        Edit_Profile = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         Name_Get = new javax.swing.JLabel();
@@ -122,6 +124,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.setToolTipText("Din Profilbild");
+        jPanel1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,16 +154,27 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        Profile_PM.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Profile_PM.setText("Skicka meddelande till personen");
+
+        Edit_Profile.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        Edit_Profile.setText("Ändra din profil");
+        Edit_Profile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Edit_ProfileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout profil_mainLayout = new javax.swing.GroupLayout(profil_main);
         profil_main.setLayout(profil_mainLayout);
         profil_mainLayout.setHorizontalGroup(
             profil_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(profil_mainLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profil_mainLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Profile_PM)
+                .addGroup(profil_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Profile_PM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Edit_Profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         profil_mainLayout.setVerticalGroup(
@@ -169,15 +183,20 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Profile_PM)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Edit_Profile)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setPreferredSize(new java.awt.Dimension(537, 493));
 
+        Name_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Name_Get.setText("Name_Get");
 
+        LastName_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         LastName_Get.setText("LastName_Get");
 
+        City_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         City_Get.setText("City_Get");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -205,10 +224,13 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        TelefonNr_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TelefonNr_Get.setText("TelefonNr_Get");
 
+        MobilNr_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MobilNr_Get.setText("MobilNr_Get");
 
+        Email_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Email_Get.setText("Email_Get");
 
         Profile_Bio.setColumns(20);
@@ -222,7 +244,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 35, Short.MAX_VALUE))
+                .addGap(0, 44, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,7 +292,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
         Profile_OK_Exit.setText("OK");
@@ -286,7 +308,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Profile_Cancel_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -309,6 +331,22 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Edit_ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_ProfileActionPerformed
+        // TODO add your handling code here:
+        ArrayList<String> Profile_Edit = new ArrayList<String>();
+        Profile_Edit.add(Name_Get.getText());
+        Profile_Edit.add(LastName_Get.getText());
+        Profile_Edit.add(City_Get.getText());
+        Profile_Edit.add(Email_Get.getText());
+        Profile_Edit.add(TelefonNr_Get.getText());
+        Profile_Edit.add(MobilNr_Get.getText());
+        EditProfile = new Profil_egen_edit();
+        if(!EditProfile.isVisible()){
+            this.setVisible(false);
+            EditProfile.setVisible(true);
+        }
+    }//GEN-LAST:event_Edit_ProfileActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -346,6 +384,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel City_Get;
+    private javax.swing.JButton Edit_Profile;
     private javax.swing.JLabel Email_Get;
     private javax.swing.JLabel LastName_Get;
     private javax.swing.JLabel MobilNr_Get;

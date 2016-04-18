@@ -22,7 +22,7 @@ public class MyRenderer extends DefaultTableCellRenderer{
         
         if(table.getValueAt(row, column) != null)
         {
-        c.setBackground(Color.blue);
+        c.setBackground(Color.getHSBColor(0.5583333F, 0.80F, 0.6F));
         c.setForeground(Color.white);
         }
         else
