@@ -282,11 +282,13 @@ public class LaggTillMote extends javax.swing.JFrame {
         mote.skapaMote(aid, finalDatum, plats, starttid, sluttid, titel, beskrivning, vecka, veckodag);
         String mid = db.hamtaMid(titel);
         ArrayList<String> deltagare = hamtaDeltagare();
+        db.anmalAnstalldTillMote(aid, mid);
+        System.out.println(aid + " " + mid);
         for(String deltagaren : deltagare)
         {
             String[] aidn = deltagaren.split("\\.");
             String aid = aidn[0];
-            db.anmalAnstalldTillMote(aid, mid);
+            db.bjudInTillMote(mid, aid);
         }
         
         JOptionPane.showMessageDialog(this, "Mötet har nu sparats");
