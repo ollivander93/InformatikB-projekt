@@ -340,7 +340,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         Profile_Edit.add(Email_Get.getText());
         Profile_Edit.add(TelefonNr_Get.getText());
         Profile_Edit.add(MobilNr_Get.getText());
-        EditProfile = new Profil_egen_edit();
+        EditProfile = new Profil_egen_edit(Profile_Edit);
         if(!EditProfile.isVisible()){
             this.setVisible(false);
             EditProfile.setVisible(true);
