@@ -29,7 +29,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnVisaKalender" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="btnVisaKalender" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="My_Profile" min="-2" pref="85" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="btnSkrivInlagg" min="-2" pref="568" max="-2" attributes="0"/>
@@ -48,7 +52,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnVisaKalender" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnVisaKalender" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="My_Profile" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnSkrivInlagg" pref="51" max="32767" attributes="0"/>
@@ -92,7 +99,7 @@
       <Properties>
         <Property name="tabLayoutPolicy" type="int" value="1"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Standardmark&#xf6;r"/>
+          <Color id="Default Cursor"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="14" style="1"/>
@@ -250,6 +257,14 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnVisaKalenderMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="My_Profile">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Min Profil"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="My_ProfileActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

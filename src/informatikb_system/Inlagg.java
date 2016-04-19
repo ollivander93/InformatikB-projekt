@@ -18,12 +18,14 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import informatikb_system.Profile.*;
 
 /**
  *
  * @author Reinis
  */
 public class Inlagg extends javax.swing.JFrame {
+    private Profil_egen_visa MyProfile;
 
     /**
      * Creates new form Inlagg
@@ -73,6 +75,7 @@ public class Inlagg extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPaneUtbildning = new javax.swing.JTextPane();
         btnVisaKalender = new javax.swing.JButton();
+        My_Profile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -184,6 +187,13 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
+        My_Profile.setText("Min Profil");
+        My_Profile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                My_ProfileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,7 +201,10 @@ public class Inlagg extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVisaKalender)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnVisaKalender)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(My_Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,7 +218,9 @@ public class Inlagg extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnVisaKalender)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVisaKalender)
+                    .addComponent(My_Profile))
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
@@ -303,6 +318,14 @@ public class Inlagg extends javax.swing.JFrame {
         kalender.setVisible(true);
     }//GEN-LAST:event_btnVisaKalenderMouseClicked
 
+    private void My_ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_My_ProfileActionPerformed
+        MyProfile = new Profil_egen_visa(aid);
+        if(!this.MyProfile.isVisible()){
+            //this.setVisible(false);
+            this.MyProfile.setVisible(true);
+        }
+    }//GEN-LAST:event_My_ProfileActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -339,6 +362,7 @@ public class Inlagg extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton My_Profile;
     private javax.swing.JButton btnLaggTillMote;
     private javax.swing.JButton btnSkrivInlagg;
     private javax.swing.JButton btnVisaKalender;
