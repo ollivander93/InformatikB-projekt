@@ -104,6 +104,7 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         int row = tableCalendar.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tableCalendar.getModel();
         Object obj = model.getValueAt(row, column);
+        boolean found = false;
         if(obj != null)
         {
             for(int i = 0; i < motesIden.size(); i++)
@@ -117,10 +118,11 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
                     HashMap<String, String> info = mote.getMoteId(titel2, key);
                     String mid21 = info.get("MID");
                     String titel21 = info.get("TITEL");
-                            if(key.equals(mid21) && titel2.equals(titel21) && titel21.equals(selectedTitel))
+                            if(key.equals(mid21) && titel2.equals(titel21) && titel21.equals(selectedTitel) && !found)
                             {
                                 MotesInfo motesInfo = new MotesInfo(mid21, aid);
                                 motesInfo.setVisible(true);
+                                found = true;
                             }
                     
                 }
@@ -285,13 +287,6 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tableCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCalendarMouseClicked
-        if(evt.getClickCount() == 2)
-        {
-            visaInfoOmMote();
-        }
-    }//GEN-LAST:event_tableCalendarMouseClicked
-
     private void cbWeeksItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbWeeksItemStateChanged
         DefaultTableModel model = new DefaultTableModel();
         model = (DefaultTableModel) tableCalendar.getModel();
@@ -303,6 +298,15 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
        fyllKalender();
        setLableWeek();
     }//GEN-LAST:event_cbWeeksItemStateChanged
+
+    private void tableCalendarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCalendarMouseClicked
+
+        if(evt.getClickCount() == 2)
+        {
+            visaInfoOmMote();
+        }
+        
+    }//GEN-LAST:event_tableCalendarMouseClicked
 
     /**
      * @param args the command line arguments
