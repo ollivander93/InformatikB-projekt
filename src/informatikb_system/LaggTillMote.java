@@ -26,6 +26,7 @@ public class LaggTillMote extends javax.swing.JFrame {
      */
     public LaggTillMote(String aid) {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         mote = new Mote();
         datum = new Date();
         db = new Databas();
@@ -39,8 +40,13 @@ public class LaggTillMote extends javax.swing.JFrame {
         anstalldaLista = db.hamtaAllaAnstallda();
         for(String anstallda : anstalldaLista)
         {
-            
-            listAnstallda.add(anstallda);
+            String[] getAid = anstallda.split("\\.");
+            String finalAid = getAid[0];
+            System.out.println(finalAid);
+            if(!finalAid.equals(aid))
+            {
+                listAnstallda.add(anstallda);
+            }
         }
     }
     

@@ -36,6 +36,7 @@ public class MotesInfo extends javax.swing.JFrame {
         hamtaMotesInfo(mID);
         fillMotesInfo();
         fillDeltagare();
+        fillInbjudna();
         anmald = db.anmaldTillMote(aid, mID);
         setAnmalKnapp();
         
@@ -45,7 +46,9 @@ public class MotesInfo extends javax.swing.JFrame {
     */
     public void fillMotesInfo()
     {
-        lblAnsvarig.setText(info.get("ANSVARIG"));
+        String aid = info.get("ANSVARIG");
+        String namn = db.hamtaAnstalldNamn(aid);
+        lblAnsvarig.setText(namn);
         lblTitel.setText(info.get("TITEL"));
         lblDatum.setText(info.get("DATUM"));
         lblStarttid1.setText(info.get("START_TID"));
@@ -85,6 +88,19 @@ public class MotesInfo extends javax.swing.JFrame {
         }
     }
     
+    public void fillInbjudna()
+    {
+        ArrayList<String> inbjudna = new ArrayList<String>();
+        inbjudna = db.hamtaInbjudnaAnstallda(mID);
+        DefaultListModel listModel = new DefaultListModel();
+        listInbjudna.setModel(listModel);
+        for(String inbjuden : inbjudna)
+        {
+            
+            listModel.addElement(inbjuden);
+        }
+    }
+    
     public void anmalTillMote()
     {
         if(anmald)
@@ -100,6 +116,7 @@ public class MotesInfo extends javax.swing.JFrame {
             anmald = true;
         }
         fillDeltagare();
+        fillInbjudna();
         setAnmalKnapp();
     }
     
@@ -147,6 +164,9 @@ public class MotesInfo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lblAnsvarig = new javax.swing.JLabel();
         btnAnmal = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        listInbjudna = new javax.swing.JList<>();
+        lblInbjudna = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -192,51 +212,64 @@ public class MotesInfo extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane4.setViewportView(listInbjudna);
+
+        lblInbjudna.setText("Inbjudna:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(lblTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAnmal))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(lblSluttid)
-                            .addComponent(lblStarttid)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDatum)
-                            .addComponent(lblStarttid1)
-                            .addComponent(lblPlats1)
-                            .addComponent(lblAnsvarig)
-                            .addComponent(lblSluttid1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(lblTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(lblSluttid)
+                                    .addComponent(lblStarttid)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDatum)
+                                    .addComponent(lblStarttid1)
+                                    .addComponent(lblPlats1)
+                                    .addComponent(lblAnsvarig)
+                                    .addComponent(lblSluttid1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDeltagare)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAnmal)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDeltagare))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInbjudna, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTitel)
-                    .addComponent(lblDeltagare))
+                    .addComponent(lblDeltagare)
+                    .addComponent(lblInbjudna))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(lblAnsvarig))
@@ -260,12 +293,11 @@ public class MotesInfo extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAnmal)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -318,9 +350,11 @@ public class MotesInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblAnsvarig;
     private javax.swing.JLabel lblDatum;
     private javax.swing.JLabel lblDeltagare;
+    private javax.swing.JLabel lblInbjudna;
     private javax.swing.JLabel lblPlats1;
     private javax.swing.JLabel lblSluttid;
     private javax.swing.JLabel lblSluttid1;
@@ -328,6 +362,7 @@ public class MotesInfo extends javax.swing.JFrame {
     private javax.swing.JLabel lblStarttid1;
     private javax.swing.JLabel lblTitel;
     private javax.swing.JList<String> listDeltagare;
+    private javax.swing.JList<String> listInbjudna;
     private javax.swing.JTextArea taBeskrivning;
     // End of variables declaration//GEN-END:variables
 }

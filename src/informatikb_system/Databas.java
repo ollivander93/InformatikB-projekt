@@ -130,6 +130,43 @@ private InfDB idb;
         return anstallda;
     }
     
+    public ArrayList<String> hamtaInbjudnaAnstallda(String mid)
+    {
+        ArrayList<String> inbjudna = new ArrayList<String>();
+        try
+        {
+            String sqlFornamn = "SELECT ANSTALLD.FIRST_NAME FROM "
+                    + "ANSTALLD JOIN MOTE_ANSTALLD ON ANSTALLD.AID = MOTE_ANSTALLD.AID "
+                    + "WHERE MID = '" + mid + "'";
+            String sqlEfternamn = "SELECT ANSTALLD.LAST_NAME FROM "
+                    + "ANSTALLD JOIN MOTE_ANSTALLD ON ANSTALLD.AID = MOTE_ANSTALLD.AID "
+                    + "WHERE MID = '" + mid + "'";
+            ArrayList<String> fornamn = new ArrayList<String>();
+            fornamn = idb.fetchColumn(sqlFornamn);
+            ArrayList<String> efternamn = idb.fetchColumn(sqlEfternamn);
+            int i = 0;
+            if(fornamn == null)
+            {
+               String info = "Det finns inga inbjudna till detta möte";
+               inbjudna.add(info);
+            }
+            else
+            {
+            while(i < fornamn.size())
+            {
+                String heltNamn = fornamn.get(i) + " " + efternamn.get(i);
+                inbjudna.add(heltNamn);
+                i++;
+            }
+            }
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return inbjudna;
+    }
+    
     
     public String hamtaAnstalldNamn(String ID)
     {
@@ -179,8 +216,10 @@ private InfDB idb;
     public void anmalAnstalldTillMote(String AID, String MID)
     {
         String sqlFraga = "INSERT INTO DELTAGARE_MOTE VALUES(" + MID + ", " + AID + ");";
+        String sqlFraga1 = "DELETE FROM MOTE_ANSTALLD WHERE MID = " + MID + " AND AID = " + AID + ";";
         try
         {
+            idb.delete(sqlFraga1);
             idb.insert(sqlFraga);
         }
         catch(InfException e)
@@ -191,10 +230,12 @@ private InfDB idb;
     public void avanmalAnstalldMote(String AID, String MID)
     {
         String sqlFraga = "DELETE FROM DELTAGARE_MOTE WHERE MID = " + MID + " AND AID = " + AID + ";";
-        System.out.println(sqlFraga);
+        String sqlFraga1 = "INSERT INTO MOTE_ANSTALLD VALUES(" + MID + ", " + AID + ");";
         try
         {
             idb.delete(sqlFraga);
+            idb.insert(sqlFraga1);
+            System.out.println(sqlFraga);
         }
         catch(InfException e)
                 {
