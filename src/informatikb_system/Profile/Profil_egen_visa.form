@@ -196,7 +196,7 @@
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -362,11 +362,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="OK"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Profile_OK_ExitActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="Profile_Cancel_Exit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Profile_Cancel_ExitActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

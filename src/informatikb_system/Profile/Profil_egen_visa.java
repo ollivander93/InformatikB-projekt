@@ -330,12 +330,22 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 51, Short.MAX_VALUE))
+                .addGap(0, 40, Short.MAX_VALUE))
         );
 
         Profile_OK_Exit.setText("OK");
+        Profile_OK_Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Profile_OK_ExitActionPerformed(evt);
+            }
+        });
 
         Profile_Cancel_Exit.setText("Cancel");
+        Profile_Cancel_Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Profile_Cancel_ExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -386,6 +396,18 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         }
         updateProfile();
     }//GEN-LAST:event_Edit_ProfileActionPerformed
+
+    private void Profile_OK_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Profile_OK_ExitActionPerformed
+        exitActionPerformed(evt);
+    }//GEN-LAST:event_Profile_OK_ExitActionPerformed
+
+    private void Profile_Cancel_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Profile_Cancel_ExitActionPerformed
+        exitActionPerformed(evt);
+    }//GEN-LAST:event_Profile_Cancel_ExitActionPerformed
+    
+    private void exitActionPerformed(ActionEvent evt) {
+        this.dispose();
+    }
     
     /**
      * @param args the command line arguments
