@@ -66,6 +66,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 break;
             }
         }
+        // Ändrar på texten som LABELS har
         Name_Get.setText(name);
         LastName_Get.setText(lastName);
         City_Get.setText(city);
