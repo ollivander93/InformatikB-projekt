@@ -34,7 +34,6 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         this.AID = AID;
         initComponents();
         Profile_Bio.setEditable(false);
-        Profile_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
         anslutDatabas();
         setupProfile();
     }
@@ -340,7 +339,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         Profile_Edit.add(Email_Get.getText());
         Profile_Edit.add(TelefonNr_Get.getText());
         Profile_Edit.add(MobilNr_Get.getText());
-        EditProfile = new Profil_egen_edit();
+        EditProfile = new Profil_egen_edit(Profile_Edit);
         if(!EditProfile.isVisible()){
             this.setVisible(false);
             EditProfile.setVisible(true);
