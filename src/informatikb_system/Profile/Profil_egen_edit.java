@@ -9,11 +9,15 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /*
  * @author Sethox
  */
 public class Profil_egen_edit extends JFrame{
+    private HashMap<String, String> ProfileInfo;
+    private InfDB idb;
     // Test Konstruktor
     public Profil_egen_edit() {
         initComponents();
@@ -22,6 +26,13 @@ public class Profil_egen_edit extends JFrame{
     // Standardkonstruktor
     public Profil_egen_edit(ArrayList<String> ProfileInfo) {
         initComponents();
+        this.ProfileEdit_Name.setText(ProfileInfo.get(0));
+        this.ProfileEdit_LastName.setText(ProfileInfo.get(1));
+        this.ProfileEdit_City.setText(ProfileInfo.get(2));
+        this.ProfileEdit_Email.setText(ProfileInfo.get(3));
+        this.ProfileEdit_Telephone.setText(ProfileInfo.get(4));
+        this.ProfileEdit_Mobile.setText(ProfileInfo.get(5));
+        this.ProfileEdit_Bio.setText(ProfileInfo.get(6));
     }
 
     /**
@@ -51,7 +62,7 @@ public class Profil_egen_edit extends JFrame{
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        ProfileEdit_Email = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -62,6 +73,8 @@ public class Profil_egen_edit extends JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ändra Profil");
         setAlwaysOnTop(true);
+        setMaximumSize(new java.awt.Dimension(741, 531));
+        setMinimumSize(new java.awt.Dimension(741, 531));
 
         profil_main.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         profil_main.setName("Profile_maininfo"); // NOI18N
@@ -153,7 +166,7 @@ public class Profil_egen_edit extends JFrame{
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ProfileEdit_LastName, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +189,7 @@ public class Profil_egen_edit extends JFrame{
 
         jLabel7.setText("Email:");
 
-        jTextField1.setToolTipText("");
+        ProfileEdit_Email.setToolTipText("");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -194,7 +207,7 @@ public class Profil_egen_edit extends JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1)
+                .addComponent(ProfileEdit_Email)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -204,7 +217,7 @@ public class Profil_egen_edit extends JFrame{
                     .addComponent(jLabel4)
                     .addComponent(ProfileEdit_Telephone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ProfileEdit_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -226,7 +239,7 @@ public class Profil_egen_edit extends JFrame{
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -234,7 +247,7 @@ public class Profil_egen_edit extends JFrame{
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -246,7 +259,7 @@ public class Profil_egen_edit extends JFrame{
             Profil_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         Profil_infoLayout.setVerticalGroup(
             Profil_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,8 +267,9 @@ public class Profil_egen_edit extends JFrame{
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         ProfileEdit_Cancel_Exit.setText("Cancel");
@@ -266,6 +280,11 @@ public class Profil_egen_edit extends JFrame{
         });
 
         ProfileEdit_OK_Exit.setText("OK");
+        ProfileEdit_OK_Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProfileEdit_OK_ExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,14 +294,15 @@ public class Profil_egen_edit extends JFrame{
                 .addComponent(profil_main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Profil_info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ProfileEdit_Cancel_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ProfileEdit_OK_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Profil_info, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +313,7 @@ public class Profil_egen_edit extends JFrame{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ProfileEdit_OK_Exit)
                     .addComponent(ProfileEdit_Cancel_Exit))
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -349,6 +369,11 @@ public class Profil_egen_edit extends JFrame{
         exitActionPerformed(evt);
     }//GEN-LAST:event_ProfileEdit_Cancel_ExitActionPerformed
 
+    private void ProfileEdit_OK_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileEdit_OK_ExitActionPerformed
+        UpdateInsert();
+        exitActionPerformed(evt);
+    }//GEN-LAST:event_ProfileEdit_OK_ExitActionPerformed
+
     private void exitActionPerformed(ActionEvent evt) {
         this.dispose();
     }
@@ -366,6 +391,18 @@ public class Profil_egen_edit extends JFrame{
                 }
             }
         };
+    }
+    
+    public void UpdateInsert(){
+        String sql_Q = "Alter ANSTALLD set FIRST_NAME='" + ProfileInfo.get(0) + "',LAST_NAME='" + ProfileInfo.get(1)
+                + "', TELEFON='" + ProfileInfo.get(4) + ", BIO='" + ProfileInfo.get(6) + ",MOBILTELEFON='"
+                + ProfileInfo.get(5) + ",CITY='" + ProfileInfo.get(2) + ",EMAIL='" + ProfileInfo.get(3);
+        System.out.println(sql_Q);
+        try{
+           idb.update(sql_Q);
+        } catch(InfException e) {
+            System.out.println(e.getMessage());
+        }
     }
     
     /**
@@ -412,6 +449,7 @@ public class Profil_egen_edit extends JFrame{
     private javax.swing.JTextArea ProfileEdit_Bio;
     private javax.swing.JToggleButton ProfileEdit_Cancel_Exit;
     private javax.swing.JTextField ProfileEdit_City;
+    private javax.swing.JTextField ProfileEdit_Email;
     private javax.swing.JTextField ProfileEdit_LastName;
     private javax.swing.JTextField ProfileEdit_Mobile;
     private javax.swing.JTextField ProfileEdit_Name;
@@ -430,7 +468,6 @@ public class Profil_egen_edit extends JFrame{
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel profil_main;
     // End of variables declaration//GEN-END:variables
     private JLabel GLobal_label;
