@@ -5,6 +5,7 @@
  */
 package informatikb_system;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
@@ -32,6 +33,7 @@ public class MotesInfo extends javax.swing.JFrame {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        getContentPane().setBackground(Color.white);
         db = new Databas();
         hamtaMotesInfo(mID);
         fillMotesInfo();

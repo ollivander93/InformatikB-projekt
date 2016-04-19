@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package informatikb_system;
+import java.awt.Color;
 import java.util.*;
 import java.text.*;
 import javax.swing.DefaultListModel;
@@ -27,6 +28,8 @@ public class LaggTillMote extends javax.swing.JFrame {
     public LaggTillMote(String aid) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        getContentPane().setBackground(Color.white);
         mote = new Mote();
         datum = new Date();
         db = new Databas();

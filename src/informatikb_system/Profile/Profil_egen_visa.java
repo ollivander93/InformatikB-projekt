@@ -34,8 +34,19 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     public Profil_egen_visa(String AID) {
         this.AID = AID;
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        getContentPane().setBackground(Color.white);
+        profil_main.setBackground(Color.white);
+        jPanel1.setBackground(Color.white);
+        jPanel2.setBackground(Color.white);
+        jPanel3.setBackground(Color.white);
+        jPanel4.setBackground(Color.white);
+        jPanel5.setBackground(Color.white);
+        jPanel6.setBackground(Color.white);
         Profile_Bio.setEditable(false);
         anslutDatabas();
+        setProfileInfo();
         setupProfile();
     }
     
@@ -47,6 +58,19 @@ public class Profil_egen_visa extends javax.swing.JFrame {
             System.out.println("Uppkopplingen lyckades");
         }
         catch(InfException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    //Fyller ProfileInfo listan med värden
+    private void setProfileInfo()
+    {
+        String sqlFraga = "Select * from anstalld where anstalld.aid = " + AID + ";";
+        try
+        {
+            ProfileInfo = idb.fetchRows(sqlFraga);
+        }
+        catch(InfException e)
+        {
             System.out.println(e.getMessage());
         }
     }
@@ -78,7 +102,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     
     private void updateProfile(){
         ProfileInfo.clear();
-        String sql_Q = "SELECT * FROM ANSTALLD where(AID="+ AID +");";
+        String sql_Q = "SELECT * FROM ANSTALLD where (AID = "+ AID +");";
         System.out.println(sql_Q);
         try{
            ProfileInfo = idb.fetchRows(sql_Q);
@@ -118,7 +142,6 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         Name_Get = new javax.swing.JLabel();
         LastName_Get = new javax.swing.JLabel();
-        City_Get = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         TelefonNr_Get = new javax.swing.JLabel();
         MobilNr_Get = new javax.swing.JLabel();
@@ -126,12 +149,13 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Profile_Bio = new javax.swing.JTextArea();
+        City_Get = new javax.swing.JLabel();
         Profile_OK_Exit = new javax.swing.JToggleButton();
         Profile_Cancel_Exit = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(741, 531));
-        setMinimumSize(new java.awt.Dimension(741, 531));
+        setMaximumSize(new java.awt.Dimension(1066, 531));
+        setMinimumSize(new java.awt.Dimension(1066, 531));
         setPreferredSize(new java.awt.Dimension(741, 531));
 
         profil_main.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -204,11 +228,11 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         jPanel3.setMinimumSize(new java.awt.Dimension(741, 531));
         jPanel3.setPreferredSize(new java.awt.Dimension(741, 531));
 
+        Name_Get.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         Name_Get.setText("Name_Get");
 
+        LastName_Get.setFont(new java.awt.Font("Calibri", 1, 20)); // NOI18N
         LastName_Get.setText("LastName_Get");
-
-        City_Get.setText("City_Get");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -218,21 +242,17 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Name_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(City_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(LastName_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LastName_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Name_Get)
-                    .addComponent(LastName_Get))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(City_Get)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(Name_Get)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LastName_Get)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         TelefonNr_Get.setText("TelefonNr_Get");
@@ -250,14 +270,17 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(307, 307, 307))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
         );
+
+        City_Get.setText("City_Get");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -265,7 +288,9 @@ public class Profil_egen_visa extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Email_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Email_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(City_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(TelefonNr_Get, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -276,12 +301,15 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TelefonNr_Get)
-                    .addComponent(Email_Get))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(TelefonNr_Get))
+                    .addComponent(City_Get))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MobilNr_Get)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MobilNr_Get)
+                    .addComponent(Email_Get))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -302,7 +330,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 62, Short.MAX_VALUE))
+                .addGap(0, 51, Short.MAX_VALUE))
         );
 
         Profile_OK_Exit.setText("OK");
@@ -318,13 +346,13 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 364, Short.MAX_VALUE)
+                        .addGap(0, 656, Short.MAX_VALUE)
                         .addComponent(Profile_Cancel_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Profile_OK_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

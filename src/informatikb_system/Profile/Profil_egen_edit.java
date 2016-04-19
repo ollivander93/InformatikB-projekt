@@ -26,6 +26,9 @@ public class Profil_egen_edit extends JFrame{
     // Standardkonstruktor
     public Profil_egen_edit(ArrayList<String> ProfileInfo) {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        getContentPane().setBackground(Color.white);
         this.ProfileEdit_Name.setText(ProfileInfo.get(0));
         this.ProfileEdit_LastName.setText(ProfileInfo.get(1));
         this.ProfileEdit_City.setText(ProfileInfo.get(2));

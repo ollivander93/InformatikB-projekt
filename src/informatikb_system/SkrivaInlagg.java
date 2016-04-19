@@ -5,6 +5,7 @@
  */
 package informatikb_system;
 
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
@@ -30,6 +31,7 @@ public class SkrivaInlagg extends javax.swing.JFrame {
     public SkrivaInlagg(String aid, Inlagg inlaggRuta) {
         anslutDatabas();
         initComponents();
+        getContentPane().setBackground(Color.white);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.aid = aid;
