@@ -75,7 +75,8 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         Profile_Bio.setText(BIO);
     }
     
-    private void updateProfile(){
+    public void updateProfile(){
+        ProfileInfo.clear();
         String sql_Q = "SELECT * FROM ANSTALLD where(AID="+ AID +");";
         System.out.println(sql_Q);
         try{
