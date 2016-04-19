@@ -21,6 +21,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     private ArrayList<HashMap<String, String>> ProfileInfo;
     private String AID;
     private Profil_egen_edit EditProfile;
+    private String name = null, lastName = null, city = null, email = null, phone = null, cellphone = null, BIO = null;
     
     // Konstruktor för test
     public Profil_egen_visa() {
@@ -51,7 +52,6 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     }
     // Metod för att sätta upp profilen med data
     private void setupProfile(){
-        String name = null, lastName = null, city = null, email = null, phone = null, cellphone = null, BIO = null;
         // Loopar igenom hela ProfileInfo
         for(int i = 0; i< ProfileInfo.size(); i++){
             //Sparar Profilens info
@@ -75,12 +75,13 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         Profile_Bio.setText(BIO);
     }
     
-    public void updateProfile(){
+    private void updateProfile(){
         ProfileInfo.clear();
         String sql_Q = "SELECT * FROM ANSTALLD where(AID="+ AID +");";
         System.out.println(sql_Q);
         try{
            ProfileInfo = idb.fetchRows(sql_Q);
+           setupProfile();
         } catch(InfException e) {
             System.out.println(e.getMessage());
         }
