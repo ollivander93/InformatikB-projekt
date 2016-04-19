@@ -47,7 +47,7 @@ public class InlaggMgt {
         }
     } 
      
-     public void showSocInlagg1(StyledDocument d, String amne){
+       public void showSocInlagg1(StyledDocument d, String amne){
      ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
        
        if(!(list==null)){
@@ -60,23 +60,33 @@ public class InlaggMgt {
                 String title = list.get(i).get("TITEL");
                 
                 SimpleAttributeSet AtrSet = new SimpleAttributeSet();
+                Font font1 = new Font ("Serif", Font.ITALIC, 20);
                 StyleConstants.setAlignment(AtrSet, StyleConstants.ALIGN_CENTER);
                 d.setParagraphAttributes(0, d.getLength(), AtrSet, false);
-                StyleConstants.setBold(AtrSet, true);
+                StyleConstants.setFontFamily(AtrSet, font1.getFamily());
+                StyleConstants.setFontSize(AtrSet, font1.getSize());
+                
                 
                 SimpleAttributeSet AtrSet1 = new SimpleAttributeSet();
-                Font font = new Font ("Serif", Font.ROMAN_BASELINE, 20);
+                Font font = new Font ("Serif", Font.ITALIC, 15);
                 StyleConstants.setForeground(AtrSet1, Color.white);
-                StyleConstants.setBackground(AtrSet1, Color.GRAY);
+                StyleConstants.setBackground(AtrSet1, Color.RED);
+                StyleConstants.setFontFamily(AtrSet1, font.getFamily());
+                StyleConstants.setFontSize(AtrSet1, font.getSize());
                 
-                
+                SimpleAttributeSet AtrSet2 = new SimpleAttributeSet();
+                StyleConstants.setBold(AtrSet, true);
                 StyleConstants.setFontFamily(AtrSet1, font.getFamily());
                 StyleConstants.setFontSize(AtrSet1, font.getSize());
                 
                 try{
-                d.insertString(0, " " + bloggIn + " " + "\n", AtrSet1);
-                d.insertString(0," ------------------------------------------------" + "\n" + name + "  " + lastName + "\n" + title + "\n" + datum  +" "+ tid + "\n" + "\n",AtrSet );
-                   }catch(Exception e) { System.out.println(e); }
+                d.insertString(0, tid + "  "+ datum + "\n", AtrSet2);
+                d.insertString(0, bloggIn + "\n " + "\n", AtrSet2);
+                d.insertString(0,"\""+ title + "\""+"\n", AtrSet);
+                d.insertString(0,"\n" + name + "  " + lastName + "\n", AtrSet1);
+                d.insertString(0," ------------------------------------------------" ,AtrSet);
+                
+                }catch(Exception e) { System.out.println(e); }
                     }
             }else{
            try{

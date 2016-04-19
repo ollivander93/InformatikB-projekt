@@ -245,9 +245,7 @@ public class Inlagg extends javax.swing.JFrame {
   
     
     public void showSocInlagg(String amne1){
-        jTextPaneUtbildning.setBackground(Color.LIGHT_GRAY);
-        jTextPaneForsk.setBackground(Color.LIGHT_GRAY);
-        txtPaneSocialt.setBackground(Color.lightGray);
+      
     
    
        if(amne1 == null){
