@@ -71,8 +71,9 @@ public class Inloggningsruta extends javax.swing.JFrame {
         pfPassword.setBounds(370, 260, 225, 28);
 
         tfUsername.setBackground(new java.awt.Color(255, 255, 255));
+        tfUsername.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         getContentPane().add(tfUsername);
-        tfUsername.setBounds(370, 170, 225, 28);
+        tfUsername.setBounds(370, 170, 225, 29);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
@@ -81,7 +82,11 @@ public class Inloggningsruta extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(400, 130, 175, 33);
 
+        btnLogIn.setBackground(new java.awt.Color(34, 151, 214));
+        btnLogIn.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         btnLogIn.setText("Logga in");
+        btnLogIn.setToolTipText("Logga in");
+        btnLogIn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnLogIn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLogInMouseClicked(evt);
