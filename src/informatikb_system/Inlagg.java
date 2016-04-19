@@ -42,7 +42,7 @@ public class Inlagg extends javax.swing.JFrame {
     
         inlagg = new InlaggMgt();
         this.aid = aid;
-        showSocInlagg(amne);
+        showSocInlagg("Socialt");
 //        showForskInlagg();
 //        showUtbInlagg();
     }
@@ -233,8 +233,8 @@ public class Inlagg extends javax.swing.JFrame {
         jTextPaneUtbildning.setBackground(Color.LIGHT_GRAY);
         jTextPaneForsk.setBackground(Color.LIGHT_GRAY);
         txtPaneSocialt.setBackground(Color.lightGray);
-    amne = jTabPanelAmnen.getTitleAt(jTabPanelAmnen.getSelectedIndex());
-    amne1 = amne;
+    
+   
        if(amne1 == null){
            amne1 = "Socialt";
            StyledDocument docSoc = txtPaneSocialt.getStyledDocument();
@@ -283,12 +283,18 @@ public class Inlagg extends javax.swing.JFrame {
         System.out.println(a);
         String b = "Forskning";
         String c = "Utbildning";
+        String d = "Socialt";
+        
         if(a.equals(b)){
             
             showSocInlagg(a);
+            showSocInlagg(d);
+            
         }
         if(a.equals(c)){
             showSocInlagg(a);
+             showSocInlagg(d);
+            
         }
     }//GEN-LAST:event_jTabPanelAmnenStateChanged
 
