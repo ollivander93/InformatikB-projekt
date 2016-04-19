@@ -75,6 +75,16 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         Profile_Bio.setText(BIO);
     }
     
+    private void updateProfile(){
+        String sql_Q = "SELECT * FROM ANSTALLD where(AID="+ AID +");";
+        System.out.println(sql_Q);
+        try{
+           ProfileInfo = idb.fetchRows(sql_Q);
+        } catch(InfException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public ArrayList<HashMap<String, String>> hamtaInlagg(String amne ){
         ProfileInfo = new ArrayList<HashMap<String, String>>();
         String sql_Q = "SELECT ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, ANSTALLD.CITY, ANSTALLD.EMAIL, ANSTALLD.TELEFON, ANSTALLD.MOBILTELEFON, ANSTALLD.BIO, ANSTALLD.AID, ANSTALLD.ADMINISTRATOR FROM ANSTALLD;";
