@@ -5,7 +5,6 @@
  */
 package informatikb_system;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -19,6 +18,7 @@ import javax.swing.text.StyledDocument;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import informatikb_system.Profile.*;
+import java.awt.Color;
 
 /**
  *
@@ -179,6 +179,9 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
+        btnMyProfile.setBackground(new java.awt.Color(255, 0, 0));
+        btnMyProfile.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnMyProfile.setForeground(java.awt.Color.white);
         btnMyProfile.setText("Min Profil");
         btnMyProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,7 +212,7 @@ public class Inlagg extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnMyProfile)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLaggTillMote, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,6 +230,7 @@ public class Inlagg extends javax.swing.JFrame {
     }
     
     public void setBtnMyprofText(){
+        
         String namn = inlagg.getAnstNamn(aid);
         String eNamn = inlagg.getAnstEfterNamn(aid);
         btnMyProfile.setText(namn + " " + eNamn);

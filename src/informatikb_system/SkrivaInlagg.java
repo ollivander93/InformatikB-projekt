@@ -203,9 +203,11 @@ public class SkrivaInlagg extends javax.swing.JFrame {
         
             if(titelCount > 50){  
             JOptionPane.showMessageDialog(this, "Vad är då för titel så long som över 50 tecken??? Korta ner lite!!");
+            return;
             }
             else if(count > 1000){  
             JOptionPane.showMessageDialog(this, "Max 1000 tillåtna tecken i ett inlägg!");
+            return;
             }else{
             String amne = cbxAmnen.getSelectedItem().toString();
             laggTillBloggInlagg(titel, text, aid, amne);
