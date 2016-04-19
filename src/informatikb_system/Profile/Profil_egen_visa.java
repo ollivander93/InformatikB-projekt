@@ -34,7 +34,6 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         this.AID = AID;
         initComponents();
         Profile_Bio.setEditable(false);
-        Profile_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
         anslutDatabas();
         setupProfile();
     }
