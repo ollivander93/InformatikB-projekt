@@ -46,8 +46,35 @@ public class InlaggMgt {
             System.out.println(e.getMessage());
         }
     } 
+     public String getAnstNamn(String aid){
+       String sqlFraga = "SELECT ANSTALLD.FIRST_NAME FROM ANSTALLD WHERE AID = '" + aid + "';";
+         System.err.println(sqlFraga);
+       String ettNamn = "";
+         System.err.println(sqlFraga);
+         try{
+             ettNamn = idb.fetchSingle(sqlFraga);
+            
+             
+         }catch(InfException e){
+             System.err.println("getAnstNamn funkar inte");
+         }
+         return ettNamn;
+     }
      
-       public void showSocInlagg1(StyledDocument d, String amne){
+     public String getAnstEfterNamn(String aid){
+       String sqlFraga = "SELECT ANSTALLD.LAST_NAME FROM ANSTALLD WHERE AID = '" + aid + "';";
+       String ettNamn = "";
+         System.err.println(sqlFraga);
+         try{
+             ettNamn = idb.fetchSingle(sqlFraga);
+             
+         }catch(InfException e){
+             System.err.println("getAnstEfterNamn funkar inte");
+         }
+         return ettNamn;
+     }
+     
+     public void showSocInlagg1(StyledDocument d, String amne){
      ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
        
        if(!(list==null)){
