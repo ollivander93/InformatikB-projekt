@@ -42,8 +42,6 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         mote = new Mote();
         markeraCell();
-        fillTime();
-        setLableWeek();
         fillCbWeeks();
         tableCalendar.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 14));
         fyllKalender();
@@ -98,6 +96,7 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         }
         motesIden.add(motesInfoHash);
     }
+    
     
     public void visaInfoOmMote()
     {
@@ -161,7 +160,7 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
     
     private void setLableWeek()
     {
-        int week = getWeek();
+        String week = cbWeeks.getSelectedItem().toString();
         lblVecka.setText("Vecka:" + week);
     }
     
@@ -195,6 +194,8 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(1285, 700));
+        setPreferredSize(new java.awt.Dimension(1285, 700));
 
         tableCalendar.setBackground(new java.awt.Color(255, 255, 255));
         tableCalendar.setBorder(null);
@@ -242,6 +243,12 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         lblVecka.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblVecka.setText("Vecka:");
 
+        cbWeeks.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbWeeksItemStateChanged(evt);
+            }
+        });
+
         jLabel1.setText("Välj vecka:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -251,7 +258,7 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1178, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblVecka, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -271,7 +278,7 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
                     .addComponent(cbWeeks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblVecka))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -284,6 +291,18 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
             visaInfoOmMote();
         }
     }//GEN-LAST:event_tableCalendarMouseClicked
+
+    private void cbWeeksItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbWeeksItemStateChanged
+        DefaultTableModel model = new DefaultTableModel();
+        model = (DefaultTableModel) tableCalendar.getModel();
+        for(int i = model.getRowCount() - 1; i >= 0; i--)
+        {
+            model.removeRow(i);
+        }
+       fillTime();
+       fyllKalender();
+       setLableWeek();
+    }//GEN-LAST:event_cbWeeksItemStateChanged
 
     /**
      * @param args the command line arguments

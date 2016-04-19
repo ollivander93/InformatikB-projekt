@@ -38,6 +38,11 @@ public class Anvandare {
         try        {
 
             valideraLosenord = idb.fetchSingle(sqlFraga);
+            if(valideraLosenord == null)
+            {
+                return false;
+            }
+            
             if(valideraLosenord.equals(losenord))
             {
                 setAID(anvandarnamn);

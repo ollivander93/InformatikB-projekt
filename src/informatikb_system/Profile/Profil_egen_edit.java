@@ -22,10 +22,6 @@ public class Profil_egen_edit extends JFrame{
     // Standardkonstruktor
     public Profil_egen_edit(ArrayList<String> ProfileInfo) {
         initComponents();
-        ProfileEdit_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e){
-            frame.setVisible(false);
-            frame.dispose();
-        }});
     }
 
     /**
@@ -263,6 +259,11 @@ public class Profil_egen_edit extends JFrame{
         );
 
         ProfileEdit_Cancel_Exit.setText("Cancel");
+        ProfileEdit_Cancel_Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProfileEdit_Cancel_ExitActionPerformed(evt);
+            }
+        });
 
         ProfileEdit_OK_Exit.setText("OK");
 
@@ -343,6 +344,14 @@ public class Profil_egen_edit extends JFrame{
                         //setLabel("Please tell me what you want!");
                     }*/
     }//GEN-LAST:event_Edit_Picture_BtnActionPerformed
+
+    private void ProfileEdit_Cancel_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileEdit_Cancel_ExitActionPerformed
+        exitActionPerformed(evt);
+    }//GEN-LAST:event_ProfileEdit_Cancel_ExitActionPerformed
+
+    private void exitActionPerformed(ActionEvent evt) {
+        this.dispose();
+    }
     
     public void windowClosing(WindowEvent e) {
         System.out.println("WindowListener method called: windowClosing.");
