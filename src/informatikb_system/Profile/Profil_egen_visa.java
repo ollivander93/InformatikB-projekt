@@ -136,7 +136,6 @@ public class Profil_egen_visa extends javax.swing.JFrame {
 
         jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel1.setToolTipText("Din Profilbild");
-        jPanel1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,10 +165,8 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Profile_PM.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Profile_PM.setText("Skicka meddelande till personen");
 
-        Edit_Profile.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Edit_Profile.setText("Ändra din profil");
         Edit_Profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,18 +197,14 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jPanel3.setMaximumSize(new java.awt.Dimension(741, 531));
         jPanel3.setMinimumSize(new java.awt.Dimension(741, 531));
         jPanel3.setPreferredSize(new java.awt.Dimension(741, 531));
 
-        Name_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Name_Get.setText("Name_Get");
 
-        LastName_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         LastName_Get.setText("LastName_Get");
 
-        City_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         City_Get.setText("City_Get");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -239,13 +232,10 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        TelefonNr_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TelefonNr_Get.setText("TelefonNr_Get");
 
-        MobilNr_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MobilNr_Get.setText("MobilNr_Get");
 
-        Email_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Email_Get.setText("Email_Get");
 
         Profile_Bio.setColumns(20);
@@ -309,7 +299,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 57, Short.MAX_VALUE))
+                .addGap(0, 62, Short.MAX_VALUE))
         );
 
         Profile_OK_Exit.setText("OK");
@@ -363,6 +353,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
             //this.setVisible(false);
             this.EditProfile.setVisible(true);
         }
+        updateProfile();
     }//GEN-LAST:event_Edit_ProfileActionPerformed
     
     /**
