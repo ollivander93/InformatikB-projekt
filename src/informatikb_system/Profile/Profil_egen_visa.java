@@ -10,7 +10,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.text.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -23,6 +27,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     private String AID;
     private Profil_egen_edit EditProfile;
     private String name = null, lastName = null, city = null, email = null, phone = null, cellphone = null, BIO = null;
+    private InlaggMgt inlagg;
     
     // Konstruktor för test
     public Profil_egen_visa() {
@@ -49,7 +54,30 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         anslutDatabas();
         setProfileInfo();
         setupProfile();
+        inlagg = new InlaggMgt();
+        showSocInlagg("Socialt");
     }
+    
+public void showSocInlagg(String amne1){
+    if(amne1 == null){
+        amne1 = "Socialt";
+        StyledDocument docSoc = txtPaneSocialt.getStyledDocument();
+        inlagg.emptyInlaggPane(docSoc);
+        inlagg.showSocInlagg1(docSoc, "", "");
+    } else if(amne1.equals("Socialt")){
+        StyledDocument docSoc = txtPaneSocialt.getStyledDocument();
+        inlagg.emptyInlaggPane(docSoc);
+        inlagg.showSocInlagg1(docSoc, "Socialt", "SQL");
+    } else if(amne1.equals("Forskning")){
+        StyledDocument docForsk = jTextPaneForsk.getStyledDocument();  
+        inlagg.emptyInlaggPane(docForsk);
+        inlagg.showSocInlagg1(docForsk, "Forskning", "");
+    } else if(amne1.equals("Utbildning")){
+       StyledDocument docUtb = jTextPaneUtbildning.getStyledDocument();
+       inlagg.emptyInlaggPane(docUtb);
+       inlagg.showSocInlagg1(docUtb, "Utbildning", "");
+    }
+}
     
     // Metod för att ansluta till databasen
     private void anslutDatabas(){
@@ -128,14 +156,14 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jTabPanelAmnen = new javax.swing.JTabbedPane();
         jtabPaneSocial = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtPaneSocialt = new javax.swing.JTextArea();
+        txtPaneSocialt = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jtabPaneForsk = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPaneForsk = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPaneForsk = new javax.swing.JTextPane();
         tabPaneUtb = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextPaneUtbildning = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextPaneUtbildning = new javax.swing.JTextPane();
         City_Get = new javax.swing.JLabel();
         Profile_OK_Exit = new javax.swing.JToggleButton();
         Profile_Cancel_Exit = new javax.swing.JToggleButton();
@@ -268,32 +296,28 @@ public class Profil_egen_visa extends javax.swing.JFrame {
 
         jTabPanelAmnen.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        txtPaneSocialt.setColumns(20);
-        txtPaneSocialt.setRows(5);
-        jScrollPane2.setViewportView(txtPaneSocialt);
+        txtPaneSocialt.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout jtabPaneSocialLayout = new javax.swing.GroupLayout(jtabPaneSocial);
         jtabPaneSocial.setLayout(jtabPaneSocialLayout);
         jtabPaneSocialLayout.setHorizontalGroup(
             jtabPaneSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jtabPaneSocialLayout.createSequentialGroup()
+            .addGroup(jtabPaneSocialLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addComponent(txtPaneSocialt, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jtabPaneSocialLayout.setVerticalGroup(
             jtabPaneSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jtabPaneSocialLayout.createSequentialGroup()
+            .addGroup(jtabPaneSocialLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addComponent(txtPaneSocialt, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabPanelAmnen.addTab("Socialt", jtabPaneSocial);
 
-        jTextPaneForsk.setColumns(20);
-        jTextPaneForsk.setRows(5);
-        jScrollPane3.setViewportView(jTextPaneForsk);
+        jScrollPane2.setViewportView(jTextPaneForsk);
 
         javax.swing.GroupLayout jtabPaneForskLayout = new javax.swing.GroupLayout(jtabPaneForsk);
         jtabPaneForsk.setLayout(jtabPaneForskLayout);
@@ -301,22 +325,20 @@ public class Profil_egen_visa extends javax.swing.JFrame {
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jtabPaneForskLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jtabPaneForskLayout.setVerticalGroup(
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jtabPaneForskLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabPanelAmnen.addTab("Forskning", jtabPaneForsk);
 
-        jTextPaneUtbildning.setColumns(20);
-        jTextPaneUtbildning.setRows(5);
-        jScrollPane4.setViewportView(jTextPaneUtbildning);
+        jScrollPane3.setViewportView(jTextPaneUtbildning);
 
         javax.swing.GroupLayout tabPaneUtbLayout = new javax.swing.GroupLayout(tabPaneUtb);
         tabPaneUtb.setLayout(tabPaneUtbLayout);
@@ -324,14 +346,14 @@ public class Profil_egen_visa extends javax.swing.JFrame {
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPaneUtbLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabPaneUtbLayout.setVerticalGroup(
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPaneUtbLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -553,14 +575,14 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabPanelAmnen;
-    private javax.swing.JTextArea jTextPaneForsk;
-    private javax.swing.JTextArea jTextPaneUtbildning;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPaneForsk;
+    private javax.swing.JTextPane jTextPaneUtbildning;
     private javax.swing.JPanel jtabPaneForsk;
     private javax.swing.JPanel jtabPaneSocial;
     private javax.swing.JPanel profil_main;
     private javax.swing.JPanel tabPaneUtb;
-    private javax.swing.JTextArea txtPaneSocialt;
+    private javax.swing.JScrollPane txtPaneSocialt;
     // End of variables declaration//GEN-END:variables
 }

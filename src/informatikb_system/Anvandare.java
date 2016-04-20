@@ -56,6 +56,25 @@ public class Anvandare {
         return false;
     }
     
+    public boolean isAdmin(String aid)
+    {
+        String sqlFraga = "Select anstalld.administrator from anstalld where anstalld.aid = " + aid + ";";
+        String admin = "";
+        try
+        {
+            admin = idb.fetchSingle(sqlFraga);
+            if(admin.equals("true"))
+            {
+                return true;
+            }
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+    
     public void laggTillNyAnvandare(String firstname, String lastname, String losenord, String telefon, String admin, String anvandarnamn)
     {
     
