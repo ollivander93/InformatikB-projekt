@@ -64,7 +64,9 @@ public class InlaggMgt {
      }
      
      public void showSocInlagg1(StyledDocument d, String amne){
-     ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
+     String SQL_F = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL " + "FROM ANSTALLD " + "JOIN INLAGG " +
+        "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = '" + amne + "' ORDER BY IID ASC ;";
+     ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne, SQL_F);
        
        if(!(list==null)){
             for (int i = list.size() - 1; i >= 0; i--) {
@@ -115,10 +117,8 @@ public class InlaggMgt {
                     }
        }
      
-    public ArrayList<HashMap<String, String>> hamtaInlagg(String amne ){
+    public ArrayList<HashMap<String, String>> hamtaInlagg(String amne, String sqlFraga){
         ArrayList inlagg = new ArrayList<HashMap<String, String>>();
-        String sqlFraga = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL " + "FROM ANSTALLD " + "JOIN INLAGG " +
-        "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = '" + amne + "' ORDER BY IID ASC ;";
         System.out.println(sqlFraga);
         try{
            inlagg = idb.fetchRows(sqlFraga);
@@ -128,7 +128,7 @@ public class InlaggMgt {
         }
         return inlagg;
     }
-      
+    
     public void emptyInlaggPane(StyledDocument dok){       
         try {
             dok.remove(0, dok.getLength());
