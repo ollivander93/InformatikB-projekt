@@ -118,9 +118,19 @@ public class Inloggningsruta extends javax.swing.JFrame {
         if(valid)
         {
             String aID = user.getAID();
-            Inlagg inlaggruta = new Inlagg(aID);
-            inlaggruta.setVisible(true);
-            dispose();
+            boolean isAdmin = user.isAdmin(aID);
+            if(isAdmin)
+            {
+                AdminGUI adminGUI = new AdminGUI();
+                adminGUI.setVisible(true);
+                dispose();
+            }
+            else
+            {
+                Inlagg inlaggruta = new Inlagg(aID);
+                inlaggruta.setVisible(true);
+                dispose();
+            }
         }
         else
         {
@@ -137,21 +147,31 @@ public class Inloggningsruta extends javax.swing.JFrame {
     private void pfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfPasswordKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER)
         {
-            String losenord = pfPassword.getText();
-            String username = tfUsername.getText();
+        String losenord = pfPassword.getText();
+        String username = tfUsername.getText();
         
-            boolean valid = user.valideraInloggning(username, losenord);
-            if(valid)
+        boolean valid = user.valideraInloggning(username, losenord);
+        if(valid)
+        {
+            String aID = user.getAID();
+            boolean isAdmin = user.isAdmin(aID);
+            if(isAdmin)
             {
-                String aID = user.getAID();
-                Inlagg inlaggruta = new Inlagg(aID);
-                inlaggruta.setVisible(true);
+                AdminGUI adminGUI = new AdminGUI();
+                adminGUI.setVisible(true);
                 dispose();
             }
             else
             {
-                JOptionPane.showMessageDialog(this, "Du har skrivit in fel användarnamn eller lösenord.");
+                Inlagg inlaggruta = new Inlagg(aID);
+                inlaggruta.setVisible(true);
+                dispose();
             }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Du har skrivit in fel användarnamn eller lösenord.");
+        }
         }
     }//GEN-LAST:event_pfPasswordKeyPressed
 
