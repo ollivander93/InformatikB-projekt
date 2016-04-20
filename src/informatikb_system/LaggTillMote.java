@@ -79,21 +79,60 @@ public class LaggTillMote extends javax.swing.JFrame {
     
     public void laggTillTid()
     {
-        String starttid = cbStarttimme.getSelectedItem().toString()
-                + ":" +cbStartminut.getSelectedItem().toString();
-        String sluttid = cbSluttimme.getSelectedItem().toString()
-                + ":" + cbSlutminut.getSelectedItem().toString();
-        String finalTid = starttid + "-" + sluttid;
-        int i = listTidsforslag.getItemCount();
+        boolean godkandtid = false;
+        String starttimme = cbStarttimme.getSelectedItem().toString();
+        String startminut = cbStartminut.getSelectedItem().toString();
+        String sluttimme = cbSluttimme.getSelectedItem().toString();
+        String slutminut = cbSlutminut.getSelectedItem().toString();
         
-        if(i == 3)
+        int starttimmen = Integer.parseInt(starttimme);
+        int startminuten = Integer.parseInt(startminut);
+        int sluttimmen = Integer.parseInt(sluttimme);
+        int slutminuten = Integer.parseInt(slutminut);
+        
+        String starttid = starttimme + ":" + startminut;
+        String sluttid = sluttimme + ":" + slutminut;
+        String finalTid = starttid + "-" + sluttid;
+        
+        if(starttimmen <= sluttimmen)
         {
-            JOptionPane.showMessageDialog(this, "Du får maximalt lägga till tre mötesförslag");
+            if(starttimmen == sluttimmen)
+            {
+                if(slutminuten > startminuten)
+                {
+                    godkandtid = true;
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Starttid måste vara innan sluttid");
+                }
+                
+            }
+            else
+            {
+                godkandtid = true;
+            }
+            
         }
         else
         {
-            listTidsforslag.add(finalTid);
+            JOptionPane.showMessageDialog(this, "Starttid måste vara innan sluttid");
         }
+        
+        if(godkandtid)
+        {
+           int i = listTidsforslag.getItemCount();
+        
+            if(i == 3)
+            {
+                JOptionPane.showMessageDialog(this, "Du får maximalt lägga till tre mötesförslag");
+            }
+            else
+            {
+                listTidsforslag.add(finalTid);
+            } 
+        }
+        
         
     }
     
