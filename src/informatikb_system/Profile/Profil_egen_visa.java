@@ -23,6 +23,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     private String AID;
     private Profil_egen_edit EditProfile;
     private String name = null, lastName = null, city = null, email = null, phone = null, cellphone = null, BIO = null;
+    private InlaggMgt inlagg;
     
     // Konstruktor för test
     public Profil_egen_visa() {
@@ -49,6 +50,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         anslutDatabas();
         setProfileInfo();
         setupProfile();
+        inlagg = new InlaggMgt();
     }
     
     // Metod för att ansluta till databasen
