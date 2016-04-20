@@ -6,12 +6,16 @@
 package informatikb_system;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Rectangle;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
@@ -174,19 +178,18 @@ public class SkrivaInlagg extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(tfTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                         .addComponent(cbxAmnen, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(jCheckBox1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jCheckBox1)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnPostaInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,21 +256,14 @@ public class SkrivaInlagg extends javax.swing.JFrame {
       System.out.print(sqlFraga);
       try{
            idb.update(sqlFraga);
+           
         } catch(InfException e) {
             System.out.println(e.getMessage());
         }  
     }
     private void openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openActionPerformed
-        int returnVal = FileChooser.showOpenDialog(this);
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                String file = FileChooser.getSelectedFile().getAbsolutePath();
-                  
-                  filePath = file;
-                  System.out.println("problem accessing file"+filePath);
-                
-            } else {
-                System.out.println("File access cancelled by user.");
-    }    }//GEN-LAST:event_openActionPerformed
+
+                }//GEN-LAST:event_openActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
         System.exit(0);
@@ -324,4 +320,6 @@ public class SkrivaInlagg extends javax.swing.JFrame {
     private javax.swing.JTextArea taBloggInlagg;
     private javax.swing.JTextField tfTitel;
     // End of variables declaration//GEN-END:variables
+
+    
 }
