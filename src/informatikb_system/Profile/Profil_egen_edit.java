@@ -18,13 +18,15 @@ import oru.inf.InfException;
 public class Profil_egen_edit extends JFrame{
     private HashMap<String, String> ProfileInfo;
     private InfDB idb;
+    private String AID;
     // Test Konstruktor
     public Profil_egen_edit() {
         initComponents();
         ProfileEdit_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
     }
     // Standardkonstruktor
-    public Profil_egen_edit(ArrayList<String> ProfileInfo) {
+    public Profil_egen_edit(ArrayList<String> ProfileInfo, String AID) {
+        this.AID = AID;
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -420,9 +422,9 @@ public class Profil_egen_edit extends JFrame{
     }
     
     public void UpdateInsert(){
-        String sql_Q = "Alter ANSTALLD set FIRST_NAME='" + ProfileInfo.get(0) + "',LAST_NAME='" + ProfileInfo.get(1)
+        String sql_Q = "UPDATE ANSTALLD set FIRST_NAME='" + ProfileInfo.get(0) + "',LAST_NAME='" + ProfileInfo.get(1)
                 + "', TELEFON='" + ProfileInfo.get(4) + ", BIO='" + ProfileInfo.get(6) + ",MOBILTELEFON='"
-                + ProfileInfo.get(5) + ",CITY='" + ProfileInfo.get(2) + ",EMAIL='" + ProfileInfo.get(3);
+                + ProfileInfo.get(5) + ",CITY='" + ProfileInfo.get(2) + ",EMAIL='" + ProfileInfo.get(3) + "' where(" + this.AID + ");";
         System.out.println(sql_Q);
         try{
            idb.update(sql_Q);

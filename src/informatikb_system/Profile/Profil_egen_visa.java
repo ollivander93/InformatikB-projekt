@@ -464,7 +464,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         Profile_Edit.add(TelefonNr_Get.getText());
         Profile_Edit.add(MobilNr_Get.getText());
         Profile_Edit.add(Profile_Bio.getText());
-        this.EditProfile = new Profil_egen_edit(Profile_Edit);
+        this.EditProfile = new Profil_egen_edit(Profile_Edit, this.AID);
         
         if(!this.EditProfile.isVisible()){
             //this.setVisible(false);
