@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package informatikb_system.Profile;
+import informatikb_system.Profile.InlaggMgt.*;
 import java.beans.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -98,30 +99,6 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         TelefonNr_Get.setText(phone);
         MobilNr_Get.setText(cellphone);
         Profile_Bio.setText(BIO);
-    }
-    
-    private void updateProfile(){
-        ProfileInfo.clear();
-        String sql_Q = "SELECT * FROM ANSTALLD where (AID = "+ AID +");";
-        System.out.println(sql_Q);
-        try{
-           ProfileInfo = idb.fetchRows(sql_Q);
-           setupProfile();
-        } catch(InfException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    public ArrayList<HashMap<String, String>> hamtaInlagg(String amne ){
-        ProfileInfo = new ArrayList<HashMap<String, String>>();
-        String sql_Q = "SELECT ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, ANSTALLD.CITY, ANSTALLD.EMAIL, ANSTALLD.TELEFON, ANSTALLD.MOBILTELEFON, ANSTALLD.BIO, ANSTALLD.AID, ANSTALLD.ADMINISTRATOR FROM ANSTALLD;";
-        System.out.println(sql_Q);
-        try{
-           ProfileInfo = idb.fetchRows(sql_Q);
-        } catch(InfException e) {
-            System.out.println(e.getMessage());
-        }
-        return ProfileInfo;
     }
     
     /**
@@ -496,6 +473,18 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         updateProfile();
     }//GEN-LAST:event_Edit_ProfileActionPerformed
 
+    private void updateProfile(){
+        ProfileInfo.clear();
+        String sql_Q = "SELECT * FROM ANSTALLD where (AID = "+ AID +");";
+        System.out.println(sql_Q);
+        try{
+           ProfileInfo = idb.fetchRows(sql_Q);
+           setupProfile();
+        } catch(InfException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     private void Profile_OK_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Profile_OK_ExitActionPerformed
         exitActionPerformed(evt);
     }//GEN-LAST:event_Profile_OK_ExitActionPerformed
