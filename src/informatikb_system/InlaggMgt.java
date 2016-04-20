@@ -44,6 +44,7 @@ public class InlaggMgt {
         catch(InfException e)
         {
             System.out.println(e.getMessage());
+            
         }
     } 
      public String getAnstNamn(String aid){
