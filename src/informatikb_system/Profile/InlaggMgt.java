@@ -14,7 +14,6 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 
 /**
- *
  * @author Sethox
  */
 public class InlaggMgt {
@@ -22,8 +21,8 @@ public class InlaggMgt {
  
     
 public InlaggMgt(){
-        anslutDatabas();
-    }
+    anslutDatabas();
+}
     
 private void anslutDatabas(){
     try{
