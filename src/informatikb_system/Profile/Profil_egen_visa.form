@@ -82,10 +82,7 @@
               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="Profile_PM" max="32767" attributes="0"/>
-                      <Component id="Edit_Profile" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="Edit_Profile" min="-2" pref="215" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -94,9 +91,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="Profile_PM" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="Edit_Profile" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -152,11 +147,6 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="Profile_PM">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Skicka meddelande till personen"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="Edit_Profile">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xc4;ndra din profil"/>
@@ -196,7 +186,7 @@
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
