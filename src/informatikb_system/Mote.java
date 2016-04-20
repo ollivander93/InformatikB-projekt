@@ -53,6 +53,48 @@ private InfDB idb;
         }
     }
     
+    public void skapaMotesForslag(ArrayList<String> tidsforslag, String ansvarig, String datum, String plats, String titel, String beskrivning, int vecka, int veckoDag)
+    {
+        try
+        {
+            String sqlFraga1 = "SELECT MID FROM MOTE_FORSLAG";
+            ArrayList<String> kollaMoten = idb.fetchColumn(sqlFraga1);
+            String id = "1"; 
+            
+            if(kollaMoten != null)
+            {
+               id = idb.getAutoIncrement("MOTE_FORSLAG", "MID");
+            }
+            String sqlFraga = "insert into MOTE_FORSLAG values (" + id + ", '" + datum +
+                    "', '" + plats + "','" + titel + "', '" + beskrivning +
+                    "', " + ansvarig + ", " + vecka + ", " + veckoDag + ");";
+            idb.insert(sqlFraga);
+           
+            for(String forslag : tidsforslag)
+            {
+                String sqlKontroll = "SELECT ID FROM MOTE_ROSTNING";
+                ArrayList<String> kollaTider = idb.fetchColumn(sqlKontroll);
+                String id1 = "1";
+            
+                if(kollaTider != null)
+                {
+                    id1 = idb.getAutoIncrement("MOTE_ROSTNING", "ID");
+                }
+                String sqlFraga2 = "INSERT INTO MOTE_ROSTNING VALUES (" + id1 + ", '" + forslag + "', 0, " + id + ");";
+                idb.insert(sqlFraga2);
+                System.out.println(sqlFraga2);
+                
+            }
+                
+            
+            System.out.println("Success");
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
         public int getDayOfWeek(String date)
     {
         Calendar cal = Calendar.getInstance();

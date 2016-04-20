@@ -44,6 +44,7 @@ public class InlaggMgt {
         catch(InfException e)
         {
             System.out.println(e.getMessage());
+            
         }
     } 
      public String getAnstNamn(String aid){
@@ -85,6 +86,8 @@ public class InlaggMgt {
                 String tid = list.get(i).get("TID");
                 String bloggIn = list.get(i).get("TEXT");
                 String title = list.get(i).get("TITEL");
+                String vis = list.get(i).get("VISIBLE");
+                
                 
                 SimpleAttributeSet AtrSet = new SimpleAttributeSet();
                 Font font1 = new Font ("Serif", Font.ITALIC, 20);
@@ -106,6 +109,7 @@ public class InlaggMgt {
                 StyleConstants.setFontFamily(AtrSet1, font.getFamily());
                 StyleConstants.setFontSize(AtrSet1, font.getSize());
                 
+                if(vis.equals("true")){
                 try{
                 d.insertString(0, tid + "  "+ datum + "\n", AtrSet2);
                 d.insertString(0, bloggIn + "\n " + "\n", AtrSet2);
@@ -114,8 +118,8 @@ public class InlaggMgt {
                 d.insertString(0," ------------------------------------------------" ,AtrSet);
                 
                 }catch(Exception e) { System.out.println(e); }
-                    }
-            }else{
+                    }}
+            }else if(list ==null){
            try{
                SimpleAttributeSet AtrSet2 = new SimpleAttributeSet();
                 StyleConstants.setForeground(AtrSet2, Color.BLACK);
@@ -124,12 +128,13 @@ public class InlaggMgt {
                 d.insertString(0," Ooops, inga inlägg alls just nu #lonely" ,AtrSet2 );
                     }catch(Exception e) { System.out.println(e); }
                     }
+       
        }
      
       public ArrayList<HashMap<String, String>> hamtaInlagg(String amne )
     {
         ArrayList inlagg = new ArrayList<HashMap<String, String>>();
-        String sqlFraga = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL " +
+        String sqlFraga = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL, INLAGG.VISIBLE " +
         "FROM ANSTALLD " +
         "JOIN INLAGG " +
         "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = '" + amne + "' ORDER BY IID ASC ;";

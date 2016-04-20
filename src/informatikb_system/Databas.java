@@ -302,7 +302,7 @@ private InfDB idb;
     {
         try
         {
-            String sqlFraga = "insert into mote_anstalld values (" + mid + ", " + aid + ");";
+            String sqlFraga = "insert into mote_anstalld values(" + mid + ", " + aid + ");";
             System.out.println(sqlFraga);
             idb.insert(sqlFraga);
         }
@@ -312,12 +312,13 @@ private InfDB idb;
         }
     }
     
+    
     public String hamtaMid(String titel)
     {
         String mid = "";
         try
         {
-            String sqlFraga = "SELECT MID FROM MOTE WHERE TITEL = '" + titel + "';";
+            String sqlFraga = "SELECT MID FROM MOTE_FORSLAG WHERE TITEL = '" + titel + "';";
             mid = idb.fetchSingle(sqlFraga);
         }
         catch(InfException e)
