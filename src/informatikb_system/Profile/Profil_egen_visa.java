@@ -164,9 +164,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         Profile_Cancel_Exit = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1066, 531));
         setMinimumSize(new java.awt.Dimension(1066, 531));
-        setPreferredSize(new java.awt.Dimension(741, 531));
 
         profil_main.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         profil_main.setName("Profile_maininfo"); // NOI18N
