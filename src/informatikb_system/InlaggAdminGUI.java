@@ -31,7 +31,7 @@ public class InlaggAdminGUI extends javax.swing.JFrame {
      * Creates new form Inlagg
      */
      
-    private InlaggMgt inlagg;
+    private InlaggMgtAdmin inlagg;
     private InfDB idb;
     String amne;
 
@@ -43,7 +43,7 @@ public class InlaggAdminGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         anslutDatabas();
     
-        inlagg = new InlaggMgt();
+        inlagg = new InlaggMgtAdmin();
         showSocInlagg("Socialt");
     }
     

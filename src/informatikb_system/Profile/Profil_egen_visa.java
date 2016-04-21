@@ -26,7 +26,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     private ArrayList<HashMap<String, String>> ProfileInfo;
     private String AID;
     private Profil_egen_edit EditProfile;
-    private String name = null, lastName = null, city = null, email = null, phone = null, cellphone = null, BIO = null;
+    private String name = null, lastName = null, city = null, email = null, phone = null, BIO = null;
     private InlaggMgt inlagg;
     
     // Konstruktor för test
@@ -106,16 +106,15 @@ public void showSocInlagg(String amne1){
     // Metod för att sätta upp profilen med data
     private void setupProfile(){
         // Loopar igenom hela ProfileInfo
-        for(int i = 0; i< ProfileInfo.size(); i++){
+        for (HashMap<String, String> ProfileInfo1 : ProfileInfo) {
             //Sparar Profilens info
-            if(AID.equals(ProfileInfo.get(i).get("AID"))){
-                name = ProfileInfo.get(i).get("FIRST_NAME");
-                lastName = ProfileInfo.get(i).get("LAST_NAME");
-                city = ProfileInfo.get(i).get("CITY");
-                email = ProfileInfo.get(i).get("EMAIL");
-                phone = ProfileInfo.get(i).get("TELEFON");
-                cellphone = ProfileInfo.get(i).get("MOBILTELEFON");
-                BIO = ProfileInfo.get(i).get("BIO");
+            if (AID.equals(ProfileInfo1.get("AID"))) {
+                name = ProfileInfo1.get("FIRST_NAME");
+                lastName = ProfileInfo1.get("LAST_NAME");
+                city = ProfileInfo1.get("CITY");
+                email = ProfileInfo1.get("EMAIL");
+                phone = ProfileInfo1.get("TELEFON");
+                BIO = ProfileInfo1.get("BIO");
                 break;
             }
         }
@@ -125,7 +124,6 @@ public void showSocInlagg(String amne1){
         City_Get.setText(city);
         Email_Get.setText(email);
         TelefonNr_Get.setText(phone);
-        MobilNr_Get.setText(cellphone);
         Profile_Bio.setText(BIO);
     }
     
@@ -151,18 +149,17 @@ public void showSocInlagg(String amne1){
         LastName_Get = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         TelefonNr_Get = new javax.swing.JLabel();
-        MobilNr_Get = new javax.swing.JLabel();
         Email_Get = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jTabPanelAmnen = new javax.swing.JTabbedPane();
-        jtabPaneSocial = new javax.swing.JPanel();
-        txtPaneSocialt = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jtabPaneForsk = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jtabPaneSocialt = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
+        txtPaneSocialt = new javax.swing.JTextPane();
+        jtabPaneForsk = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jTextPaneForsk = new javax.swing.JTextPane();
         tabPaneUtb = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
         jTextPaneUtbildning = new javax.swing.JTextPane();
         City_Get = new javax.swing.JLabel();
         Profile_OK_Exit = new javax.swing.JToggleButton();
@@ -288,76 +285,55 @@ public void showSocInlagg(String amne1){
         TelefonNr_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TelefonNr_Get.setText("TelefonNr_Get");
 
-        MobilNr_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MobilNr_Get.setText("MobilNr_Get");
-
         Email_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Email_Get.setText("Email_Get");
 
-        jTabPanelAmnen.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTabbedPane1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        txtPaneSocialt.setViewportView(jTextPane1);
+        jScrollPane2.setViewportView(txtPaneSocialt);
 
-        javax.swing.GroupLayout jtabPaneSocialLayout = new javax.swing.GroupLayout(jtabPaneSocial);
-        jtabPaneSocial.setLayout(jtabPaneSocialLayout);
-        jtabPaneSocialLayout.setHorizontalGroup(
-            jtabPaneSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jtabPaneSocialLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtPaneSocialt, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
-                .addContainerGap())
+        javax.swing.GroupLayout jtabPaneSocialtLayout = new javax.swing.GroupLayout(jtabPaneSocialt);
+        jtabPaneSocialt.setLayout(jtabPaneSocialtLayout);
+        jtabPaneSocialtLayout.setHorizontalGroup(
+            jtabPaneSocialtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
         );
-        jtabPaneSocialLayout.setVerticalGroup(
-            jtabPaneSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jtabPaneSocialLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtPaneSocialt, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                .addContainerGap())
+        jtabPaneSocialtLayout.setVerticalGroup(
+            jtabPaneSocialtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
-        jTabPanelAmnen.addTab("Socialt", jtabPaneSocial);
+        jTabbedPane1.addTab("Socialt", jtabPaneSocialt);
 
-        jScrollPane2.setViewportView(jTextPaneForsk);
+        jScrollPane3.setViewportView(jTextPaneForsk);
 
         javax.swing.GroupLayout jtabPaneForskLayout = new javax.swing.GroupLayout(jtabPaneForsk);
         jtabPaneForsk.setLayout(jtabPaneForskLayout);
         jtabPaneForskLayout.setHorizontalGroup(
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jtabPaneForskLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
         );
         jtabPaneForskLayout.setVerticalGroup(
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jtabPaneForskLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
-        jTabPanelAmnen.addTab("Forskning", jtabPaneForsk);
+        jTabbedPane1.addTab("Forkning", jtabPaneForsk);
 
-        jScrollPane3.setViewportView(jTextPaneUtbildning);
+        jScrollPane4.setViewportView(jTextPaneUtbildning);
 
         javax.swing.GroupLayout tabPaneUtbLayout = new javax.swing.GroupLayout(tabPaneUtb);
         tabPaneUtb.setLayout(tabPaneUtbLayout);
         tabPaneUtbLayout.setHorizontalGroup(
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabPaneUtbLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
         );
         tabPaneUtbLayout.setVerticalGroup(
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabPaneUtbLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
-        jTabPanelAmnen.addTab("Utbildning", tabPaneUtb);
+        jTabbedPane1.addTab("Utbildning", tabPaneUtb);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -365,13 +341,13 @@ public void showSocInlagg(String amne1){
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabPanelAmnen))
+                .addComponent(jTabbedPane1))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabPanelAmnen)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -388,9 +364,7 @@ public void showSocInlagg(String amne1){
                     .addComponent(Email_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(City_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(TelefonNr_Get, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(MobilNr_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(TelefonNr_Get, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -404,9 +378,7 @@ public void showSocInlagg(String amne1){
                     .addComponent(TelefonNr_Get)
                     .addComponent(City_Get))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MobilNr_Get)
-                    .addComponent(Email_Get))
+                .addComponent(Email_Get)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -425,7 +397,7 @@ public void showSocInlagg(String amne1){
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 34, Short.MAX_VALUE))
+                .addGap(0, 31, Short.MAX_VALUE))
         );
 
         Profile_OK_Exit.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -484,7 +456,6 @@ public void showSocInlagg(String amne1){
         Profile_Edit.add(City_Get.getText());
         Profile_Edit.add(Email_Get.getText());
         Profile_Edit.add(TelefonNr_Get.getText());
-        Profile_Edit.add(MobilNr_Get.getText());
         Profile_Edit.add(Profile_Bio.getText());
         this.EditProfile = new Profil_egen_edit(Profile_Edit, this.AID);
         
@@ -502,7 +473,7 @@ public void showSocInlagg(String amne1){
         try{
            ProfileInfo = idb.fetchRows(sql_Q);
            setupProfile();
-        } catch(InfException e) {
+        } catch(InfException e){
             System.out.println(e.getMessage());
         }
     }
@@ -559,7 +530,6 @@ public void showSocInlagg(String amne1){
     private javax.swing.JButton Edit_Profile;
     private javax.swing.JLabel Email_Get;
     private javax.swing.JLabel LastName_Get;
-    private javax.swing.JLabel MobilNr_Get;
     public javax.swing.JLabel Name_Get;
     private javax.swing.JTextArea Profile_Bio;
     private javax.swing.JToggleButton Profile_Cancel_Exit;
@@ -575,14 +545,14 @@ public void showSocInlagg(String amne1){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabPanelAmnen;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextPane jTextPaneForsk;
     private javax.swing.JTextPane jTextPaneUtbildning;
     private javax.swing.JPanel jtabPaneForsk;
-    private javax.swing.JPanel jtabPaneSocial;
+    private javax.swing.JPanel jtabPaneSocialt;
     private javax.swing.JPanel profil_main;
     private javax.swing.JPanel tabPaneUtb;
-    private javax.swing.JScrollPane txtPaneSocialt;
+    private javax.swing.JTextPane txtPaneSocialt;
     // End of variables declaration//GEN-END:variables
 }

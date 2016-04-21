@@ -75,13 +75,14 @@ public class Anvandare {
         return false;
     }
     
-    public void laggTillNyAnvandare(String firstname, String lastname, String losenord, String telefon, String admin, String anvandarnamn)
+    public void laggTillNyAnvandare(String firstname, String lastname, String losenord, String telefon, String admin, String anvandarnamn, String stad, String mail)
     {
     
         try
         {
                 String sqlFraga = "INSERT INTO ANSTALLD "
-                + "VALUES(" + idb.getAutoIncrement("ANSTALLD", "AID") + ",'" + firstname + "', '" + lastname + "', '" + losenord + "', " + telefon + ", '" + admin + "', '" + anvandarnamn + "');";
+                + "VALUES(" + idb.getAutoIncrement("ANSTALLD", "AID") + ",'" + firstname + "', '" + lastname + "', '" + losenord + "', " + telefon + ", '" + admin + "', '" + anvandarnamn
+                        + "', 'Biografi', '" + stad + "', '" + mail + "');";
             idb.insert(sqlFraga);
             System.out.println("Det funkade!");
 
