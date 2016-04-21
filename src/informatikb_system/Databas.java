@@ -176,7 +176,7 @@ private InfDB idb;
         
         try
         {
-            fullName = idb.fetchSingle(sqlFraga) + idb.fetchSingle(sqlFraga1);
+            fullName = idb.fetchSingle(sqlFraga) + " " + idb.fetchSingle(sqlFraga1);
         }
         catch(InfException e)
         {
@@ -343,4 +343,85 @@ private InfDB idb;
         return inbjudna;
     }
     
+    public HashMap<String, String> hamtaMotesForslagsInfo(String MID)
+    {
+        String sqlFraga = "SELECT * FROM MOTE_FORSLAG WHERE MID = " + MID + ";";
+        HashMap<String, String> mote = new HashMap<String, String>();
+        try
+        {
+            mote = idb.fetchRow(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return mote;
+    }
+    
+    public ArrayList<HashMap<String, String>> hamtaTidsForslag(String mID)
+    {
+        String sqlFraga = "select ID, TID from MOTE_ROSTNING WHERE MID = " + mID + ";";
+        ArrayList<HashMap<String, String>> tider = new ArrayList<HashMap<String, String>>();
+        try
+        {
+            tider = idb.fetchRows(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return tider;
+    }
+    
+    /*
+    * Ökar antalet röster för valt ID
+    */
+    public void rostaPaMote(String ID, String AID, String MID)
+    {
+        String sqlFraga = "select roster from MOTE_ROSTNING WHERE ID = " + ID + ";";
+        
+        try
+        {
+            String roster = idb.fetchSingle(sqlFraga);
+            int rosterna = Integer.parseInt(roster);
+            rosterna++;
+            String nyttAntalRoster = Integer.toString(rosterna);
+            String finalSqlFraga = "UPDATE MOTE_ROSTNING SET ROSTER = " + nyttAntalRoster + " WHERE ID = " + ID + ";";
+            idb.update(finalSqlFraga);
+            
+            String sparaRost = "INSERT INTO ROSTAT_MOTE VALUES(" + MID + ", " + AID + ");";
+            idb.insert(sparaRost);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    /*
+    * Returnerar true om personen röstat på tid för mötet
+    */
+    public boolean rostatPaMote(String MID, String AID)
+    {
+        String sqlFraga = "SELECT AID FROM ROSTAT_MOTE WHERE MID = " + MID + ";";
+        boolean rostat = true;
+        try
+        {
+            ArrayList<String> roster = new ArrayList<String>();
+            roster = idb.fetchColumn(sqlFraga);
+            
+            for(String id : roster)
+            {
+                if(id.equals(AID))
+                {
+                    rostat = true;
+                }
+            }
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return rostat;
+    }
 }
