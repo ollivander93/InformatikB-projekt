@@ -154,15 +154,15 @@ public void showSocInlagg(String amne1){
         MobilNr_Get = new javax.swing.JLabel();
         Email_Get = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jTabPanelAmnen = new javax.swing.JTabbedPane();
-        jtabPaneSocial = new javax.swing.JPanel();
-        txtPaneSocialt = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jtabPaneForsk = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jtabPaneSocialt = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
+        txtPaneSocialt = new javax.swing.JTextPane();
+        jtabPaneForsk = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jTextPaneForsk = new javax.swing.JTextPane();
         tabPaneUtb = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
         jTextPaneUtbildning = new javax.swing.JTextPane();
         City_Get = new javax.swing.JLabel();
         Profile_OK_Exit = new javax.swing.JToggleButton();
@@ -294,70 +294,50 @@ public void showSocInlagg(String amne1){
         Email_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Email_Get.setText("Email_Get");
 
-        jTabPanelAmnen.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jScrollPane2.setViewportView(txtPaneSocialt);
 
-        txtPaneSocialt.setViewportView(jTextPane1);
-
-        javax.swing.GroupLayout jtabPaneSocialLayout = new javax.swing.GroupLayout(jtabPaneSocial);
-        jtabPaneSocial.setLayout(jtabPaneSocialLayout);
-        jtabPaneSocialLayout.setHorizontalGroup(
-            jtabPaneSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jtabPaneSocialLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtPaneSocialt, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
-                .addContainerGap())
+        javax.swing.GroupLayout jtabPaneSocialtLayout = new javax.swing.GroupLayout(jtabPaneSocialt);
+        jtabPaneSocialt.setLayout(jtabPaneSocialtLayout);
+        jtabPaneSocialtLayout.setHorizontalGroup(
+            jtabPaneSocialtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
         );
-        jtabPaneSocialLayout.setVerticalGroup(
-            jtabPaneSocialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jtabPaneSocialLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtPaneSocialt, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                .addContainerGap())
+        jtabPaneSocialtLayout.setVerticalGroup(
+            jtabPaneSocialtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
-        jTabPanelAmnen.addTab("Socialt", jtabPaneSocial);
+        jTabbedPane1.addTab("Socialt", jtabPaneSocialt);
 
-        jScrollPane2.setViewportView(jTextPaneForsk);
+        jScrollPane3.setViewportView(jTextPaneForsk);
 
         javax.swing.GroupLayout jtabPaneForskLayout = new javax.swing.GroupLayout(jtabPaneForsk);
         jtabPaneForsk.setLayout(jtabPaneForskLayout);
         jtabPaneForskLayout.setHorizontalGroup(
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jtabPaneForskLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
         );
         jtabPaneForskLayout.setVerticalGroup(
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jtabPaneForskLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
-        jTabPanelAmnen.addTab("Forskning", jtabPaneForsk);
+        jTabbedPane1.addTab("Forkning", jtabPaneForsk);
 
-        jScrollPane3.setViewportView(jTextPaneUtbildning);
+        jScrollPane4.setViewportView(jTextPaneUtbildning);
 
         javax.swing.GroupLayout tabPaneUtbLayout = new javax.swing.GroupLayout(tabPaneUtb);
         tabPaneUtb.setLayout(tabPaneUtbLayout);
         tabPaneUtbLayout.setHorizontalGroup(
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabPaneUtbLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
         );
         tabPaneUtbLayout.setVerticalGroup(
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabPaneUtbLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
-        jTabPanelAmnen.addTab("Utbildning", tabPaneUtb);
+        jTabbedPane1.addTab("Utbildning", tabPaneUtb);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -365,13 +345,13 @@ public void showSocInlagg(String amne1){
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabPanelAmnen))
+                .addComponent(jTabbedPane1))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabPanelAmnen)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -575,14 +555,14 @@ public void showSocInlagg(String amne1){
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabPanelAmnen;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextPane jTextPaneForsk;
     private javax.swing.JTextPane jTextPaneUtbildning;
     private javax.swing.JPanel jtabPaneForsk;
-    private javax.swing.JPanel jtabPaneSocial;
+    private javax.swing.JPanel jtabPaneSocialt;
     private javax.swing.JPanel profil_main;
     private javax.swing.JPanel tabPaneUtb;
-    private javax.swing.JScrollPane txtPaneSocialt;
+    private javax.swing.JTextPane txtPaneSocialt;
     // End of variables declaration//GEN-END:variables
 }
