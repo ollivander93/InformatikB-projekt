@@ -119,7 +119,19 @@ public class LaggTillMote extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Starttid måste vara innan sluttid");
         }
         
-        if(godkandtid)
+        boolean ejDublett = true;
+        
+        for(int i = 0; i < listTidsforslag.getItemCount(); i++)
+        {
+            String listtid = listTidsforslag.getItem(i);
+            if(listtid.equals(finalTid))
+            {
+                ejDublett = false;
+                JOptionPane.showMessageDialog(this, "Tidsförslaget är redan inlagt");
+            }
+        }
+        
+        if(godkandtid && ejDublett)
         {
            int i = listTidsforslag.getItemCount();
         
