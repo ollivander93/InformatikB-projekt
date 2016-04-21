@@ -63,19 +63,21 @@ public void showSocInlagg(String amne1){
         amne1 = "Socialt";
         StyledDocument docSoc = txtPaneSocialt.getStyledDocument();
         inlagg.emptyInlaggPane(docSoc);
-        inlagg.showSocInlagg1(docSoc, "", "");
+        inlagg.showSocInlagg1(docSoc, amne1);
     } else if(amne1.equals("Socialt")){
         StyledDocument docSoc = txtPaneSocialt.getStyledDocument();
         inlagg.emptyInlaggPane(docSoc);
-        inlagg.showSocInlagg1(docSoc, "Socialt", "SQL");
+        inlagg.showSocInlagg1(docSoc, amne1);
     } else if(amne1.equals("Forskning")){
         StyledDocument docForsk = jTextPaneForsk.getStyledDocument();  
         inlagg.emptyInlaggPane(docForsk);
-        inlagg.showSocInlagg1(docForsk, "Forskning", "");
+        inlagg.showSocInlagg1(docForsk, amne1);
     } else if(amne1.equals("Utbildning")){
-       StyledDocument docUtb = jTextPaneUtbildning.getStyledDocument();
-       inlagg.emptyInlaggPane(docUtb);
-       inlagg.showSocInlagg1(docUtb, "Utbildning", "");
+        StyledDocument docUtb = jTextPaneUtbildning.getStyledDocument();
+        inlagg.emptyInlaggPane(docUtb);
+        String sqlFraga = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL, INLAGG.VISIBLE " +
+        "FROM ANSTALLD " + "JOIN INLAGG " + "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = 'Utbildning' ORDER BY IID ASC ;";
+       inlagg.showSocInlagg1(docUtb, amne1);
     }
 }
     
@@ -151,7 +153,7 @@ public void showSocInlagg(String amne1){
         TelefonNr_Get = new javax.swing.JLabel();
         Email_Get = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabPanelAmnen = new javax.swing.JTabbedPane();
         jtabPaneSocialt = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtPaneSocialt = new javax.swing.JTextPane();
@@ -288,7 +290,12 @@ public void showSocInlagg(String amne1){
         Email_Get.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Email_Get.setText("Email_Get");
 
-        jTabbedPane1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTabPanelAmnen.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTabPanelAmnen.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabPanelAmnenStateChanged(evt);
+            }
+        });
 
         jScrollPane2.setViewportView(txtPaneSocialt);
 
@@ -303,7 +310,7 @@ public void showSocInlagg(String amne1){
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Socialt", jtabPaneSocialt);
+        jTabPanelAmnen.addTab("Socialt", jtabPaneSocialt);
 
         jScrollPane3.setViewportView(jTextPaneForsk);
 
@@ -318,7 +325,7 @@ public void showSocInlagg(String amne1){
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Forkning", jtabPaneForsk);
+        jTabPanelAmnen.addTab("Forskning", jtabPaneForsk);
 
         jScrollPane4.setViewportView(jTextPaneUtbildning);
 
@@ -333,7 +340,7 @@ public void showSocInlagg(String amne1){
             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Utbildning", tabPaneUtb);
+        jTabPanelAmnen.addTab("Utbildning", tabPaneUtb);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -341,13 +348,13 @@ public void showSocInlagg(String amne1){
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1))
+                .addComponent(jTabPanelAmnen))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabPanelAmnen)
                 .addContainerGap())
         );
 
@@ -485,6 +492,23 @@ public void showSocInlagg(String amne1){
     private void Profile_Cancel_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Profile_Cancel_ExitActionPerformed
         exitActionPerformed(evt);
     }//GEN-LAST:event_Profile_Cancel_ExitActionPerformed
+
+    private void jTabPanelAmnenStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabPanelAmnenStateChanged
+        String a = jTabPanelAmnen.getTitleAt(jTabPanelAmnen.getSelectedIndex());
+        System.out.println(a);
+        String b = "Forskning";
+        String c = "Utbildning";
+        String d = "Socialt";
+        
+        if(a.equals(b)){
+            showSocInlagg(a);
+            showSocInlagg(d);
+        }
+        if(a.equals(c)){
+            showSocInlagg(a);
+            showSocInlagg(d);
+        }
+    }//GEN-LAST:event_jTabPanelAmnenStateChanged
     
     private void exitActionPerformed(ActionEvent evt) {
         this.dispose();
@@ -546,7 +570,7 @@ public void showSocInlagg(String amne1){
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabPanelAmnen;
     private javax.swing.JTextPane jTextPaneForsk;
     private javax.swing.JTextPane jTextPaneUtbildning;
     private javax.swing.JPanel jtabPaneForsk;

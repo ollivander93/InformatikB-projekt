@@ -59,8 +59,8 @@ public String getAnstEfterNamn(String aid, String sqlFraga){
         return ettNamn;
      }
      
-public void showSocInlagg1(StyledDocument d, String amne, String SQLF){
-    ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne, SQLF);
+public void showSocInlagg1(StyledDocument d, String amne){
+    ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
     if(!(list==null)){
         for (int i = list.size() - 1; i >= 0; i--) {
             String name = list.get(i).get("FIRST_NAME");
@@ -112,10 +112,10 @@ public void showSocInlagg1(StyledDocument d, String amne, String SQLF){
     }
 }
      
-public ArrayList<HashMap<String, String>> hamtaInlagg(String amne, String sqlFraga){
+public ArrayList<HashMap<String, String>> hamtaInlagg(String amne){
     ArrayList inlagg = new ArrayList<HashMap<String, String>>();
-    //String sqlFraga = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL, INLAGG.VISIBLE " +
-    //"FROM ANSTALLD " + "JOIN INLAGG " + "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = '" + amne + "' ORDER BY IID ASC ;";
+    String sqlFraga = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL, INLAGG.VISIBLE " +
+    "FROM ANSTALLD " + "JOIN INLAGG " + "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = '" + amne + "' ORDER BY IID ASC ;";
     System.out.println(sqlFraga);
     try{
         inlagg = idb.fetchRows(sqlFraga);

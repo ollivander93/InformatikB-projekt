@@ -7,8 +7,19 @@ package informatikb_system.Profile;
 import java.beans.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -19,6 +30,8 @@ public class Profil_egen_edit extends JFrame{
     private ArrayList<String> ProfileInfo;
     private InfDB idb;
     private String AID;
+    private JFileChooser fc;
+    
     // Test Konstruktor
     public Profil_egen_edit() {
         initComponents();
@@ -141,21 +154,11 @@ public class Profil_egen_edit extends JFrame{
         Profil_info.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         ProfileEdit_LastName.setToolTipText("Skriv ditt Efternamn");
-        ProfileEdit_LastName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProfileEdit_LastNameActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Efternamn:");
         jLabel2.setToolTipText("");
 
         ProfileEdit_Name.setToolTipText("Skriv ditt Namn");
-        ProfileEdit_Name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProfileEdit_NameActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Namn:");
 
@@ -331,13 +334,32 @@ public class Profil_egen_edit extends JFrame{
         {
             @Override
             public void actionPerformed(ActionEvent e){
+                File selectedFile = null;
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setCurrentDirectory(new java.io.File(System.getProperty("user.home")));
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("Pictures", "jpg", "gif", "bmp", "jpeg", "png");
+                fileChooser.setFileFilter(filter);
                 int result = fileChooser.showOpenDialog(null);
                 if (result == JFileChooser.APPROVE_OPTION) {
-                    java.io.File selectedFile = fileChooser.getSelectedFile();
+                    selectedFile = fileChooser.getSelectedFile();
                     System.out.println("Selected file: " + selectedFile.getAbsolutePath());
                 }
+            String[] newNames = { selectedFile.getName() };
+            //Path source = Paths.get("images/source/image.jpg"); //original file
+            Path source = Paths.get(selectedFile.getAbsolutePath()); //original file
+            Path targetDir = Paths.get("images/target"); 
+                try {
+                    Files.createDirectories(targetDir);//in case target directory didn't exist
+                    for (String name : newNames) {
+                        Path target = targetDir.resolve(name);// create new path ending with `name` content
+                        System.out.println("Copying into: " + target);
+                        Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+                        // I decided to replace already existing files with same name
+                    }
+                } catch (IOException ex) {
+                    System.out.println("Error: " + ex);
+                    //Logger.getLogger(Profil_egen_edit.class.getName()).log(Level.SEVERE, null, ex);
+                }            
             }
         });
         JButton btnURL = new JButton("URL");
@@ -378,14 +400,6 @@ public class Profil_egen_edit extends JFrame{
     private void ProfileEdit_Cancel_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileEdit_Cancel_ExitActionPerformed
         exitActionPerformed(evt);
     }//GEN-LAST:event_ProfileEdit_Cancel_ExitActionPerformed
-
-    private void ProfileEdit_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileEdit_NameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProfileEdit_NameActionPerformed
-
-    private void ProfileEdit_LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileEdit_LastNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProfileEdit_LastNameActionPerformed
 
     private void exitActionPerformed(ActionEvent evt) {
         this.dispose();

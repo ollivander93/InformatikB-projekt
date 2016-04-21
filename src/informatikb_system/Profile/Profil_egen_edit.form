@@ -235,9 +235,6 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Skriv ditt Efternamn"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProfileEdit_LastNameActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -249,9 +246,6 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Skriv ditt Namn"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProfileEdit_NameActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
