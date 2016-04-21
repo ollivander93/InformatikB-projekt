@@ -69,6 +69,11 @@ public class AdminGUI extends javax.swing.JFrame {
         });
 
         btnTaBortAnvandare.setText("Ta bort användare");
+        btnTaBortAnvandare.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTaBortAnvandareMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,6 +112,11 @@ public class AdminGUI extends javax.swing.JFrame {
         InlaggAdminGUI adminInlagg = new InlaggAdminGUI();
         adminInlagg.setVisible(true);
     }//GEN-LAST:event_btnInlaggsHanteringMouseClicked
+
+    private void btnTaBortAnvandareMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTaBortAnvandareMouseClicked
+        TaBortAnvandareAdmin anv = new TaBortAnvandareAdmin();
+        anv.setVisible(true);
+    }//GEN-LAST:event_btnTaBortAnvandareMouseClicked
 
     /**
      * @param args the command line arguments
