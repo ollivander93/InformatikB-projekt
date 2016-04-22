@@ -424,4 +424,41 @@ private InfDB idb;
         }
         return rostat;
     }
+    
+    public ArrayList<String> hamtaInbjudningar(String AID)
+    {
+        String sqlFraga = "SELECT MID FROM MOTE_ANSTALLD WHERE AID = " + AID + ";";
+        ArrayList<String> inbjudningar = new ArrayList<String>();
+        try
+        {
+            inbjudningar = idb.fetchColumn(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return inbjudningar;
+        
+        
+    }
+    
+    public String hamtaMoteNamn(String MID)
+    {
+        String sqlFraga = "SELECT TITEL FROM MOTE_FORSLAG WHERE MID = " + MID + ";";
+        String mote = "";
+        try
+        {
+            mote = idb.fetchSingle(sqlFraga);
+            
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return mote;
+        
+        
+    }
+    
+    
 }

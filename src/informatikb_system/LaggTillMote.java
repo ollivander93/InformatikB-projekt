@@ -77,6 +77,7 @@ public class LaggTillMote extends javax.swing.JFrame {
         return deltagare;
     }
     
+    
     public void laggTillTid()
     {
         boolean godkandtid = false;

@@ -46,7 +46,7 @@ public class Motesforslag_Info extends javax.swing.JFrame {
         String aid = info.get("ANSVARIG");
         System.out.println(aid);
         String namn = db.hamtaAnstalldNamn(aid);
-        lblAnsvarig.setText(namn);
+        lblAnsvarig.setText(info.get("ANSVARIG"));
         lblTitel.setText(info.get("TITEL"));
         lblDatum.setText(info.get("DATUM"));
         lblPlats1.setText(info.get("SAL"));

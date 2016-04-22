@@ -76,6 +76,7 @@ public class Inlagg extends javax.swing.JFrame {
         jTextPaneUtbildning = new javax.swing.JTextPane();
         btnVisaKalender = new javax.swing.JButton();
         btnMyProfile = new javax.swing.JButton();
+        btnInbjudningar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -116,13 +117,13 @@ public class Inlagg extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1268, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1820, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -137,7 +138,7 @@ public class Inlagg extends javax.swing.JFrame {
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jtabPaneForskLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1268, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1820, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jtabPaneForskLayout.setVerticalGroup(
@@ -159,7 +160,7 @@ public class Inlagg extends javax.swing.JFrame {
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPaneUtbLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1268, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1820, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabPaneUtbLayout.setVerticalGroup(
@@ -191,6 +192,18 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
+        btnInbjudningar.setText("Mina Inbjudningar");
+        btnInbjudningar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnInbjudningarMouseClicked(evt);
+            }
+        });
+        btnInbjudningar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInbjudningarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -208,6 +221,8 @@ public class Inlagg extends javax.swing.JFrame {
                                 .addComponent(btnVisaKalender, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLaggTillMote, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnInbjudningar, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -220,7 +235,8 @@ public class Inlagg extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVisaKalender, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLaggTillMote, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLaggTillMote, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInbjudningar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabPanelAmnen, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
@@ -315,6 +331,14 @@ public class Inlagg extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnMyProfileActionPerformed
 
+    private void btnInbjudningarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInbjudningarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInbjudningarActionPerformed
+
+    private void btnInbjudningarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInbjudningarMouseClicked
+        new Mote_Inbjudningar(aid).setVisible(true);
+    }//GEN-LAST:event_btnInbjudningarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -351,6 +375,7 @@ public class Inlagg extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInbjudningar;
     private javax.swing.JButton btnLaggTillMote;
     private javax.swing.JButton btnMyProfile;
     private javax.swing.JButton btnSkrivInlagg;
