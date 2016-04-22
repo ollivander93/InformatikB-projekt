@@ -17,10 +17,12 @@ import oru.inf.InfException;
  * @author Sethox
  */
 public class InlaggMgt {
-    private InfDB idb; 
+    private InfDB idb;
+    private String AID;
  
     
-public InlaggMgt(){
+public InlaggMgt(String AID){
+    this.AID = AID;
     anslutDatabas();
 }
     
@@ -115,7 +117,7 @@ public void showSocInlagg1(StyledDocument d, String amne){
 public ArrayList<HashMap<String, String>> hamtaInlagg(String amne){
     ArrayList inlagg = new ArrayList<HashMap<String, String>>();
     String sqlFraga = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL, INLAGG.VISIBLE " +
-    "FROM ANSTALLD " + "JOIN INLAGG " + "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = '" + amne + "' ORDER BY IID ASC ;";
+    "FROM ANSTALLD " + "JOIN INLAGG " + "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = '" + amne + "' AND ANSTALLD.AID = " + this.AID + " ORDER BY IID ASC ;";
     System.out.println(sqlFraga);
     try{
         inlagg = idb.fetchRows(sqlFraga);

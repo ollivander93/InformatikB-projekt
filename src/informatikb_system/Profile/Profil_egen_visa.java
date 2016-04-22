@@ -54,7 +54,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         anslutDatabas();
         setProfileInfo();
         setupProfile();
-        inlagg = new InlaggMgt();
+        inlagg = new InlaggMgt(AID);
         showSocInlagg("Socialt");
     }
     
@@ -75,8 +75,8 @@ public void showSocInlagg(String amne1){
     } else if(amne1.equals("Utbildning")){
         StyledDocument docUtb = jTextPaneUtbildning.getStyledDocument();
         inlagg.emptyInlaggPane(docUtb);
-        String sqlFraga = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL, INLAGG.VISIBLE " +
-        "FROM ANSTALLD " + "JOIN INLAGG " + "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = 'Utbildning' ORDER BY IID ASC ;";
+        //String sqlFraga = "select ANSTALLD.FIRST_NAME, ANSTALLD.LAST_NAME, INLAGG.DATUM, INLAGG.TID, INLAGG.TEXT, INLAGG.TITEL, INLAGG.VISIBLE " +
+        //"FROM ANSTALLD " + "JOIN INLAGG " + "ON ANSTALLD.AID = INLAGG.AID WHERE AMNE = 'Utbildning' ORDER BY IID ASC ;";
        inlagg.showSocInlagg1(docUtb, amne1);
     }
 }
