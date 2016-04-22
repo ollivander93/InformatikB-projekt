@@ -425,7 +425,7 @@ public class Profil_egen_edit extends JFrame{
             String sql_Q = "UPDATE ANSTALLD set FIRST_NAME='" + ProfileInfo.get(0) + "',LAST_NAME='" + ProfileInfo.get(1)
                 + "', TELEFON=" + ProfileInfo.get(4) + ", BIO='" + ProfileInfo.get(5) + "',CITY='" + ProfileInfo.get(2) + "',EMAIL='" + ProfileInfo.get(3) + "' where(AID=" + this.AID + ");";
             System.out.println(sql_Q);
-           idb.insert(sql_Q);
+           idb.update(sql_Q);
         } catch(InfException e) {
             System.out.println(e.getMessage());
         }
