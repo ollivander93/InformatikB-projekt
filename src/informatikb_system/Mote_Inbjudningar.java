@@ -26,6 +26,7 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
         db = new Databas();
         fillInbjudningarLista(AID);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     public void fillInbjudningarLista(String AID)
@@ -42,7 +43,7 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
         {
         for(String id : motesIdn)
         {
-            String finalMote = id + ". " + db.hamtaMoteNamn(id);
+            String finalMote = id + ". " + db.hamtaMotesForslagNamn(id);
             listInbjudningar.add(finalMote);
         } 
         }
@@ -71,6 +72,7 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
         listInbjudningar = new java.awt.List();
         jLabel3 = new javax.swing.JLabel();
         btnValjInbjudan = new javax.swing.JButton();
+        btnTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +91,13 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
             }
         });
 
+        btnTest.setText("test");
+        btnTest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTestMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,14 +106,19 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnValjInbjudan)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(jLabel2)))
+                                .addGap(24, 24, 24))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel2)))
-                        .addGap(24, 24, 24)
+                                .addComponent(btnTest)
+                                .addGap(81, 81, 81)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(listInbjudningar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -118,13 +132,15 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(listInbjudningar, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(listInbjudningar, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnValjInbjudan))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnValjInbjudan)
+                        .addComponent(jLabel2)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnTest)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -135,6 +151,10 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
         String MID = valjMote();
         new Motesforslag_Info(AID, MID).setVisible(true);
     }//GEN-LAST:event_btnValjInbjudanMouseClicked
+
+    private void btnTestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTestMouseClicked
+        new Mina_Moten(AID).setVisible(true);
+    }//GEN-LAST:event_btnTestMouseClicked
 
     /**
      * @param args the command line arguments
@@ -172,6 +192,7 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTest;
     private javax.swing.JButton btnValjInbjudan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

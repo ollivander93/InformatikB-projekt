@@ -436,6 +436,23 @@ private InfDB idb;
         }
     }
     
+    public ArrayList<HashMap<String, String>> hamtaRoster(String MID)
+    {
+        String sqlFraga = "SELECT TID, ROSTER FROM MOTE_ROSTNING WHERE MID = " + MID + ";";
+        ArrayList<HashMap<String, String>> roster = new ArrayList<HashMap<String, String>>();
+
+        try
+        {            
+            roster = idb.fetchRows(sqlFraga);
+            
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return roster;
+    }
+    
     /*
     * Returnerar true om personen röstat på tid för mötet
     */
@@ -483,7 +500,7 @@ private InfDB idb;
         
     }
     
-    public String hamtaMoteNamn(String MID)
+    public String hamtaMotesForslagNamn(String MID)
     {
         String sqlFraga = "SELECT TITEL FROM MOTE_FORSLAG WHERE MID = " + MID + ";";
         String mote = "";
@@ -499,6 +516,60 @@ private InfDB idb;
         return mote;
         
         
+    }
+    
+    public ArrayList<String> hamtaSkapadeMoteNamn(String aid)
+    {
+        String sqlFraga = "SELECT MID, TITEL FROM MOTE WHERE ANSVARIG = " + aid + ";";
+        ArrayList<String> mote = new ArrayList<String>();
+        ArrayList<HashMap<String, String>> motesInfo = new ArrayList<HashMap<String, String>>();
+        try
+        {
+            motesInfo = idb.fetchRows(sqlFraga);
+            for(HashMap<String, String> infon : motesInfo)
+            {
+                String namn = infon.get("MID") + ". " + infon.get("TITEL");
+                mote.add(namn);
+            }
+            if(mote == null)
+            {
+                mote.add("Inga skapade möten hittade");
+            }
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return mote; 
+    }
+    
+    public ArrayList<String> hamtaForslagsNamn(String aid)
+    {
+        String sqlFraga = "SELECT MID, TITEL FROM MOTE_FORSLAG WHERE ANSVARIG = " + aid + ";";
+        ArrayList<String> mote = new ArrayList<String>();
+        ArrayList<HashMap<String, String>> motesInfo = new ArrayList<HashMap<String, String>>();
+        try
+        {
+            motesInfo = idb.fetchRows(sqlFraga);
+            
+            if(motesInfo == null)
+            {
+                mote.add("Inga skapade moten hittade");
+            }
+            else
+            {
+                for(HashMap<String, String> infon : motesInfo)
+            {
+                String namn = infon.get("MID") + ". " + infon.get("TITEL");
+                mote.add(namn);
+            }
+            }
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return mote; 
     }
     
     

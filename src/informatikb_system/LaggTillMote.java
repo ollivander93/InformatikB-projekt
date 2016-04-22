@@ -415,7 +415,6 @@ public class LaggTillMote extends javax.swing.JFrame {
         mote.skapaMotesForslag(tider, aid, finalDatum, plats, titel, beskrivning, vecka, veckodag);
         String mid = db.hamtaMid(titel);
         ArrayList<String> deltagare = hamtaDeltagare();
-        db.anmalAnstalldTillMote(aid, mid);
         System.out.println(aid + " " + mid);
         for(String deltagaren : deltagare)
         {

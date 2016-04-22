@@ -200,7 +200,6 @@ public class Kalender_TestFrame extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1285, 700));
 
         tableCalendar.setBackground(new java.awt.Color(255, 255, 255));
-        tableCalendar.setBorder(null);
         tableCalendar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         tableCalendar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
