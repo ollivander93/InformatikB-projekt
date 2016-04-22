@@ -189,6 +189,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="R&#xf6;sta p&#xe5; tid"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnRostaMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

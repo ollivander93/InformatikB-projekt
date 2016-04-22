@@ -27,7 +27,7 @@ public class Motesforslag_Info extends javax.swing.JFrame {
      * Creates new form MotesInfo
      */
     public Motesforslag_Info(String aid, String mID) {
-        mID = mID;
+        this.mID = mID;
         this.aid = aid;
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -46,7 +46,7 @@ public class Motesforslag_Info extends javax.swing.JFrame {
         String aid = info.get("ANSVARIG");
         System.out.println(aid);
         String namn = db.hamtaAnstalldNamn(aid);
-        lblAnsvarig.setText(info.get("ANSVARIG"));
+        lblAnsvarig.setText(namn);
         lblTitel.setText(info.get("TITEL"));
         lblDatum.setText(info.get("DATUM"));
         lblPlats1.setText(info.get("SAL"));
@@ -75,15 +75,15 @@ public class Motesforslag_Info extends javax.swing.JFrame {
         }
     }
     
-    public void rostaPaTid(String ID)
+    public void rostaPaTid()
     {
         String valdTid = cbTider.getSelectedItem().toString();
         String[] tidSplit = valdTid.split("\\.");
         String id = tidSplit[0];
         
-        if(db.anmaldTillMote(aid, mID))
+        if(!db.rostatPaMote(mID, aid))
         {
-            db.anmalAnstalldTillMote(aid, mID);
+            db.rostaPaMote(id, aid, mID);
             JOptionPane.showMessageDialog(this, "Du har nu röstat på mötestiden");
         }
         else
@@ -149,6 +149,11 @@ public class Motesforslag_Info extends javax.swing.JFrame {
         lblTider.setText("Tidsförslag:");
 
         btnRosta.setText("Rösta på tid");
+        btnRosta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRostaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,6 +226,10 @@ public class Motesforslag_Info extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRostaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRostaMouseClicked
+       rostaPaTid();
+    }//GEN-LAST:event_btnRostaMouseClicked
 
     /**
      * @param args the command line arguments

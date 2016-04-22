@@ -53,7 +53,6 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
         String mote = listInbjudningar.getSelectedItem().toString();
         String[] split = mote.split("\\.");
         String MID = split[0];
-        System.out.println(MID);
         return MID;
     }
     

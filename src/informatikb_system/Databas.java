@@ -170,8 +170,8 @@ private InfDB idb;
     
     public String hamtaAnstalldNamn(String ID)
     {
-        String sqlFraga = "SELECT FIRST_NAME FROM ANSTALLD WHERE AID = '" + ID + "';";
-        String sqlFraga1 = "SELECT LAST_NAME FROM ANSTALLD WHERE AID = '" + ID + "';";
+        String sqlFraga = "SELECT FIRST_NAME FROM ANSTALLD WHERE AID = " + ID + ";";
+        String sqlFraga1 = "SELECT LAST_NAME FROM ANSTALLD WHERE AID = " + ID + ";";
         String fullName = "";
         
         try
@@ -281,6 +281,24 @@ private InfDB idb;
     }
     
     /*
+    * Hämtar aid för inbjudna till ett specifikt möte
+    */
+    public ArrayList<String> hamtaAidFromMoteAnstalld(String MID)
+    {
+        String sqlFraga = "SELECT AID FROM MOTE_ANSTALLD WHERE MID = " + MID + ";";
+        ArrayList<String> deltagare = new ArrayList<String>();
+        try
+        {
+            deltagare = idb.fetchColumn(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return deltagare;
+    }
+    
+    /*
     *Kollar om en anställd är anmäld till ett möte
     */
     public boolean anmaldTillMote(String aid, String mid)
@@ -297,6 +315,26 @@ private InfDB idb;
         }
         return anmald;
     }
+    
+    
+    /*
+    *Kollar om en anställd är inbjuden till möte
+    */
+    public boolean inbjudenTillMote(String aid, String mid)
+    {
+        boolean anmald = false;
+        ArrayList<String> deltagare = new ArrayList<String>();
+        deltagare = hamtaAidFromMoteAnstalld(mid);
+        for(String deltagande : deltagare)
+        {
+            if(deltagande.equals(aid))
+            {
+                anmald = true;
+            }
+        }
+        return anmald;
+    }
+    
     
     public void bjudInTillMote(String mid, String aid)
     {
@@ -404,18 +442,21 @@ private InfDB idb;
     public boolean rostatPaMote(String MID, String AID)
     {
         String sqlFraga = "SELECT AID FROM ROSTAT_MOTE WHERE MID = " + MID + ";";
-        boolean rostat = true;
+        boolean rostat = false;
         try
         {
             ArrayList<String> roster = new ArrayList<String>();
             roster = idb.fetchColumn(sqlFraga);
             
-            for(String id : roster)
+            if(roster != null)
+            {
+                for(String id : roster)
             {
                 if(id.equals(AID))
                 {
                     rostat = true;
                 }
+            }
             }
         }
         catch(InfException e)
