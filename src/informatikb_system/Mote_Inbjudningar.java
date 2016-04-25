@@ -68,18 +68,14 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         listInbjudningar = new java.awt.List();
         jLabel3 = new javax.swing.JLabel();
         btnValjInbjudan = new javax.swing.JButton();
-        btnTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\brokoby\\Documents\\NetBeansProjects\\InformatikB-projekt\\src\\informatikb_system\\Icons\\fuckboooi.jpg")); // NOI18N
         jLabel1.setText("jLabel1");
-
-        jLabel2.setText("YoU LITTLE FukcBOY what you doin?");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Inbjudningar");
@@ -91,13 +87,6 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
             }
         });
 
-        btnTest.setText("test");
-        btnTest.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnTestMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,19 +95,9 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnValjInbjudan)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addComponent(jLabel2)))
-                                .addGap(24, 24, 24))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnTest)
-                                .addGap(81, 81, 81)))
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(listInbjudningar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -135,12 +114,7 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
                         .addComponent(listInbjudningar, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnValjInbjudan))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnTest)))
+                    .addComponent(jLabel1))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -151,10 +125,6 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
         String MID = valjMote();
         new Motesforslag_Info(AID, MID).setVisible(true);
     }//GEN-LAST:event_btnValjInbjudanMouseClicked
-
-    private void btnTestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTestMouseClicked
-        new Mina_Moten(AID).setVisible(true);
-    }//GEN-LAST:event_btnTestMouseClicked
 
     /**
      * @param args the command line arguments
@@ -192,10 +162,8 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnTest;
     private javax.swing.JButton btnValjInbjudan;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private java.awt.List listInbjudningar;
     // End of variables declaration//GEN-END:variables
