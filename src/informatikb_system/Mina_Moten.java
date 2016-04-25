@@ -5,7 +5,12 @@
  */
 package informatikb_system;
 
+import java.awt.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -30,6 +35,7 @@ public class Mina_Moten extends javax.swing.JFrame {
 
    public void fyllSkapadeMoten()
    {
+       listFardigstalldaMoten.removeAll();
        ArrayList<String> skapademoten = new ArrayList<String>();
        skapademoten = db.hamtaSkapadeMoteNamn(aid);
        
@@ -46,24 +52,36 @@ public class Mina_Moten extends javax.swing.JFrame {
            }
        }
        
+       
    }
    
    public void fyllMotesForslag()
    {
+       listMotesforslag.removeAll();
        ArrayList<String> forslagsmoten = new ArrayList<String>();
        forslagsmoten = db.hamtaForslagsNamn(aid);
-       
-       if(forslagsmoten == null)
+       String[] fardigaMoten = listFardigstalldaMoten.getItems();
+       Set<String> klaraMoten = new HashSet<String>(Arrays.asList(fardigaMoten));
+     
+       if(forslagsmoten != null)
        {
-           listMotesforslag.add("Du har inga mötesförslag");
-       }
-       else
-       {
-           for(String forslag : forslagsmoten)
+           for(String motet : forslagsmoten)
            {
-               listMotesforslag.add(forslag);
+               if(!klaraMoten.contains(motet))
+               {
+                   listMotesforslag.add(motet);
+                   
+               }
            }
+           
        }
+
+       if(listMotesforslag.getItemCount() == 0)
+       {
+            listMotesforslag.add("Du har inga mötesförslag");
+       }
+       
+       
    }
    
    public String hamtaUtMid()
@@ -74,6 +92,7 @@ public class Mina_Moten extends javax.swing.JFrame {
        id = splitz[0];
        return id;
    }
+   
            
     
     @SuppressWarnings("unchecked")
@@ -94,6 +113,11 @@ public class Mina_Moten extends javax.swing.JFrame {
         btnValjFardigtMote.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnValjFardigtMoteMouseClicked(evt);
+            }
+        });
+        btnValjFardigtMote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValjFardigtMoteActionPerformed(evt);
             }
         });
 
@@ -180,7 +204,15 @@ public class Mina_Moten extends javax.swing.JFrame {
 
     private void btnValjFardigtMoteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValjFardigtMoteMouseClicked
         
+        String valtMote = listFardigstalldaMoten.getSelectedItem().toString();
+        String[] mote = valtMote.split("\\.");
+        String mid = mote[0];
+        new MotesInfo(mid, aid).setVisible(true);
     }//GEN-LAST:event_btnValjFardigtMoteMouseClicked
+
+    private void btnValjFardigtMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValjFardigtMoteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnValjFardigtMoteActionPerformed
 
     /**
      * @param args the command line arguments

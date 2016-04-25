@@ -572,5 +572,23 @@ private InfDB idb;
         return mote; 
     }
     
+    public void skapaMote(String mid, String starttid, String sluttid, String aidAnsvarig, String datum, String plats, String titel, String beskrivning, String vecka, String veckoDag)
+    {
+        try
+        {
+            String sqlFraga = "insert into MOTE values (" + mid + ", '" + datum +
+                    "', '" + plats + "','" + starttid + "', '" + sluttid + "','" + titel + "', '" + beskrivning +
+                    "', " + aidAnsvarig + ", " + vecka + ", " + veckoDag + ");";
+            idb.insert(sqlFraga);
+                
+            
+            System.out.println("Success");
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     
 }

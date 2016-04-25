@@ -37,21 +37,7 @@ private InfDB idb;
         }
     }
     
-    public void skapaMote(String ansvarig, String datum, String plats, String starttid, String sluttid, String titel, String beskrivning, int vecka, int veckoDag)
-    {
-        try
-        {
-            String sqlFraga = "insert into MOTE values (" + idb.getAutoIncrement("MOTE", "MID") + ", '" + datum +
-                    "', '" + plats + "', '" + starttid + "', '" + sluttid + "','" + titel + "', '" + beskrivning +
-                    "', " + ansvarig + ", " + vecka + ", " + veckoDag + ");";
-            idb.insert(sqlFraga);
-            System.out.println("Success");
-        }
-        catch(InfException e)
-        {
-            System.out.println(e.getMessage());
-        }
-    }
+
     
     public void skapaMotesForslag(ArrayList<String> tidsforslag, String ansvarig, String datum, String plats, String titel, String beskrivning, int vecka, int veckoDag)
     {

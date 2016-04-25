@@ -22,6 +22,7 @@ public class MotesInfo extends javax.swing.JFrame {
     private HashMap<String, String> info;
     private static String mID;
     private static String aid;
+    private static String ansvarigAid;
     private boolean anmald;
 
     /**
@@ -41,6 +42,14 @@ public class MotesInfo extends javax.swing.JFrame {
         fillInbjudna();
         anmald = db.anmaldTillMote(aid, mID);
         setAnmalKnapp();
+        if(aid.equals(ansvarigAid))
+        {
+            btnAnmal.setVisible(false);
+        }
+        else
+        {
+            btnAnmal.setVisible(true);
+        }
         
     }
     /*
@@ -48,8 +57,8 @@ public class MotesInfo extends javax.swing.JFrame {
     */
     public void fillMotesInfo()
     {
-        String aid = info.get("ANSVARIG");
-        String namn = db.hamtaAnstalldNamn(aid);
+        ansvarigAid = info.get("ANSVARIG");
+        String namn = db.hamtaAnstalldNamn(ansvarigAid);
         lblAnsvarig.setText(namn);
         lblTitel.setText(info.get("TITEL"));
         lblDatum.setText(info.get("DATUM"));
