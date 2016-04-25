@@ -33,6 +33,10 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
     {
         ArrayList<String> motesIdn = new ArrayList<String>();
         motesIdn = db.hamtaInbjudningar(AID);
+        HashMap<String, String> jamfora = new HashMap<String, String>();
+        jamfora = db.hamtaMotesInfo(AID);
+        String mote = jamfora.get("TITEL");
+        
         
         
         if(motesIdn == null)
