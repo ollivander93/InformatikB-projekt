@@ -8,8 +8,15 @@ import java.beans.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import javax.imageio.*;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,11 +37,17 @@ public class Profil_egen_edit extends JFrame{
     private ArrayList<String> ProfileInfo;
     private InfDB idb;
     private String AID;
-    private JFileChooser fc;
+    private URL Pic_url = null;
+    private Image image = null;
+    public JLabel Preview_P = null;
     
     // Test Konstruktor
     public Profil_egen_edit() {
         initComponents();
+        // Test
+        if(this.AID == null)
+            this.AID = "Temp_"; 
+        // End Test
         ProfileEdit_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
     }
     // Standardkonstruktor
@@ -64,7 +77,8 @@ public class Profil_egen_edit extends JFrame{
 
         profil_main = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        Preview_Picture = new javax.swing.JPanel();
+        Picture_Frame = new javax.swing.JLabel();
         Edit_Picture_Btn = new javax.swing.JButton();
         Profil_info = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -89,24 +103,25 @@ public class Profil_egen_edit extends JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ändra Profil");
         setAlwaysOnTop(true);
-        setMaximumSize(new java.awt.Dimension(741, 531));
-        setMinimumSize(new java.awt.Dimension(741, 531));
 
         profil_main.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         profil_main.setName("Profile_maininfo"); // NOI18N
 
-        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel1.setToolTipText("Din Profilbild");
+        Preview_Picture.setBorder(new javax.swing.border.MatteBorder(null));
+        Preview_Picture.setToolTipText("Din Profilbild");
+        Preview_Picture.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 166, Short.MAX_VALUE)
+        Picture_Frame.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+
+        javax.swing.GroupLayout Preview_PictureLayout = new javax.swing.GroupLayout(Preview_Picture);
+        Preview_Picture.setLayout(Preview_PictureLayout);
+        Preview_PictureLayout.setHorizontalGroup(
+            Preview_PictureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Picture_Frame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+        Preview_PictureLayout.setVerticalGroup(
+            Preview_PictureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Picture_Frame, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
         );
 
         Edit_Picture_Btn.setText("Sätt in bild / Bytt bild");
@@ -123,9 +138,9 @@ public class Profil_egen_edit extends JFrame{
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Preview_Picture, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 48, Short.MAX_VALUE)
                         .addComponent(Edit_Picture_Btn)))
                 .addContainerGap())
         );
@@ -133,7 +148,7 @@ public class Profil_egen_edit extends JFrame{
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Preview_Picture, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(Edit_Picture_Btn))
         );
@@ -212,10 +227,10 @@ public class Profil_egen_edit extends JFrame{
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ProfileEdit_Telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addComponent(ProfileEdit_Telephone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel7)
                 .addGap(32, 32, 32)
                 .addComponent(ProfileEdit_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,7 +309,7 @@ public class Profil_egen_edit extends JFrame{
         Profil_infoLayout.setVerticalGroup(
             Profil_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Profil_infoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,8 +318,7 @@ public class Profil_egen_edit extends JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(Profil_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ProfileEdit_Cancel_Exit)
-                    .addComponent(ProfileEdit_OK_Exit))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ProfileEdit_OK_Exit)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -320,78 +334,56 @@ public class Profil_egen_edit extends JFrame{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(profil_main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(Profil_info, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(profil_main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Profil_info, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void Edit_Picture_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Picture_BtnActionPerformed
-        // TODO add your handling code here:
-        JButton btnLclPic = new JButton("Open File");
-        btnLclPic.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                File selectedFile = null;
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setCurrentDirectory(new java.io.File(System.getProperty("user.home")));
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("Pictures", "jpg", "gif", "bmp", "jpeg", "png");
-                fileChooser.setFileFilter(filter);
-                int result = fileChooser.showOpenDialog(null);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    selectedFile = fileChooser.getSelectedFile();
-                    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-                }
-            String[] newNames = { selectedFile.getName() };
-            //Path source = Paths.get("images/source/image.jpg"); //original file
-            Path source = Paths.get(selectedFile.getAbsolutePath()); //original file
-            Path targetDir = Paths.get("images/target"); 
-                try {
-                    Files.createDirectories(targetDir);//in case target directory didn't exist
-                    for (String name : newNames) {
-                        Path target = targetDir.resolve(name);// create new path ending with `name` content
-                        System.out.println("Copying into: " + target);
-                        Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
-                        // I decided to replace already existing files with same name
-                    }
-                } catch (IOException ex) {
-                    System.out.println("Error: " + ex);
-                    //Logger.getLogger(Profil_egen_edit.class.getName()).log(Level.SEVERE, null, ex);
-                }            
+        String URL_P = JOptionPane.showInputDialog(frame, "URL:");
+        String Pic = null;
+        String extension = null;
+        if (URL_P != null) {
+            this.Pic_url = this.getClass().getResource(URL_P);
+            System.out.println(URL_P);
+            String Location = "/informatikb_system/Icons/";
+            Pic = this.getClass().getResource(Location).getPath();
+            System.out.println("Location of Picture: " + Pic);
+            int i = URL_P.lastIndexOf('.');
+            if (i > 0)
+                extension = URL_P.substring(i+1);
+            System.out.println("Type of extension: " + extension);
+            String File = this.AID + "Prof_Pic." + extension;
+            Pic = Pic + File;
+            System.out.println(File);
+            try{
+                saveImage(URL_P,Pic);
+                System.out.println("Copying file to location...");
+                System.out.println("Reading: " + Pic);
+                ImageIcon imageIcon = new ImageIcon(new ImageIcon(Pic).getImage().getScaledInstance(this.Picture_Frame.getHeight(), this.Picture_Frame.getHeight(), Image.SCALE_DEFAULT));
+                this.Picture_Frame.setIcon(imageIcon);
+            } catch(IOException e){
+                System.out.println("Error: " + e);
             }
-        });
-        JButton btnURL = new JButton("URL");
-        btnURL.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e){
-                String URL = JOptionPane.showInputDialog("URL:");
-                System.out.println(URL);
-            }
-        });
-        
-        Object[] options = {"Cancel", btnURL, btnLclPic};
-                    int n = JOptionPane.showOptionDialog(frame,
-                                    "What kind of picture do you want to upload?",
-                                    "Picture Upload",
-                                    JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
-                                    null,
-                                    options,
-                                    options[2]);
-                    /*if (n == JOptionPane.YES_OPTION) {
-                        //setLabel("Here you go: green eggs and ham!");
-                        
-                    } else if (n == JOptionPane.NO_OPTION) {
-                        //setLabel("OK, just the ham, then.");
-                    } else if (n == JOptionPane.CANCEL_OPTION) {
-                        //setLabel("Well, I'm certainly not going to eat them!");
-                    } else {
-                        //setLabel("Please tell me what you want!");
-                    }*/
+        }
     }//GEN-LAST:event_Edit_Picture_BtnActionPerformed
 
+    public static void saveImage(String imageUrl, String destinationFile) throws IOException {
+	URL url = new URL(imageUrl);
+	InputStream is = url.openStream();
+	OutputStream os = new FileOutputStream(destinationFile);
+        byte[] b = new byte[2048];
+        int length;
+        while ((length = is.read(b)) != -1) {
+            os.write(b, 0, length);
+        }
+        is.close();
+        os.close();
+    }
+    
     private void ProfileEdit_OK_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileEdit_OK_ExitActionPerformed
         UpdateInsert();
         exitActionPerformed(evt);
@@ -425,7 +417,7 @@ public class Profil_egen_edit extends JFrame{
             String sql_Q = "UPDATE ANSTALLD set FIRST_NAME='" + ProfileInfo.get(0) + "',LAST_NAME='" + ProfileInfo.get(1)
                 + "', TELEFON=" + ProfileInfo.get(4) + ", BIO='" + ProfileInfo.get(5) + "',CITY='" + ProfileInfo.get(2) + "',EMAIL='" + ProfileInfo.get(3) + "' where(AID=" + this.AID + ");";
             System.out.println(sql_Q);
-           idb.insert(sql_Q);
+           idb.update(sql_Q);
         } catch(InfException e) {
             System.out.println(e.getMessage());
         }
@@ -471,6 +463,8 @@ public class Profil_egen_edit extends JFrame{
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Edit_Picture_Btn;
+    public javax.swing.JLabel Picture_Frame;
+    private javax.swing.JPanel Preview_Picture;
     private javax.swing.JPanel Profil_info;
     private javax.swing.JTextArea ProfileEdit_Bio;
     private javax.swing.JToggleButton ProfileEdit_Cancel_Exit;
@@ -486,7 +480,6 @@ public class Profil_egen_edit extends JFrame{
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
