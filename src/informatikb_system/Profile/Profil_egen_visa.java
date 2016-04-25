@@ -143,7 +143,7 @@ public void showSocInlagg(String amne1){
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Profile_Bio = new javax.swing.JTextArea();
-        jPanel7 = new javax.swing.JPanel();
+        Control_Panel = new javax.swing.JPanel();
         Edit_Profile = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -168,7 +168,6 @@ public void showSocInlagg(String amne1){
         Profile_Cancel_Exit = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1066, 531));
 
         profil_main.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         profil_main.setName("Profile_maininfo"); // NOI18N
@@ -214,6 +213,8 @@ public void showSocInlagg(String amne1){
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        Control_Panel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+
         Edit_Profile.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         Edit_Profile.setText("Ändra din profil");
         Edit_Profile.addActionListener(new java.awt.event.ActionListener() {
@@ -222,18 +223,18 @@ public void showSocInlagg(String amne1){
             }
         });
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout Control_PanelLayout = new javax.swing.GroupLayout(Control_Panel);
+        Control_Panel.setLayout(Control_PanelLayout);
+        Control_PanelLayout.setHorizontalGroup(
+            Control_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Control_PanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Edit_Profile, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        Control_PanelLayout.setVerticalGroup(
+            Control_PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Control_PanelLayout.createSequentialGroup()
                 .addComponent(Edit_Profile)
                 .addGap(0, 245, Short.MAX_VALUE))
         );
@@ -243,14 +244,14 @@ public void showSocInlagg(String amne1){
         profil_mainLayout.setHorizontalGroup(
             profil_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Control_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         profil_mainLayout.setVerticalGroup(
             profil_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(profil_mainLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Control_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel3.setMaximumSize(new java.awt.Dimension(741, 531));
@@ -551,6 +552,7 @@ public void showSocInlagg(String amne1){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel City_Get;
+    private javax.swing.JPanel Control_Panel;
     private javax.swing.JButton Edit_Profile;
     private javax.swing.JLabel Email_Get;
     private javax.swing.JLabel LastName_Get;
@@ -565,7 +567,6 @@ public void showSocInlagg(String amne1){
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
