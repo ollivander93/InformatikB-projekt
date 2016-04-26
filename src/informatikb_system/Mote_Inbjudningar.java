@@ -37,25 +37,32 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
         fardigamoten = db.hamtaFardigaMid();
         ArrayList<String> motesForslag = new ArrayList<String>();
         
-        for(String mote : forslag)
+        if(forslag != null)
         {
-            if(!fardigamoten.contains(mote))
+            for(String mote : forslag)
+        {
+            if(fardigamoten != null)
+            {
+                if(!fardigamoten.contains(mote))
             {
                 motesForslag.add(mote);
             }
-        }        
+            }
+            
+        }
+        }
         
-        if(motesForslag == null)
+        if(motesForslag != null)
         {
-            listInbjudningar.add("Du har inga inbjudningar");
+            for(String id : motesForslag)
+            {
+                String finalMote = id + ". " + db.hamtaMotesForslagNamn(id);
+                listInbjudningar.add(finalMote);
+            }          
         }
         else
         {
-        for(String id : motesForslag)
-        {
-            String finalMote = id + ". " + db.hamtaMotesForslagNamn(id);
-            listInbjudningar.add(finalMote);
-        } 
+            listInbjudningar.add("Du har inga inbjudningar");
         }
     }
     
