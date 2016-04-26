@@ -19,12 +19,15 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import informatikb_system.Profile.*;
 import java.awt.Color;
+import java.awt.Desktop;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Reinis
  */
-public class Inlagg extends javax.swing.JFrame {
+public class InlaggTest extends javax.swing.JFrame {
     private Profil_egen_visa MyProfile;
 
     /**
@@ -37,7 +40,7 @@ public class Inlagg extends javax.swing.JFrame {
     private static String aid;
     String amne;
 
-    public Inlagg(String aid) {
+    public InlaggTest(String aid) {
         initComponents();
         getContentPane().setBackground(Color.white);
         setLocationRelativeTo(null);
@@ -66,7 +69,7 @@ public class Inlagg extends javax.swing.JFrame {
         btnLaggTillMote = new javax.swing.JButton();
         jTabPanelAmnen = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
         txtPaneSocialt = new javax.swing.JTextPane();
         jtabPaneForsk = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -76,8 +79,6 @@ public class Inlagg extends javax.swing.JFrame {
         jTextPaneUtbildning = new javax.swing.JTextPane();
         btnVisaKalender = new javax.swing.JButton();
         btnMyProfile = new javax.swing.JButton();
-        btnInbjudningar = new javax.swing.JButton();
-        btnMinaSkapadeMoten = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -110,7 +111,7 @@ public class Inlagg extends javax.swing.JFrame {
         });
 
         txtPaneSocialt.setEditable(false);
-        jScrollPane2.setViewportView(txtPaneSocialt);
+        jScrollPane4.setViewportView(txtPaneSocialt);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,14 +119,13 @@ public class Inlagg extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1833, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1274, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE))
         );
 
         jTabPanelAmnen.addTab("Socialt", jPanel1);
@@ -139,14 +139,14 @@ public class Inlagg extends javax.swing.JFrame {
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jtabPaneForskLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1833, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1268, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jtabPaneForskLayout.setVerticalGroup(
             jtabPaneForskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jtabPaneForskLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -160,13 +160,16 @@ public class Inlagg extends javax.swing.JFrame {
         tabPaneUtbLayout.setHorizontalGroup(
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabPaneUtbLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1788, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1268, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabPaneUtbLayout.setVerticalGroup(
             tabPaneUtbLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+            .addGroup(tabPaneUtbLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabPanelAmnen.addTab("Utbildning", tabPaneUtb);
@@ -190,25 +193,6 @@ public class Inlagg extends javax.swing.JFrame {
             }
         });
 
-        btnInbjudningar.setText("Rösta på mötesförslag");
-        btnInbjudningar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnInbjudningarMouseClicked(evt);
-            }
-        });
-        btnInbjudningar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInbjudningarActionPerformed(evt);
-            }
-        });
-
-        btnMinaSkapadeMoten.setText("Mina skapade möten");
-        btnMinaSkapadeMoten.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMinaSkapadeMotenActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -216,25 +200,18 @@ public class Inlagg extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabPanelAmnen)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabPanelAmnen, javax.swing.GroupLayout.DEFAULT_SIZE, 1847, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnMyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(413, 413, 413)
-                                .addComponent(btnMyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnVisaKalender, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnLaggTillMote, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnInbjudningar, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnMinaSkapadeMoten, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(btnVisaKalender, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLaggTillMote, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,15 +219,12 @@ public class Inlagg extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(btnMyProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnMinaSkapadeMoten, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnInbjudningar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnVisaKalender, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnLaggTillMote, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSkrivInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVisaKalender, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLaggTillMote, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabPanelAmnen, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+                .addComponent(jTabPanelAmnen)
                 .addGap(14, 14, 14))
         );
 
@@ -284,6 +258,7 @@ public class Inlagg extends javax.swing.JFrame {
            StyledDocument docSoc = txtPaneSocialt.getStyledDocument();
            inlagg.emptyInlaggPane(docSoc);
            inlagg.showSocInlagg1(docSoc, amne1);
+           
        }
        if(amne1.equals("Forskning")){
            
@@ -301,7 +276,7 @@ public class Inlagg extends javax.swing.JFrame {
    
     
     private void btnSkrivInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkrivInlaggMouseClicked
-        SkrivaInlagg skriva = new SkrivaInlagg(aid, this);
+        SkrivaInlaggTest skriva = new SkrivaInlaggTest(aid, this);
         skriva.setVisible(true);
     }//GEN-LAST:event_btnSkrivInlaggMouseClicked
 
@@ -343,18 +318,6 @@ public class Inlagg extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnMyProfileActionPerformed
 
-    private void btnInbjudningarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInbjudningarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInbjudningarActionPerformed
-
-    private void btnInbjudningarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInbjudningarMouseClicked
-        new Mote_Inbjudningar(aid).setVisible(true);
-    }//GEN-LAST:event_btnInbjudningarMouseClicked
-
-    private void btnMinaSkapadeMotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinaSkapadeMotenActionPerformed
-        new Mina_Moten(aid).setVisible(true);
-    }//GEN-LAST:event_btnMinaSkapadeMotenActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -372,35 +335,34 @@ public class Inlagg extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InlaggTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InlaggTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InlaggTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inlagg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InlaggTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inlagg(aid).setVisible(true);
+                new InlaggTest(aid).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnInbjudningar;
     private javax.swing.JButton btnLaggTillMote;
-    private javax.swing.JButton btnMinaSkapadeMoten;
     private javax.swing.JButton btnMyProfile;
     private javax.swing.JButton btnSkrivInlagg;
     private javax.swing.JButton btnVisaKalender;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabPanelAmnen;
     private javax.swing.JTextPane jTextPaneForsk;
     private javax.swing.JTextPane jTextPaneUtbildning;
