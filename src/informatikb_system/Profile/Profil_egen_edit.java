@@ -363,21 +363,31 @@ public class Profil_egen_edit extends JFrame{
             System.out.println("Type of extension: " + extension);
             String File = this.AID + "_Prof_Pic." + extension;
             Pic = Pic + File;
-            System.out.println(File);
+            System.out.println("Filename: " + File);
+            System.out.println("Location: " + Pic);
             try{
-                saveImage(URL_P,Pic);
+                Pic = saveImage(URL_P,Pic, extension);
                 System.out.println("Copying file to location...");
                 System.out.println("Reading: " + Pic);
                 ImageIcon imageIcon = new ImageIcon(new ImageIcon(Pic).getImage().getScaledInstance(this.Picture_Frame.getHeight(), this.Picture_Frame.getHeight(), Image.SCALE_DEFAULT));
                 this.Picture_Frame.setIcon(imageIcon);
             } catch(IOException e){
                 System.out.println("Error: " + e);
+                JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_Edit_Picture_BtnActionPerformed
 
-    public static void saveImage(String imageUrl, String destinationFile) throws IOException {
-	URL url = new URL(imageUrl);
+    public String saveImage(String imageUrl, String destinationFile, String ext) throws IOException {
+	File Check = new File(destinationFile);
+        if(Check.exists()){
+            JOptionPane.showMessageDialog(this, "File exists!");
+            String Temp = Check.getAbsolutePath().replaceAll(Check.getName(), this.AID + "Edit_Prof_Pic." + ext);
+            System.out.println("Temp Path: " + Temp);
+            destinationFile = Temp;
+            System.out.println("Change Filename: " + destinationFile);
+        }
+        URL url = new URL(imageUrl);
 	InputStream is = url.openStream();
 	OutputStream os = new FileOutputStream(destinationFile);
         byte[] b = new byte[2048];
@@ -387,6 +397,7 @@ public class Profil_egen_edit extends JFrame{
         }
         is.close();
         os.close();
+        return destinationFile;
     }
     
     private void ProfileEdit_OK_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileEdit_OK_ExitActionPerformed
