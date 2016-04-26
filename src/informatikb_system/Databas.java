@@ -593,5 +593,35 @@ private InfDB idb;
         }
     }
     
+    public ArrayList<String> hamtaFardigaMid()
+    {
+        ArrayList<String> moten = new ArrayList<String>();
+        try
+        {
+            String sqlFraga = "SELECT MID FROM MOTE";
+            moten = idb.fetchColumn(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return moten;
+    }
+    
+    public ArrayList<String> hamtaMotesforslagMid()
+    {
+        ArrayList<String> moten = new ArrayList<String>();
+        try
+        {
+            String sqlFraga = "SELECT MID FROM MOTE_FORSLAG";
+            moten = idb.fetchColumn(sqlFraga);
+        }
+        catch(InfException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return moten;
+    }
+    
     
 }

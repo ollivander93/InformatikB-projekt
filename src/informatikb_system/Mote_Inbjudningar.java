@@ -31,21 +31,27 @@ public class Mote_Inbjudningar extends javax.swing.JFrame {
 
     public void fillInbjudningarLista(String AID)
     {
-        ArrayList<String> motesIdn = new ArrayList<String>();
-        motesIdn = db.hamtaInbjudningar(AID);
-        HashMap<String, String> jamfora = new HashMap<String, String>();
-        jamfora = db.hamtaMotesInfo(AID);
-        String mote = jamfora.get("TITEL");
+        ArrayList<String> forslag = new ArrayList<String>();
+        forslag = db.hamtaMotesforslagMid();
+        ArrayList<String> fardigamoten = new ArrayList<String>();
+        fardigamoten = db.hamtaFardigaMid();
+        ArrayList<String> motesForslag = new ArrayList<String>();
         
+        for(String mote : forslag)
+        {
+            if(!fardigamoten.contains(mote))
+            {
+                motesForslag.add(mote);
+            }
+        }        
         
-        
-        if(motesIdn == null)
+        if(motesForslag == null)
         {
             listInbjudningar.add("Du har inga inbjudningar");
         }
         else
         {
-        for(String id : motesIdn)
+        for(String id : motesForslag)
         {
             String finalMote = id + ". " + db.hamtaMotesForslagNamn(id);
             listInbjudningar.add(finalMote);
