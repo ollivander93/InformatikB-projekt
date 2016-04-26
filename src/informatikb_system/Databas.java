@@ -109,7 +109,7 @@ private InfDB idb;
             ArrayList<String> fornamn = idb.fetchColumn(sqlFornamn);
             ArrayList<String> efternamn = idb.fetchColumn(sqlEfternamn);
             int i = 0;
-            if(fornamn.isEmpty())
+            if(fornamn == null)
             {
                 System.out.println("rebarmuskel");
             }
@@ -306,13 +306,17 @@ private InfDB idb;
         boolean anmald = false;
         ArrayList<String> deltagare = new ArrayList<String>();
         deltagare = hamtaAidFromMote(mid);
-        for(String deltagande : deltagare)
+        if(deltagare != null)
+        {
+            for(String deltagande : deltagare)
         {
             if(deltagande.equals(aid))
             {
                 anmald = true;
             }
         }
+        }
+        
         return anmald;
     }
     
@@ -526,15 +530,19 @@ private InfDB idb;
         try
         {
             motesInfo = idb.fetchRows(sqlFraga);
-            for(HashMap<String, String> infon : motesInfo)
+            if(motesInfo == null)
+            {
+                 mote.add("Inga skapade möten hittade");
+            }
+            else
+            {
+               for(HashMap<String, String> infon : motesInfo)
             {
                 String namn = infon.get("MID") + ". " + infon.get("TITEL");
                 mote.add(namn);
+            } 
             }
-            if(mote == null)
-            {
-                mote.add("Inga skapade möten hittade");
-            }
+            
         }
         catch(InfException e)
         {

@@ -39,17 +39,9 @@ public class Mina_Moten extends javax.swing.JFrame {
        ArrayList<String> skapademoten = new ArrayList<String>();
        skapademoten = db.hamtaSkapadeMoteNamn(aid);
        
-       
-       if(skapademoten == null)
+       for(String namn : skapademoten)
        {
-           listFardigstalldaMoten.add("Du har inte skapat några möten");
-       }
-       else
-       {
-           for(String namn : skapademoten)
-           {
-               listFardigstalldaMoten.add(namn);
-           }
+           listFardigstalldaMoten.add(namn);
        }
        
        
@@ -63,18 +55,15 @@ public class Mina_Moten extends javax.swing.JFrame {
        String[] fardigaMoten = listFardigstalldaMoten.getItems();
        Set<String> klaraMoten = new HashSet<String>(Arrays.asList(fardigaMoten));
      
-       if(forslagsmoten != null)
+       for(String motet : forslagsmoten)
        {
-           for(String motet : forslagsmoten)
-           {
-               if(!klaraMoten.contains(motet))
-               {
-                   listMotesforslag.add(motet);
+            if(!klaraMoten.contains(motet))
+            {
+                listMotesforslag.add(motet);
                    
-               }
-           }
-           
+            }
        }
+           
 
        if(listMotesforslag.getItemCount() == 0)
        {

@@ -85,7 +85,7 @@ public class MotesInfo extends javax.swing.JFrame {
         ArrayList<String> deltagande = db.hamtaAnstalldaMote(mID);
         DefaultListModel listModel = new DefaultListModel();
         listDeltagare.setModel(listModel);
-        if(deltagande.isEmpty())
+        if(deltagande == null)
         {
             listModel.addElement(kebab);
         }
