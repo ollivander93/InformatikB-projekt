@@ -26,7 +26,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
     private ArrayList<HashMap<String, String>> ProfileInfo;
     private String AID;
     private Profil_egen_edit EditProfile;
-    private String name = null, lastName = null, city = null, email = null, phone = null, BIO = null;
+    private String name = null, lastName = null, city = null, email = null, phone = null, BIO = null, ProfilePicture = null;
     private InlaggMgt inlagg;
     
     // Konstruktor för test
@@ -93,15 +93,12 @@ public void showSocInlagg(String amne1){
         }
     }
     //Fyller ProfileInfo listan med värden
-    private void setProfileInfo()
-    {
+    private void setProfileInfo(){
         String sqlFraga = "Select * from anstalld where anstalld.aid = " + AID + ";";
-        try
-        {
+        try{
             ProfileInfo = idb.fetchRows(sqlFraga);
         }
-        catch(InfException e)
-        {
+        catch(InfException e){
             System.out.println(e.getMessage());
         }
     }
@@ -109,7 +106,7 @@ public void showSocInlagg(String amne1){
     private void setupProfile(){
         // Loopar igenom hela ProfileInfo
         for (HashMap<String, String> ProfileInfo1 : ProfileInfo) {
-            //Sparar Profilens info
+            //Sparar Profilens info i applikationen
             if (AID.equals(ProfileInfo1.get("AID"))) {
                 name = ProfileInfo1.get("FIRST_NAME");
                 lastName = ProfileInfo1.get("LAST_NAME");
@@ -117,6 +114,7 @@ public void showSocInlagg(String amne1){
                 email = ProfileInfo1.get("EMAIL");
                 phone = ProfileInfo1.get("TELEFON");
                 BIO = ProfileInfo1.get("BIO");
+                ProfilePicture = ProfileInfo1.get("PROFILE_PICTURE");
                 break;
             }
         }
@@ -476,14 +474,8 @@ public void showSocInlagg(String amne1){
 
     private void updateProfile(){
         ProfileInfo.clear();
-        String sql_Q = "SELECT * FROM ANSTALLD where (AID = "+ AID +");";
-        System.out.println(sql_Q);
-        try{
-           ProfileInfo = idb.fetchRows(sql_Q);
-           setupProfile();
-        } catch(InfException e){
-            System.out.println(e.getMessage());
-        }
+        setProfileInfo();
+        setupProfile();
     }
     
     private void Profile_OK_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Profile_OK_ExitActionPerformed
