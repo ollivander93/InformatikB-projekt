@@ -60,7 +60,19 @@ public String getAnstEfterNamn(String aid, String sqlFraga){
         }
         return ettNamn;
      }
-     
+    
+    public String SQL_F(String SQL_F){
+       String sqlFraga = SQL_F;
+       String filename = null;
+         System.out.println(sqlFraga);
+         try{
+             filename = idb.fetchSingle(sqlFraga);
+             
+         }catch(InfException e){
+             System.err.println("PROFILE_PICTURE är null\n" + e);
+         }
+         return filename;
+    }
 public void showSocInlagg1(StyledDocument d, String amne){
     ArrayList<HashMap<String, String>>  list = hamtaInlagg(amne);
     if(!(list==null)){
@@ -134,4 +146,13 @@ public void emptyInlaggPane(StyledDocument dok){
             System.out.print(ex.getMessage());
         }
    }
+
+ public void updateProfile(String SQL_F){
+     System.out.println(SQL_F);
+    try{
+        idb.update(SQL_F);
+    } catch(InfException e){
+        System.out.println(e.getMessage());
+    }
+ }
 }
