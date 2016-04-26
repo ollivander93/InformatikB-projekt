@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package informatikb_system.Profile;
+import informatikb_system.Profile.InlaggMgt;
 import java.beans.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -39,21 +40,25 @@ public class Profil_egen_edit extends JFrame{
     private String AID;
     private URL Pic_url = null;
     private Image image = null;
-    public JLabel Preview_P = null;
+    //public JLabel Preview_P = null;
+    private InlaggMgt Profile_Edit;
     
     // Test Konstruktor
     public Profil_egen_edit() {
         initComponents();
-        // Test
+        String TestNull = "";
         if(this.AID == null)
-            this.AID = "Temp_"; 
-        // End Test
+            this.AID = "1";
+        Profile_Edit = new InlaggMgt(this.AID);
+        String TESTNULL = Profile_Edit.SQL_F("SELECT ANSTALLD.PROFILE_PICTURE FROM ANSTALLD WHERE AID ="+ this.AID + ";");
         ProfileEdit_Cancel_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
+        ProfileEdit_OK_Exit.addActionListener(new ActionListener() { public void actionPerformed(ActionEvent e) { System.exit(0); }});
     }
     // Standardkonstruktor
     public Profil_egen_edit(ArrayList<String> ProfileInfo, String AID) {
         this.AID = AID;
         initComponents();
+        Profile_Edit = new InlaggMgt(AID);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setBackground(Color.white);
@@ -336,7 +341,7 @@ public class Profil_egen_edit extends JFrame{
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(profil_main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Profil_info, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)))
+                    .addComponent(Profil_info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -356,7 +361,7 @@ public class Profil_egen_edit extends JFrame{
             if (i > 0)
                 extension = URL_P.substring(i+1);
             System.out.println("Type of extension: " + extension);
-            String File = this.AID + "Prof_Pic." + extension;
+            String File = this.AID + "_Prof_Pic." + extension;
             Pic = Pic + File;
             System.out.println(File);
             try{
@@ -413,14 +418,11 @@ public class Profil_egen_edit extends JFrame{
     }
     
     public void UpdateInsert(){
-        try{
-            String sql_Q = "UPDATE ANSTALLD set FIRST_NAME='" + ProfileInfo.get(0) + "',LAST_NAME='" + ProfileInfo.get(1)
-                + "', TELEFON=" + ProfileInfo.get(4) + ", BIO='" + ProfileInfo.get(5) + "',CITY='" + ProfileInfo.get(2) + "',EMAIL='" + ProfileInfo.get(3) + "' where(AID=" + this.AID + ");";
-            System.out.println(sql_Q);
-           idb.update(sql_Q);
-        } catch(InfException e) {
-            System.out.println(e.getMessage());
-        }
+        String sql_Q = "UPDATE ANSTALLD set FIRST_NAME='" + ProfileInfo.get(0) + "',LAST_NAME='" + ProfileInfo.get(1)
+            + "', TELEFON=" + ProfileInfo.get(4) + ", BIO='" + ProfileInfo.get(5) + "',CITY='" + ProfileInfo.get(2) + "',EMAIL='" + ProfileInfo.get(3) + "' where(AID=" + this.AID + ");";
+        System.out.println(sql_Q);
+        //idb.update(sql_Q);
+        this.Profile_Edit.updateProfile(sql_Q);
     }
     
     /**
@@ -461,6 +463,7 @@ public class Profil_egen_edit extends JFrame{
     void setLabel(String newText) {
         GLobal_label.setText(newText);
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Edit_Picture_Btn;
     public javax.swing.JLabel Picture_Frame;
