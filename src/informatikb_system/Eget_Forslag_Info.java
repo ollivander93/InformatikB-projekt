@@ -79,21 +79,29 @@ public class Eget_Forslag_Info extends javax.swing.JFrame {
 
     public void finalizeaMote()
     {
-        String datum = lblDatum.getText();
-        String plats = lblPlats1.getText();
-        String titel = lblTitel.getText();
-        String beskrivning = taBeskrivning.getText();
-        String veckodag = info.get("VECKODAG");
-        String vecka = info.get("VECKA");
-        String tid = listTider.getSelectedItem().toString();
-        String[] splitz = tid.split("-");
-        String starttid = splitz[0];
-        String sluttid = splitz[1];
+        String valtTid = listTider.getSelectedItem();
+        if(valtTid == null)
+        {
+            JOptionPane.showMessageDialog(this, "Du måste välja ett tidsförslag");
+        }
+        else
+        {
+            String datum = lblDatum.getText();
+            String plats = lblPlats1.getText();
+            String titel = lblTitel.getText();
+            String beskrivning = taBeskrivning.getText();
+            String veckodag = info.get("VECKODAG");
+            String vecka = info.get("VECKA");
+            String tid = listTider.getSelectedItem().toString();
+            String[] splitz = tid.split("-");
+            String starttid = splitz[0];
+            String sluttid = splitz[1];
         
-        db.skapaMote(mID, starttid, sluttid, aid, datum, plats, titel, beskrivning, vecka, veckodag);
-        db.anmalAnstalldTillMote(aid, mID);
+            db.skapaMote(mID, starttid, sluttid, aid, datum, plats, titel, beskrivning, vecka, veckodag);
+            db.anmalAnstalldTillMote(aid, mID);
         
-        JOptionPane.showMessageDialog(this, "Mötet har nu färdigställts");
+            JOptionPane.showMessageDialog(this, "Mötet har nu färdigställts");
+        }
     }          
     
     

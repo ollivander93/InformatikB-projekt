@@ -103,6 +103,9 @@ public class Mina_Moten extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnValjFardigtMoteMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnValjFardigtMoteMouseEntered(evt);
+            }
         });
         btnValjFardigtMote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,11 +200,16 @@ public class Mina_Moten extends javax.swing.JFrame {
         String[] mote = valtMote.split("\\.");
         String mid = mote[0];
         new MotesInfo(mid, aid).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnValjFardigtMoteMouseClicked
 
     private void btnValjFardigtMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValjFardigtMoteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnValjFardigtMoteActionPerformed
+
+    private void btnValjFardigtMoteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValjFardigtMoteMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnValjFardigtMoteMouseEntered
 
     /**
      * @param args the command line arguments
