@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package informatikb_system.Profile;
-import informatikb_system.Profile.InlaggMgt.*;
+import informatikb_system.Profile.InlaggMgt;
 import java.beans.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -97,6 +97,8 @@ public void showSocInlagg(String amne1){
         String sqlFraga = "Select * from anstalld where anstalld.aid = " + AID + ";";
         try{
             ProfileInfo = idb.fetchRows(sqlFraga);
+            System.out.println("ProfileInfo: " + ProfileInfo);
+            System.out.println("ProfileInfo size: " + ProfileInfo.size());
         }
         catch(InfException e){
             System.out.println(e.getMessage());
@@ -114,7 +116,12 @@ public void showSocInlagg(String amne1){
                 email = ProfileInfo1.get("EMAIL");
                 phone = ProfileInfo1.get("TELEFON");
                 BIO = ProfileInfo1.get("BIO");
-                ProfilePicture = ProfileInfo1.get("PROFILE_PICTURE");
+                if((!ProfileInfo1.containsKey("PROFILBILD=null")) && (!ProfileInfo1.containsKey("PROFILBILD=\"\"")))
+                    this.ProfilePicture = ProfileInfo1.get("PROFILE_PICTURE");
+                else {
+                    String Location = "/informatikb_system/Icons/1_Prof_Pic.png";
+                    this.ProfilePicture = this.getClass().getResource(Location).getPath();
+                }
                 break;
             }
         }
@@ -463,6 +470,7 @@ public void showSocInlagg(String amne1){
         Profile_Edit.add(Email_Get.getText());
         Profile_Edit.add(TelefonNr_Get.getText());
         Profile_Edit.add(Profile_Bio.getText());
+        Profile_Edit.add(this.ProfilePicture);
         this.EditProfile = new Profil_egen_edit(Profile_Edit, this.AID);
         
         if(!this.EditProfile.isVisible()){

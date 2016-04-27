@@ -25,6 +25,11 @@ public InlaggMgt(String AID){
     this.AID = AID;
     anslutDatabas();
 }
+
+public InlaggMgt(ArrayList<String> ProfileInfo, String AID){
+    this.AID = AID;
+    anslutDatabas();
+}
     
 private void anslutDatabas(){
     try{

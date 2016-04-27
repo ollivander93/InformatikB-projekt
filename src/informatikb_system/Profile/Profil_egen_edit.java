@@ -71,12 +71,14 @@ public class Profil_egen_edit extends JFrame{
         this.ProfileEdit_Telephone.setText(ProfileInfo.get(4));
         this.ProfileEdit_Bio.setText(ProfileInfo.get(5));
         System.out.println("After calling Prrofile_egen_Edit\nArraylist Size: " + ProfileInfo.size());
-        if(this.ProfileInfo.get(6) == null){
+        if((this.ProfileInfo.contains(null)) || (this.ProfileInfo.contains(""))){
             String Location = "/informatikb_system/Icons/1_Prof_Pic.png";
             this.image = this.getClass().getResource(Location).getPath();
-        } else {
+        } else
             this.image = this.ProfileInfo.get(6);
-        }
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon(this.image).getImage().getScaledInstance(this.Picture_Frame.getHeight(), this.Picture_Frame.getHeight(), Image.SCALE_DEFAULT));
+        this.Picture_Frame.setIcon(imageIcon);
+        System.out.println("ProfileInfo: " + ProfileInfo.get(6));
     }
 
     /**
