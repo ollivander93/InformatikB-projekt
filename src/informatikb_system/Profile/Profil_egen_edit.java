@@ -39,6 +39,7 @@ public class Profil_egen_edit extends JFrame{
     private InfDB idb;
     private String AID;
     private URL Pic_url = null;
+    private String Pic = null;
     private String image = null;
     //public JLabel Preview_P = null;
     private InlaggMgt Profile_Edit;
@@ -359,7 +360,7 @@ public class Profil_egen_edit extends JFrame{
 
     private void Edit_Picture_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Edit_Picture_BtnActionPerformed
         String URL_P = JOptionPane.showInputDialog(frame, "URL:");
-        String Pic = null;
+        this.Pic = null;
         String extension = null;
         if (URL_P != null) {
             this.Pic_url = this.getClass().getResource(URL_P);
@@ -383,15 +384,19 @@ public class Profil_egen_edit extends JFrame{
                 this.Picture_Frame.setIcon(imageIcon);
             } catch(IOException e){
                 System.out.println("Error: " + e);
-                JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Ops, ett fel uppstod. Det gick inte att hämta bilden.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+        /*int i = URL_P.;
+            if (i > 0)
+                this.Pic = URL_P.substring(i+1);
+            System.out.println("After Copy\nLocation: " + this.Pic);*/
     }//GEN-LAST:event_Edit_Picture_BtnActionPerformed
 
     public String saveImage(String imageUrl, String destinationFile, String ext) throws IOException {
 	File Check = new File(destinationFile);
         if(Check.exists()){
-            JOptionPane.showMessageDialog(this, "File exists!");
+            //JOptionPane.showMessageDialog(this, "File exists!");
             String Temp = Check.getAbsolutePath().replaceAll(Check.getName(), this.AID + "Edit_Prof_Pic." + ext);
             System.out.println("Temp Path: " + Temp);
             destinationFile = Temp;
@@ -439,9 +444,9 @@ public class Profil_egen_edit extends JFrame{
     }
     
     public void UpdateInsert(){
-        String sql_Q = "UPDATE ANSTALLD set FIRST_NAME='" + ProfileInfo.get(0) + "',LAST_NAME='" + ProfileInfo.get(1)
-            + "', TELEFON=" + ProfileInfo.get(4) + ", BIO='" + ProfileInfo.get(5) + "',CITY='" + ProfileInfo.get(2) + "',EMAIL='" + ProfileInfo.get(3) + "' where(AID=" + this.AID + ");";
-        System.out.println(sql_Q);
+        String sql_Q = "UPDATE ANSTALLD set FIRST_NAME='" + ProfileEdit_Name.getText() + "',LAST_NAME='" + ProfileEdit_LastName.getText()
+            + "', TELEFON=" + ProfileEdit_Telephone.getText() + ", BIO='" + ProfileEdit_Bio.getText() + "',CITY='" + ProfileEdit_Bio.getText() + "',EMAIL='" + ProfileEdit_Email.getText() + "',PROFILBILD='" + this.Pic +  "' where(AID=" + this.AID + ");";
+        //System.out.println(sql_Q);
         //idb.update(sql_Q);
         this.Profile_Edit.updateProfile(sql_Q);
     }
