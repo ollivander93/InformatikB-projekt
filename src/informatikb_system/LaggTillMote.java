@@ -406,24 +406,32 @@ public class LaggTillMote extends javax.swing.JFrame {
         
         ArrayList<String> tider = new ArrayList<String>();
         int i = 0;
-        while(i < 3)
+        int antalTider = listTidsforslag.getItemCount();
+        if(antalTider < 3)
         {
-            tider.add(listTidsforslag.getItem(i));
-            i++;
+            JOptionPane.showMessageDialog(this, "Du måste lägga till tre tidsförslag");
         }
-        
-        mote.skapaMotesForslag(tider, aid, finalDatum, plats, titel, beskrivning, vecka, veckodag);
-        String mid = db.hamtaMid(titel);
-        ArrayList<String> deltagare = hamtaDeltagare();
-        System.out.println(aid + " " + mid);
-        for(String deltagaren : deltagare)
+        else
         {
-            String[] aidn = deltagaren.split("\\.");
-            String aid = aidn[0];
-            db.bjudInTillMote(mid, aid);
-        }
+            while(i < antalTider)
+            {
+                tider.add(listTidsforslag.getItem(i));
+                i++;
+            }
         
-        JOptionPane.showMessageDialog(this, "Mötet har nu sparats");
+            mote.skapaMotesForslag(tider, aid, finalDatum, plats, titel, beskrivning, vecka, veckodag);
+            String mid = db.hamtaMid(titel);
+            ArrayList<String> deltagare = hamtaDeltagare();
+            System.out.println(aid + " " + mid);
+            for(String deltagaren : deltagare)
+            {
+                String[] aidn = deltagaren.split("\\.");
+                String aid = aidn[0];
+                db.bjudInTillMote(mid, aid);
+            }
+        
+            JOptionPane.showMessageDialog(this, "Mötet har nu sparats");
+        }
     }//GEN-LAST:event_btnSkapaMoteMouseClicked
 
     private void btnSkapaMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkapaMoteActionPerformed
