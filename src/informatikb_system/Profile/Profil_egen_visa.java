@@ -44,7 +44,7 @@ public class Profil_egen_visa extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         getContentPane().setBackground(Color.white);
         profil_main.setBackground(Color.white);
-        jPanel1.setBackground(Color.white);
+        JPanel.setBackground(Color.white);
         jPanel2.setBackground(Color.white);
         jPanel3.setBackground(Color.white);
         jPanel4.setBackground(Color.white);
@@ -116,12 +116,19 @@ public void showSocInlagg(String amne1){
                 email = ProfileInfo1.get("EMAIL");
                 phone = ProfileInfo1.get("TELEFON");
                 BIO = ProfileInfo1.get("BIO");
-                if((!ProfileInfo1.containsKey("PROFILBILD=null")) && (!ProfileInfo1.containsKey("PROFILBILD=\"\"")))
-                    this.ProfilePicture = ProfileInfo1.get("PROFILE_PICTURE");
-                else {
+                if(!(ProfileInfo1.containsKey("PROFILBILD=NULL") || ProfileInfo1.containsKey("PROFILBILD=\"\""))){
+                    System.out.println("If Not Null\nProfile_picture= " + ProfileInfo1.get("PROFILBILD"));
+                    this.ProfilePicture = this.getClass().getResource(ProfileInfo1.get("PROFILBILD")).getPath();
+                    ImageIcon imageIcon = new ImageIcon(new ImageIcon(this.ProfilePicture).getImage().getScaledInstance(this.Profile_Picture.getHeight(), this.Profile_Picture.getHeight(), Image.SCALE_DEFAULT));
+                    this.Profile_Picture.setIcon(imageIcon);
+                }else {
+                    System.out.println("Profile_picture= " + ProfileInfo1.get("PROFILBILD"));
                     String Location = "/informatikb_system/Icons/1_Prof_Pic.png";
+                    System.out.println(this.getClass().getResource(Location).getPath());
                     this.ProfilePicture = this.getClass().getResource(Location).getPath();
-                }
+                    ImageIcon imageIcon = new ImageIcon(new ImageIcon(this.ProfilePicture).getImage().getScaledInstance(this.Profile_Picture.getHeight(), this.Profile_Picture.getHeight(), Image.SCALE_DEFAULT));
+                    this.Profile_Picture.setIcon(imageIcon);
+                    }
                 break;
             }
         }
@@ -145,7 +152,8 @@ public void showSocInlagg(String amne1){
 
         profil_main = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        JPanel = new javax.swing.JPanel();
+        Profile_Picture = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Profile_Bio = new javax.swing.JTextArea();
         Control_Panel = new javax.swing.JPanel();
@@ -177,18 +185,20 @@ public void showSocInlagg(String amne1){
         profil_main.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         profil_main.setName("Profile_maininfo"); // NOI18N
 
-        jPanel1.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel1.setToolTipText("Din Profilbild");
+        JPanel.setBorder(new javax.swing.border.MatteBorder(null));
+        JPanel.setToolTipText("Din Profilbild");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 206, Short.MAX_VALUE)
+        Profile_Picture.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+
+        javax.swing.GroupLayout JPanelLayout = new javax.swing.GroupLayout(JPanel);
+        JPanel.setLayout(JPanelLayout);
+        JPanelLayout.setHorizontalGroup(
+            JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Profile_Picture, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 145, Short.MAX_VALUE)
+        JPanelLayout.setVerticalGroup(
+            JPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Profile_Picture, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
         );
 
         Profile_Bio.setColumns(20);
@@ -206,14 +216,14 @@ public void showSocInlagg(String amne1){
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -555,13 +565,14 @@ public void showSocInlagg(String amne1){
     private javax.swing.JPanel Control_Panel;
     private javax.swing.JButton Edit_Profile;
     private javax.swing.JLabel Email_Get;
+    private javax.swing.JPanel JPanel;
     private javax.swing.JLabel LastName_Get;
     public javax.swing.JLabel Name_Get;
     private javax.swing.JTextArea Profile_Bio;
     private javax.swing.JToggleButton Profile_Cancel_Exit;
     private javax.swing.JToggleButton Profile_OK_Exit;
+    private javax.swing.JLabel Profile_Picture;
     private javax.swing.JLabel TelefonNr_Get;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

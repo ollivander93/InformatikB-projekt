@@ -75,8 +75,12 @@ public class Profil_egen_edit extends JFrame{
         if((this.ProfileInfo.contains(null)) || (this.ProfileInfo.contains(""))){
             String Location = "/informatikb_system/Icons/1_Prof_Pic.png";
             this.image = this.getClass().getResource(Location).getPath();
-        } else
-            this.image = this.ProfileInfo.get(6);
+        } else{
+            this.Pic = this.ProfileInfo.get(6);
+            //this.Pic = this.getClass().getResource(this.ProfileInfo.get(6)).getPath();
+            System.out.println("Location of Picture: " + Pic);
+            this.image = this.Pic;
+        }
         ImageIcon imageIcon = new ImageIcon(new ImageIcon(this.image).getImage().getScaledInstance(this.Picture_Frame.getHeight(), this.Picture_Frame.getHeight(), Image.SCALE_DEFAULT));
         this.Picture_Frame.setIcon(imageIcon);
         System.out.println("ProfileInfo: " + ProfileInfo.get(6));
@@ -386,6 +390,7 @@ public class Profil_egen_edit extends JFrame{
                 System.out.println("Error: " + e);
                 JOptionPane.showMessageDialog(this, "Ops, ett fel uppstod. Det gick inte att hämta bilden.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+            Pic = "/informatikb_system/Icons/" + File;
         }
         /*int i = URL_P.;
             if (i > 0)
