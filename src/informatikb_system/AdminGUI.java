@@ -51,6 +51,7 @@ public class AdminGUI extends javax.swing.JFrame {
         btnLaggTillAnvandare = new javax.swing.JButton();
         btnInlaggsHantering = new javax.swing.JButton();
         btnTaBortAnvandare = new javax.swing.JButton();
+        btnLoggaUt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +76,13 @@ public class AdminGUI extends javax.swing.JFrame {
             }
         });
 
+        btnLoggaUt.setText("Logga ut");
+        btnLoggaUt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLoggaUtMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,6 +95,10 @@ public class AdminGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnInlaggsHantering)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLoggaUt)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +108,9 @@ public class AdminGUI extends javax.swing.JFrame {
                     .addComponent(btnLaggTillAnvandare, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                     .addComponent(btnTaBortAnvandare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnInlaggsHantering, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(btnLoggaUt)
+                .addContainerGap())
         );
 
         pack();
@@ -116,6 +130,12 @@ public class AdminGUI extends javax.swing.JFrame {
         TaBortAnvandareAdmin anv = new TaBortAnvandareAdmin();
         anv.setVisible(true);
     }//GEN-LAST:event_btnTaBortAnvandareMouseClicked
+
+    private void btnLoggaUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoggaUtMouseClicked
+        Inloggningsruta inlogg = new Inloggningsruta();
+        inlogg.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnLoggaUtMouseClicked
 
     /**
      * @param args the command line arguments
@@ -155,6 +175,7 @@ public class AdminGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInlaggsHantering;
     private javax.swing.JButton btnLaggTillAnvandare;
+    private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton btnTaBortAnvandare;
     // End of variables declaration//GEN-END:variables
 }

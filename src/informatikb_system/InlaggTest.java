@@ -276,8 +276,7 @@ public class InlaggTest extends javax.swing.JFrame {
    
     
     private void btnSkrivInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkrivInlaggMouseClicked
-        SkrivaInlaggTest skriva = new SkrivaInlaggTest(aid, this);
-        skriva.setVisible(true);
+
     }//GEN-LAST:event_btnSkrivInlaggMouseClicked
 
     private void btnLaggTillMoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillMoteActionPerformed
