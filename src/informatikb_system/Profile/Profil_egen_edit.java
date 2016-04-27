@@ -39,7 +39,7 @@ public class Profil_egen_edit extends JFrame{
     private InfDB idb;
     private String AID;
     private URL Pic_url = null;
-    private Image image = null;
+    private String image = null;
     //public JLabel Preview_P = null;
     private InlaggMgt Profile_Edit;
     
@@ -63,12 +63,20 @@ public class Profil_egen_edit extends JFrame{
         setLocationRelativeTo(null);
         getContentPane().setBackground(Color.white);
         this.ProfileInfo = ProfileInfo;
+        System.out.println("Antal Pos: " + ProfileInfo.size());
         this.ProfileEdit_Name.setText(ProfileInfo.get(0));
         this.ProfileEdit_LastName.setText(ProfileInfo.get(1));
         this.ProfileEdit_City.setText(ProfileInfo.get(2));
         this.ProfileEdit_Email.setText(ProfileInfo.get(3));
         this.ProfileEdit_Telephone.setText(ProfileInfo.get(4));
         this.ProfileEdit_Bio.setText(ProfileInfo.get(5));
+        System.out.println("After calling Prrofile_egen_Edit\nArraylist Size: " + ProfileInfo.size());
+        if(this.ProfileInfo.get(6) == null){
+            String Location = "/informatikb_system/Icons/1_Prof_Pic.png";
+            this.image = this.getClass().getResource(Location).getPath();
+        } else {
+            this.image = this.ProfileInfo.get(6);
+        }
     }
 
     /**
