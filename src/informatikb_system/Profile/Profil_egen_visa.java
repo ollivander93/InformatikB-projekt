@@ -116,7 +116,7 @@ public void showSocInlagg(String amne1){
                 email = ProfileInfo1.get("EMAIL");
                 phone = ProfileInfo1.get("TELEFON");
                 BIO = ProfileInfo1.get("BIO");
-                if(!(ProfileInfo1.containsKey("PROFILBILD=NULL") || ProfileInfo1.containsKey("PROFILBILD=\"\""))){
+                if((ProfileInfo1.containsKey("PROFILBILD=null") || ProfileInfo1.containsKey("PROFILBILD=\"\""))){
                     System.out.println("If Not Null\nProfile_picture= " + ProfileInfo1.get("PROFILBILD"));
                     this.ProfilePicture = this.getClass().getResource(ProfileInfo1.get("PROFILBILD")).getPath();
                     ImageIcon imageIcon = new ImageIcon(new ImageIcon(this.ProfilePicture).getImage().getScaledInstance(this.Profile_Picture.getHeight(), this.Profile_Picture.getHeight(), Image.SCALE_DEFAULT));
