@@ -35,7 +35,7 @@ public class SkrivaInlaggTest extends javax.swing.JFrame {
     private static String aid;
     private InlaggMgt mgt;
     private Calendar cal;
-    private static InlaggTest inlaggRuta;
+    private static Inlagg inlaggRuta;
     private InfDB idb;
     private String filePath;
     private JFileChooser fileChooser;
@@ -44,7 +44,7 @@ public class SkrivaInlaggTest extends javax.swing.JFrame {
     /**
      * Creates new form SkrivaInlagg
      */
-    public SkrivaInlaggTest(String aid, InlaggTest inlaggRuta) {
+    public SkrivaInlaggTest(String aid, Inlagg inlaggRuta) {
         anslutDatabas();
         initComponents();
         getContentPane().setBackground(Color.white);
