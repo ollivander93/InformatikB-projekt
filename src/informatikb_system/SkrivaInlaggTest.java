@@ -265,15 +265,16 @@ public class SkrivaInlaggTest extends javax.swing.JFrame {
 
             File selectedFile = fileChooser.getSelectedFile();
             String path = selectedFile.getAbsolutePath();
-            String stringPath = "C:/Users/Oliver/Documents/NetBeansProjects/InformatikB-projekt/databas/Bifogade_Filer";
+            String fileName = selectedFile.getName();
+            String userDirectory = System.getProperty("user.dir");
+            String stringPath = userDirectory + "/databas/Bifogade_Filer/";
             Path path1 = Paths.get(path);
             Path path2 = Paths.get(stringPath);
             try {
                 Files.copy(path1, path2.resolve(path1.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-                copiedFilePath = selectedFile.getAbsoluteFile().getName();
+                copiedFilePath = fileName;
                 
                 lblBild.setIcon(ReziseImage(path));
-                copiedFilePath = stringPath + "/" + copiedFilePath;
                 
             } catch (Exception e) {
                 System.out.println(e.getMessage());

@@ -90,8 +90,10 @@ public class InlaggMgt {
                 String title = list.get(i).get("TITEL");
                 String vis = list.get(i).get("VISIBLE");
                 String sokvag = list.get(i).get("FILSOKVAG");
+                String userDirectory = System.getProperty("user.dir");
+                String helSokvag = userDirectory + "/databas/Bifogade_Filer/" + sokvag;
 
-                ImageIcon icon = new ImageIcon(sokvag);
+                ImageIcon icon = new ImageIcon(helSokvag);
                 Image img = icon.getImage();
                 Image newImg = img.getScaledInstance(600, 300, Image.SCALE_SMOOTH);
                 ImageIcon image = new ImageIcon(newImg);
